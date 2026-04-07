@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://yaebrx7pnb5"]
+
+[ext_resource type="PackedScene" uid="uid://c5apnbl4201dh" path="res://scenes/levels/base_level.tscn" id="1_ibugp"]
+[ext_resource type="PackedScene" uid="uid://cphe5ac1hhfhm" path="res://scenes/pipes/pipe.tscn" id="2_8qukl"]
+[ext_resource type="PackedScene" uid="uid://df1fk5kbrppmg" path="res://scenes/pipes/pipe_corner.tscn" id="3_3p04p"]
+[ext_resource type="PackedScene" uid="uid://bspspxnucomja" path="res://scenes/pipes/pipe_cross.tscn" id="4_qsp8v"]
+[ext_resource type="PackedScene" uid="uid://c4s0kqk36n2we" path="res://scenes/pipes/pipe_t.tscn" id="5_nt80m"]
+[ext_resource type="PackedScene" uid="uid://dg5rr0f1ysgjk" path="res://scenes/pipes/pipe_start.tscn" id="6_brxtv"]
+[ext_resource type="PackedScene" uid="uid://40t35yfp3t0q" path="res://scenes/pipes/pipe_end.tscn" id="7_tv7cl"]
+
+[node name="Level" instance=ExtResource("1_ibugp")]
+
+[node name="pipe" parent="GridContainer" index="0" instance=ExtResource("2_8qukl")]
+position = Vector2(206, 394)
+
+[node name="pipe2" parent="GridContainer" index="1" instance=ExtResource("3_3p04p")]
+position = Vector2(206, 270)
+
+[node name="pipe3" parent="GridContainer" index="2" instance=ExtResource("4_qsp8v")]
+position = Vector2(206, 332)
+
+[node name="pipe4" parent="GridContainer" index="3" instance=ExtResource("4_qsp8v")]
+position = Vector2(330, 394)
+
+[node name="pipe5" parent="GridContainer" index="4" instance=ExtResource("5_nt80m")]
+position = Vector2(268, 270)
+
+[node name="pipe6" parent="GridContainer" index="5" instance=ExtResource("6_brxtv")]
+position = Vector2(330, 208)
+
+[node name="pipe7" parent="GridContainer" index="6" instance=ExtResource("7_tv7cl")]
+position = Vector2(330, 456)
+
+[node name="pipe8" parent="GridContainer" index="7" instance=ExtResource("2_8qukl")]
+position = Vector2(268, 332)
+
+[node name="pipe9" parent="GridContainer" index="8" instance=ExtResource("4_qsp8v")]
+position = Vector2(330, 332)
+
+[node name="pipe10" parent="GridContainer" index="9" instance=ExtResource("5_nt80m")]
+position = Vector2(330, 270)

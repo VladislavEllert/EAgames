@@ -13,5 +13,14 @@ texture = ExtResource("2_6p47r")
 [node name="WaterSprite2D" parent="." index="1"]
 texture = ExtResource("3_c5urn")
 
+[node name="ConnectionTop" parent="." index="3"]
+position = Vector2(0, -50)
+
+[node name="ConnectionRight" parent="." index="4"]
+position = Vector2(50, 0)
+
 [node name="ConnectionBottom" parent="." index="5"]
-position = Vector2(0, 31)
+position = Vector2(0, 50)
+
+[node name="ConnectionLeft" parent="." index="6"]
+position = Vector2(-50, 0)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duo8g7im8l70s"
-path="res://.godot/imported/pipe_straight — копия.png-3dcde6b58dc74f0f56ef0cf8133326a0.ctex"
+uid="uid://1tg21wpb4lv3"
+path="res://.godot/imported/background_level.png-0dc8bfb204ce93188c320ae9232c1a87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/pipe_straight — копия.png"
-dest_files=["res://.godot/imported/pipe_straight — копия.png-3dcde6b58dc74f0f56ef0cf8133326a0.ctex"]
+source_file="res://assets/background_level.png"
+dest_files=["res://.godot/imported/background_level.png-0dc8bfb204ce93188c320ae9232c1a87.ctex"]
 
 [params]
 

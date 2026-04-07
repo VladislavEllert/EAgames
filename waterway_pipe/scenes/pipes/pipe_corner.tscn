@@ -14,10 +14,13 @@ texture = ExtResource("2_kcuro")
 texture = ExtResource("3_kcuro")
 
 [node name="ConnectionTop" parent="." index="3"]
-position = Vector2(0, -19)
+position = Vector2(0, -50)
+
+[node name="ConnectionRight" parent="." index="4"]
+position = Vector2(50, 0)
 
 [node name="ConnectionBottom" parent="." index="5"]
-position = Vector2(0, 31)
+position = Vector2(0, 50)
 
 [node name="ConnectionLeft" parent="." index="6"]
-position = Vector2(-19, 0)
+position = Vector2(-50, 0)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv0cmrowvsbmy"
-path="res://.godot/imported/pipe_strart.png-d8747d8e731abc9414f2c0d57b5f831a.ctex"
+uid="uid://bwsdxk4kxl340"
+path="res://.godot/imported/logo.png-e2220799298e3631eb0e245316e0501a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/pipe_strart.png"
-dest_files=["res://.godot/imported/pipe_strart.png-d8747d8e731abc9414f2c0d57b5f831a.ctex"]
+source_file="res://assets/logo.png"
+dest_files=["res://.godot/imported/logo.png-e2220799298e3631eb0e245316e0501a.ctex"]
 
 [params]
 

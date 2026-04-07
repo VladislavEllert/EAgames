@@ -18,6 +18,7 @@ var is_playing: bool = false
 var is_completed: bool = false
 
 func _ready() -> void:
+	randomize()  # ✅ Инициализация RNG
 	_scan_pipes()
 	reset_level()
 
@@ -45,14 +46,26 @@ func _scan_pipes() -> void:
 				end_pipe = pipe
 
 func reset_level() -> void:
+	_randomize_pipes()
+	
 	for pipe in pipes.values():
 		pipe.reset_fill()
+	
 	elapsed_time = 0.0
 	move_count = 0
 	is_completed = false
 	is_playing = true
 	update_moves.emit(0)
 	_check_connections()
+
+func _randomize_pipes() -> void:
+	for pipe in pipes.values():
+		if pipe.is_locked or pipe.pipe_type in [Pipe.PipeType.START, Pipe.PipeType.END]:
+			continue
+		
+		pipe.rotation_state = randi() % 4
+		pipe.rotation_degrees = pipe.rotation_state * 90
+		pipe._update_visuals()  # ✅ Обновляем визуал
 
 func _on_pipe_rotated(_pipe: Pipe) -> void:
 	if is_completed:

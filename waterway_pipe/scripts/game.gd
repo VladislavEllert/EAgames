@@ -8,17 +8,24 @@ extends Node
 @onready var complete_time: Label = $UI/CompletePanel/TimeLabel
 @onready var complete_moves: Label = $UI/CompletePanel/MovesLabel
 @onready var stars_container: HBoxContainer = $UI/CompletePanel/Stars
+@onready var pause_panel: ColorRect = $UI/PausePanel
+@onready var pause_button: Button = $UI/TopBar/PauseButton
 @onready var level_manager: Node = $LevelManager
 
 var level: Level
+var is_paused: bool = false
 
 func _ready() -> void:
 	complete_panel.visible = false
+	pause_panel.visible = false
 	level_manager.level_changed.connect(_on_level_changed)
 	_load_level(level_manager.current_level)
-
-func _on_level_changed(level_num: int) -> void:
-	_load_level(level_num)
+	
+	# Подключение сигналов кнопок
+	pause_button.pressed.connect(_on_pause_button_pressed)
+	$UI/PausePanel/Buttons/ResumeButton.pressed.connect(_on_resume_button_pressed)
+	$UI/PausePanel/Buttons/RestartButton.pressed.connect(_on_restart_button_pressed)
+	$UI/PausePanel/Buttons/MenuButton.pressed.connect(_on_menu_button_pressed)
 
 func _load_level(level_num: int) -> void:
 	if level:
@@ -36,6 +43,36 @@ func _load_level(level_num: int) -> void:
 	
 	level_label.text = "Уровень %d" % (level_num + 1)
 	complete_panel.visible = false
+	_set_pause(false)
+
+## === УПРАВЛЕНИЕ ПАУЗОЙ ===
+
+func _set_pause(paused: bool) -> void:
+	is_paused = paused
+	get_tree().paused = paused
+	pause_panel.visible = paused
+	pause_button.disabled = paused  # Блокируем кнопку, когда пауза активна
+
+func _on_pause_button_pressed() -> void:
+	# Не ставим на паузу, если уровень уже пройден
+	if level and level.is_completed:
+		return
+	_set_pause(true)
+
+func _on_resume_button_pressed() -> void:
+	_set_pause(false)
+
+## === ОБРАБОТЧИКИ ДРУГИХ КНОПОК ===
+
+func _on_restart_button_pressed() -> void:
+	if level:
+		level.reset_level()
+	complete_panel.visible = false
+	_set_pause(false)
+
+func _on_menu_button_pressed() -> void:
+	_set_pause(false)
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _on_level_complete(success: bool, time: float, moves: int) -> void:
 	if success:
@@ -65,9 +102,6 @@ func _on_update_moves(count: int) -> void:
 func _on_next_button_pressed() -> void:
 	level_manager.complete_level(level.elapsed_time, level.move_count)
 
-func _on_restart_button_pressed() -> void:
-	level.reset_level()
-	complete_panel.visible = false
-
-func _on_menu_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+func _on_level_changed(_level_num: int) -> void:
+	# Заглушка, если нужно обновлять UI при смене уровня
+	pass

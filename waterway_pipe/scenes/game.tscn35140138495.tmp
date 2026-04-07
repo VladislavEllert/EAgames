@@ -49,11 +49,8 @@ offset_bottom = 41.0
 
 [node name="PauseButton" type="Button" parent="UI/TopBar"]
 layout_mode = 0
-offset_left = 398.0
-offset_top = 19.0
-offset_right = 459.0
-offset_bottom = 56.0
-text = "ПАУЗА"
+offset_right = 8.0
+offset_bottom = 8.0
 
 [node name="CompletePanel" type="ColorRect" parent="UI"]
 visible = false
@@ -92,50 +89,31 @@ grow_vertical = 2
 color = Color(0.223103, 0.223103, 0.223103, 0.773)
 
 [node name="Buttons" type="VBoxContainer" parent="UI/PausePanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -164.0
-offset_top = -175.5
-offset_right = 169.0
-offset_bottom = 185.5
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 335.0
+offset_top = 243.0
+offset_right = 395.0
+offset_bottom = 283.0
 alignment = 1
 
 [node name="ResumeButton" type="Button" parent="UI/PausePanel/Buttons"]
 process_mode = 3
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_iywne")
-theme_override_font_sizes/font_size = 44
-text = "ПРОДОЛЖИТЬ"
-flat = true
 
 [node name="RestartButton" type="Button" parent="UI/PausePanel/Buttons"]
 process_mode = 3
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_iywne")
-theme_override_font_sizes/font_size = 44
-text = "ЗАНОВО"
-flat = true
 
 [node name="MenuButton" type="Button" parent="UI/PausePanel/Buttons"]
 process_mode = 3
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_iywne")
-theme_override_font_sizes/font_size = 44
-text = "ГЛАВНОЕ МЕНЮ"
-flat = true
 
 [node name="Title" type="Label" parent="UI/PausePanel"]
 layout_mode = 0
-offset_left = 270.0
-offset_top = 393.0
-offset_right = 453.0
-offset_bottom = 463.0
+offset_left = 276.0
+offset_top = 141.0
+offset_right = 459.0
+offset_bottom = 211.0
 theme_override_fonts/font = ExtResource("4_iywne")
 theme_override_font_sizes/font_size = 61
 text = "ПАУЗА"

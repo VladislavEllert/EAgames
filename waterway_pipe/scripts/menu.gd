@@ -44,18 +44,32 @@ func _create_level_buttons() -> void:
 		levels_container.add_child(btn)
 
 func _show_main_panel() -> void:
-	# Плавный переход на главный экран
+	# Явно разрешаем клики на главной панели
+	main_panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	main_panel.modulate.a = 1.0
+	main_panel.position.y = 0
+	
+	# Блокируем клики на панели уровней и скрываем её
+	level_select_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	level_select_panel.modulate.a = 0.0
+	
+	# Анимация (опционально)
 	var tween = create_tween()
 	tween.tween_property(level_select_panel, "modulate:a", 0.0, 0.3)
-	tween.tween_callback(func(): level_select_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE)
 	tween.tween_property(main_panel, "modulate:a", 1.0, 0.3)
 	tween.parallel().tween_property(main_panel, "position:y", 0, 0.3).set_ease(Tween.EASE_OUT)
 
 func _show_level_select() -> void:
-	# Плавный переход к выбору уровней
+	# Блокируем клики на главной панели
 	main_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	level_select_panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	main_panel.modulate.a = 0.0
 	
+	# Разрешаем клики на панели уровней
+	level_select_panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	level_select_panel.modulate.a = 1.0
+	level_select_panel.position.y = 0
+	
+	# Анимация
 	var tween = create_tween()
 	tween.tween_property(main_panel, "modulate:a", 0.0, 0.3)
 	tween.tween_property(level_select_panel, "modulate:a", 1.0, 0.3)

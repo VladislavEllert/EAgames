@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="WaterWay_pipe"
-run/main_scene="uid://bd5v0jru0rfns"
+run/main_scene="uid://bi8omm5lta2vn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
+window/stretch/mode="canvas_items"
 
 [rendering]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxixg3g5gy5ss"
-path="res://.godot/imported/pipe_cross.png-4a2cafddfe4c66e831a9d27e4842b7bd.ctex"
+uid="uid://bc1p0s48drl8h"
+path="res://.godot/imported/background.jpg-3c1ee7bbff6a1283595ccc69bb1d6acd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/pipe_cross.png"
-dest_files=["res://.godot/imported/pipe_cross.png-4a2cafddfe4c66e831a9d27e4842b7bd.ctex"]
+source_file="res://assets/background.jpg"
+dest_files=["res://.godot/imported/background.jpg-3c1ee7bbff6a1283595ccc69bb1d6acd.ctex"]
 
 [params]
 

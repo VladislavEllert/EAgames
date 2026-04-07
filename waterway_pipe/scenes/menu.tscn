@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi8omm5lta2vn"]
+
+[ext_resource type="Script" uid="uid://cvf0eg6tx40cl" path="res://scripts/level_manager.gd" id="1_yqeox"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="VBox"]
+layout_mode = 2
+text = "WaterWay"
+
+[node name="Scroll" type="ScrollContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Levels" type="GridContainer" parent="VBox/Scroll"]
+layout_mode = 2
+columns = 3
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("1_yqeox")

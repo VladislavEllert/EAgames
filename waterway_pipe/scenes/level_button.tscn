@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfecim2ufqgi1"]
+
+[ext_resource type="Script" uid="uid://bhknfo22o0nx7" path="res://scripts/level_button.gd" id="1_i0sit"]
+
+[node name="LevelButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_i0sit")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Stars" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LockIcon" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

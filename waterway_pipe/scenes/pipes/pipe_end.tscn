@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://40t35yfp3t0q"]
+
+[ext_resource type="PackedScene" uid="uid://cphe5ac1hhfhm" path="res://scenes/pipes/pipe.tscn" id="1_nl2l5"]
+[ext_resource type="Texture2D" uid="uid://bly57lclx6sr6" path="res://assets/sprites/pipe_end.png" id="2_cn77c"]
+
+[node name="pipe" instance=ExtResource("1_nl2l5")]
+pipe_type = 6
+is_locked = true
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-0.5, -0.249998)
+scale = Vector2(0.61, 0.605)
+texture = ExtResource("2_cn77c")
+
+[node name="ConnectionTop" parent="." index="3"]
+position = Vector2(0, -31)
+
+[node name="ConnectionBottom" parent="." index="5"]
+position = Vector2(0, 32)

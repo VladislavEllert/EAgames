@@ -72,6 +72,6 @@ func _on_level_selected(level_num: int) -> void:
 	level_manager.go_to_level(level_num)
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
-func _on_level_changed(level_num: int) -> void:
+func _on_level_changed(_level_num: int) -> void:
 	# Обновляем кнопки при изменении прогресса
 	_create_level_buttons()

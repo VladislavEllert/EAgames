@@ -1,24 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfecim2ufqgi1"]
+[gd_scene load_steps=4 format=3 uid="uid://bfecim2ufqgi1"]
 
 [ext_resource type="Script" uid="uid://bhknfo22o0nx7" path="res://scripts/level_button.gd" id="1_i0sit"]
-[ext_resource type="Texture2D" uid="uid://ckltayhdhykdb" path="res://assets/sprites/lock.png" id="2_o8246"]
+[ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="2_hrusj"]
+[ext_resource type="Texture2D" uid="uid://dehm0yj85v6vp" path="res://assets/sprites/lock.png" id="2_o8246"]
 
 [node name="LevelButton" type="Button"]
-offset_right = 40.0
-offset_bottom = 23.0
+custom_minimum_size = Vector2(100, 100)
+offset_right = 100.0
+offset_bottom = 100.0
 script = ExtResource("1_i0sit")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 41.0
+offset_top = 7.0
+offset_right = 66.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("2_hrusj")
+theme_override_font_sizes/font_size = 50
 text = "1"
 
 [node name="Stars" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_top = 22.0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 10.0
+offset_top = 71.0
+offset_right = 10.0
+offset_bottom = 71.0
 
 [node name="LockIcon" type="TextureRect" parent="."]
 visible = false
@@ -28,10 +35,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -74.0
-offset_top = -74.0
-offset_right = 74.0
-offset_bottom = 74.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_o8246")

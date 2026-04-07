@@ -5,7 +5,7 @@ signal all_levels_complete()
 
 ## Теперь уровни — это пути к сценам
 var levels: Array[String] = [
-	"res://scenes/levels/level_1.tscn",
+	"res://scenes/levels/level_1.tscn", 
 	"res://scenes/levels/level_2.tscn",
 	"res://scenes/levels/level_3.tscn"
 	# Добавляйте сюда новые уровни по мере создания

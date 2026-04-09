@@ -2,18 +2,28 @@ extends Node
 
 signal level_changed(level_num: int)
 signal all_levels_complete()
-signal progress_reset()  # Сигнал для обновления UI при сбросе
+signal progress_reset()
 
 var levels: Array[String] = [
 	"res://scenes/levels/level_1.tscn",
 	"res://scenes/levels/level_2.tscn",
-	"res://scenes/levels/level_3.tscn"
+	"res://scenes/levels/level_3.tscn",
+	"res://scenes/levels/level_4.tscn",
+	"res://scenes/levels/level_5.tscn",
+	"res://scenes/levels/level_6.tscn",
+	"res://scenes/levels/level_7.tscn",
+	"res://scenes/levels/level_8.tscn",
+	"res://scenes/levels/level_9.tscn",
+	"res://scenes/levels/level_10.tscn",
+	"res://scenes/levels/level_11.tscn"
+	
 ]
 
 var current_level: int = 0
 var completed_levels: Array[int] = []
 var best_times: Dictionary = {}
 var best_moves: Dictionary = {}
+var return_to_level_select: bool = false
 
 func _ready() -> void:
 	_load_progress()
@@ -26,7 +36,6 @@ func is_level_unlocked(_level_num: int) -> bool:
 func get_stars(level_num: int) -> int:
 	return 1 if level_num in completed_levels else 0
 
-## ✅ Сумма всех звёзд
 func get_total_stars() -> int:
 	return completed_levels.size()
 
@@ -77,24 +86,21 @@ func complete_level(time: float, moves: int) -> void:
 	else:
 		all_levels_complete.emit()
 
-## ✅ Полный сброс прогресса
-func reset_progress() -> void:
-	current_level = 0
-	completed_levels.clear()
-	best_times.clear()
-	best_moves.clear()
-	
-	# Удаляем файл сохранения
-	if FileAccess.file_exists("user://progress.save"):
-		DirAccess.remove_absolute("user://progress.save")
-	
-	save_progress()
-	progress_reset.emit()
-	print("✅ Прогресс сброшен!")
-
 func get_current_level_path() -> String:
 	return levels[current_level]
 
 func go_to_level(level_num: int) -> void:
 	current_level = level_num
 	level_changed.emit(current_level)
+
+func reset_progress() -> void:
+	current_level = 0
+	completed_levels.clear()
+	best_times.clear()
+	best_moves.clear()
+	
+	if FileAccess.file_exists("user://progress.save"):
+		DirAccess.remove_absolute("user://progress.save")
+	
+	save_progress()
+	progress_reset.emit()

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://78bteo25yyoy" path="res://assets/window-level-background.png" id="2_uk53i"]
 
 [node name="Level" type="Node2D"]
+position = Vector2(359, 733)
 script = ExtResource("1_md458")
 
 [node name="LevelBlock" type="Sprite2D" parent="."]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bd5v0jru0rfns"]
+[gd_scene load_steps=7 format=3 uid="uid://bd5v0jru0rfns"]
 
 [ext_resource type="Script" uid="uid://bi4pnfuq2a4ni" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://ccxnylgn7im4" path="res://scripts/level.gd" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_p57ef"]
-[ext_resource type="Script" uid="uid://cvf0eg6tx40cl" path="res://scripts/level_manager.gd" id="2_yqjtg"]
 [ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="4_iywne"]
 [ext_resource type="Texture2D" uid="uid://bqixfhmoko6cv" path="res://assets/sprites/pause.png" id="5_p57ef"]
 
@@ -72,6 +71,7 @@ flat = true
 icon_alignment = 1
 
 [node name="CompletePanel" type="ColorRect" parent="UI"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -83,7 +83,7 @@ offset_right = 281.0
 offset_bottom = 213.5
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.419608, 0.592157, 0.909804, 0.737255)
+color = Color(0.188235, 0.133333, 0.67451, 0.737255)
 
 [node name="Title" type="Label" parent="UI/CompletePanel"]
 layout_mode = 1
@@ -95,6 +95,7 @@ offset_top = 37.5
 offset_right = 241.0
 offset_bottom = 94.5
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.133333, 1, 0, 1)
 theme_override_fonts/font = ExtResource("4_iywne")
 theme_override_font_sizes/font_size = 50
 text = "УРОВЕНЬ ПРОЙДЕН!"
@@ -106,6 +107,7 @@ offset_left = 32.0
 offset_top = 124.5
 offset_right = 213.0
 offset_bottom = 202.5
+theme_override_colors/font_color = Color(0.835294, 0.752941, 0, 1)
 theme_override_fonts/font = ExtResource("4_iywne")
 theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
@@ -117,18 +119,54 @@ offset_left = 337.0
 offset_top = 127.0
 offset_right = 526.0
 offset_bottom = 206.0
+theme_override_colors/font_color = Color(0.92549, 0.772549, 0, 1)
 theme_override_fonts/font = ExtResource("4_iywne")
 theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Stars" type="HBoxContainer" parent="UI/CompletePanel"]
-layout_mode = 0
-offset_left = 174.0
-offset_top = 244.5
-offset_right = 383.0
-offset_bottom = 347.5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.543
+anchor_right = 0.5
+anchor_bottom = 0.543
+offset_top = 0.138977
+offset_bottom = 0.138977
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
 alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="UI/CompletePanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -194.0
+offset_top = -85.0
+offset_right = 190.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NextButton" type="Button" parent="UI/CompletePanel/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_iywne")
+theme_override_font_sizes/font_size = 30
+text = "ДАЛЕЕ"
+
+[node name="MenuButton" type="Button" parent="UI/CompletePanel/Buttons"]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_iywne")
+theme_override_font_sizes/font_size = 30
+text = "МЕНЮ"
 
 [node name="PausePanel" type="ColorRect" parent="UI"]
 process_mode = 3
@@ -147,6 +185,7 @@ offset_left = 270.0
 offset_top = 393.0
 offset_right = 453.0
 offset_bottom = 463.0
+theme_override_colors/font_color = Color(0, 0.822991, 0, 1)
 theme_override_fonts/font = ExtResource("4_iywne")
 theme_override_font_sizes/font_size = 61
 text = "ПАУЗА"
@@ -159,9 +198,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -164.0
-offset_top = -175.5
+offset_top = -80.5
 offset_right = 169.0
-offset_bottom = 185.5
+offset_bottom = 280.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -169,6 +208,8 @@ alignment = 1
 [node name="ResumeButton" type="Button" parent="UI/PausePanel/Buttons"]
 process_mode = 3
 layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.66
 theme_override_fonts/font = ExtResource("4_iywne")
 theme_override_font_sizes/font_size = 44
 text = "ПРОДОЛЖИТЬ"
@@ -177,6 +218,8 @@ flat = true
 [node name="RestartButton" type="Button" parent="UI/PausePanel/Buttons"]
 process_mode = 3
 layout_mode = 2
+size_flags_vertical = 10
+size_flags_stretch_ratio = 0.57
 theme_override_fonts/font = ExtResource("4_iywne")
 theme_override_font_sizes/font_size = 44
 text = "ЗАНОВО"
@@ -185,15 +228,16 @@ flat = true
 [node name="MenuButton" type="Button" parent="UI/PausePanel/Buttons"]
 process_mode = 3
 layout_mode = 2
+size_flags_vertical = 10
+size_flags_stretch_ratio = 0.86
 theme_override_fonts/font = ExtResource("4_iywne")
 theme_override_font_sizes/font_size = 44
-text = "ГЛАВНОЕ МЕНЮ"
+text = "МЕНЮ"
 flat = true
 
-[node name="LevelManager" type="Node" parent="."]
-script = ExtResource("2_yqjtg")
-
 [connection signal="pressed" from="UI/TopBar/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="UI/CompletePanel/Buttons/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="UI/CompletePanel/Buttons/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="UI/PausePanel/Buttons/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="UI/PausePanel/Buttons/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="UI/PausePanel/Buttons/MenuButton" to="." method="_on_menu_button_pressed"]

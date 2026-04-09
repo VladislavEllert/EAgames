@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4s0kqk36n2we"]
+[gd_scene load_steps=5 format=3 uid="uid://c4s0kqk36n2we"]
 
 [ext_resource type="PackedScene" uid="uid://cphe5ac1hhfhm" path="res://scenes/pipes/pipe.tscn" id="1_f8a3y"]
 [ext_resource type="Texture2D" uid="uid://c0o7dv1fk8uel" path="res://assets/sprites/pipe_t.png" id="2_6p47r"]
 [ext_resource type="Texture2D" uid="uid://bnibegodkawg" path="res://assets/sprites/pipe_t_water.png" id="3_c5urn"]
+[ext_resource type="Texture2D" uid="uid://84ykquqm8bwm" path="res://assets/sprites/pipe_t_active.png" id="4_6p47r"]
 
 [node name="pipe" instance=ExtResource("1_f8a3y")]
 pipe_type = 4
@@ -13,14 +14,5 @@ texture = ExtResource("2_6p47r")
 [node name="WaterSprite2D" parent="." index="1"]
 texture = ExtResource("3_c5urn")
 
-[node name="ConnectionTop" parent="." index="3"]
-position = Vector2(0, -50)
-
-[node name="ConnectionRight" parent="." index="4"]
-position = Vector2(50, 0)
-
-[node name="ConnectionBottom" parent="." index="5"]
-position = Vector2(0, 50)
-
-[node name="ConnectionLeft" parent="." index="6"]
-position = Vector2(-50, 0)
+[node name="Active" parent="." index="2"]
+texture = ExtResource("4_6p47r")

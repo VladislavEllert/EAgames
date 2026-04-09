@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://couqksd32xf0t"]
+[gd_scene load_steps=6 format=3 uid="uid://couqksd32xf0t"]
 
 [ext_resource type="PackedScene" uid="uid://yaebrx7pnb5" path="res://scenes/levels/level_2.tscn" id="1_o8c3j"]
 [ext_resource type="PackedScene" uid="uid://df1fk5kbrppmg" path="res://scenes/pipes/pipe_corner.tscn" id="2_0qepi"]
 [ext_resource type="PackedScene" uid="uid://c4s0kqk36n2we" path="res://scenes/pipes/pipe_t.tscn" id="3_fmg3e"]
 [ext_resource type="PackedScene" uid="uid://cphe5ac1hhfhm" path="res://scenes/pipes/pipe.tscn" id="4_ftfob"]
+[ext_resource type="Texture2D" uid="uid://q8pnftgn5cq4" path="res://assets/sprites/back_block.jpg" id="5_fmg3e"]
 
 [node name="Level" instance=ExtResource("1_o8c3j")]
+
+[node name="LevelBlock" parent="." index="0"]
+scale = Vector2(1, 1)
+texture = null
 
 [node name="pipe11" parent="GridContainer" index="10" instance=ExtResource("2_0qepi")]
 position = Vector2(144, 270)
@@ -18,3 +23,8 @@ position = Vector2(144, 332)
 
 [node name="pipe14" parent="GridContainer" index="13" instance=ExtResource("2_0qepi")]
 position = Vector2(144, 394)
+
+[node name="back_block" type="Sprite2D" parent="." index="2"]
+position = Vector2(281, 271)
+scale = Vector2(1.87333, 1.79)
+texture = ExtResource("5_fmg3e")

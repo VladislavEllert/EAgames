@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bi8omm5lta2vn"]
 
 [ext_resource type="Script" uid="uid://76c8a67hhsxa" path="res://scripts/menu.gd" id="1_con2f"]
-[ext_resource type="Texture2D" uid="uid://ba4p2d8wd6h08" path="res://assets/logopng.png" id="1_vjb58"]
 [ext_resource type="Script" uid="uid://cvf0eg6tx40cl" path="res://scripts/level_manager.gd" id="1_yqeox"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://bwsdxk4kxl340" path="res://assets/logo.png" id="3_4ytvr"]
 [ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="4_g3eks"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v86rl"]
@@ -46,7 +46,7 @@ grow_vertical = 2
 
 [node name="logo" type="Sprite2D" parent="MainPanel"]
 position = Vector2(358, 242)
-texture = ExtResource("1_vjb58")
+texture = ExtResource("3_4ytvr")
 
 [node name="Title" type="Label" parent="MainPanel"]
 visible = false

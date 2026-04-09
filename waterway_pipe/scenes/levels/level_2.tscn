@@ -10,32 +10,69 @@
 
 [node name="Level" instance=ExtResource("1_ibugp")]
 
+[node name="LevelBlock" parent="." index="0"]
+position = Vector2(-3.8147e-06, 2)
+scale = Vector2(1.66493, 1.45678)
+
+[node name="GridContainer" parent="." index="1"]
+position = Vector2(-26, -4)
+
 [node name="pipe" parent="GridContainer" index="0" instance=ExtResource("2_8qukl")]
-position = Vector2(206, 394)
+position = Vector2(228, 76)
 
 [node name="pipe2" parent="GridContainer" index="1" instance=ExtResource("3_3p04p")]
-position = Vector2(206, 270)
+position = Vector2(-172, -24)
 
-[node name="pipe3" parent="GridContainer" index="2" instance=ExtResource("4_qsp8v")]
-position = Vector2(206, 332)
+[node name="pipe5" parent="GridContainer" index="2" instance=ExtResource("5_nt80m")]
+position = Vector2(228, -24)
 
-[node name="pipe4" parent="GridContainer" index="3" instance=ExtResource("4_qsp8v")]
-position = Vector2(330, 394)
+[node name="pipe6" parent="GridContainer" index="3" instance=ExtResource("6_brxtv")]
+position = Vector2(-172, -124)
 
-[node name="pipe5" parent="GridContainer" index="4" instance=ExtResource("5_nt80m")]
-position = Vector2(268, 270)
+[node name="pipe7" parent="GridContainer" index="4" instance=ExtResource("7_tv7cl")]
+position = Vector2(-172, 176)
 
-[node name="pipe6" parent="GridContainer" index="5" instance=ExtResource("6_brxtv")]
-position = Vector2(330, 208)
+[node name="pipe8" parent="GridContainer" index="5" instance=ExtResource("2_8qukl")]
+position = Vector2(28, -24)
 
-[node name="pipe7" parent="GridContainer" index="6" instance=ExtResource("7_tv7cl")]
-position = Vector2(330, 456)
+[node name="pipe9" parent="GridContainer" index="6" instance=ExtResource("4_qsp8v")]
+position = Vector2(128, -24)
 
-[node name="pipe8" parent="GridContainer" index="7" instance=ExtResource("2_8qukl")]
-position = Vector2(268, 332)
+[node name="pipe11" parent="GridContainer" index="7" instance=ExtResource("3_3p04p")]
+position = Vector2(228, 176)
 
-[node name="pipe9" parent="GridContainer" index="8" instance=ExtResource("4_qsp8v")]
-position = Vector2(330, 332)
+[node name="pipe12" parent="GridContainer" index="8" instance=ExtResource("3_3p04p")]
+position = Vector2(-72, -124)
 
-[node name="pipe10" parent="GridContainer" index="9" instance=ExtResource("5_nt80m")]
-position = Vector2(330, 270)
+[node name="pipe13" parent="GridContainer" index="9" instance=ExtResource("5_nt80m")]
+position = Vector2(128, -124)
+
+[node name="pipe14" parent="GridContainer" index="10" instance=ExtResource("2_8qukl")]
+position = Vector2(28, -124)
+
+[node name="pipe15" parent="GridContainer" index="11" instance=ExtResource("3_3p04p")]
+position = Vector2(228, -124)
+
+[node name="pipe16" parent="GridContainer" index="12" instance=ExtResource("3_3p04p")]
+position = Vector2(128, 176)
+
+[node name="pipe17" parent="GridContainer" index="13" instance=ExtResource("3_3p04p")]
+position = Vector2(28, 76)
+
+[node name="pipe18" parent="GridContainer" index="14" instance=ExtResource("3_3p04p")]
+position = Vector2(28, 176)
+
+[node name="pipe19" parent="GridContainer" index="15" instance=ExtResource("3_3p04p")]
+position = Vector2(-72, 176)
+
+[node name="pipe20" parent="GridContainer" index="16" instance=ExtResource("5_nt80m")]
+position = Vector2(-72, 76)
+
+[node name="pipe21" parent="GridContainer" index="17" instance=ExtResource("5_nt80m")]
+position = Vector2(128, 76)
+
+[node name="pipe4" parent="GridContainer" index="18" instance=ExtResource("3_3p04p")]
+position = Vector2(-172, 76)
+
+[node name="pipe22" parent="GridContainer" index="19" instance=ExtResource("4_qsp8v")]
+position = Vector2(-72, -24)

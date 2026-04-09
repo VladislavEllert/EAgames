@@ -10,15 +10,16 @@ signal update_moves(count: int)
 @onready var grid_container: Node2D = $GridContainer
 
 var pipes: Dictionary = {}
-var start_pipe: Pipe
-var end_pipe: Pipe
+## ✅ Исправлен тип: теперь Pipe, а не Area2D
+var start_pipe: Pipe = null
+var end_pipe: Pipe = null
+
 var elapsed_time: float = 0.0
 var move_count: int = 0
 var is_playing: bool = false
 var is_completed: bool = false
 
 func _ready() -> void:
-	randomize()  # ✅ Инициализация RNG
 	_scan_pipes()
 	reset_level()
 
@@ -33,12 +34,18 @@ func _scan_pipes() -> void:
 	start_pipe = null
 	end_pipe = null
 	
+	if grid_container == null:
+		push_error("GridContainer не найден!")
+		return
+	
 	for child in grid_container.get_children():
 		if child is Pipe:
 			var pipe: Pipe = child
 			var pos = pipe.grid_position
 			pipes[pos] = pipe
-			pipe.pipe_rotated.connect(_on_pipe_rotated)
+			
+			if not pipe.pipe_rotated.is_connected(_on_pipe_rotated):
+				pipe.pipe_rotated.connect(_on_pipe_rotated)
 			
 			if pipe.pipe_type == Pipe.PipeType.START:
 				start_pipe = pipe
@@ -46,8 +53,14 @@ func _scan_pipes() -> void:
 				end_pipe = pipe
 
 func reset_level() -> void:
-	_randomize_pipes()
+	# Рандомизация
+	for pipe in pipes.values():
+		if not pipe.is_locked and pipe.pipe_type not in [Pipe.PipeType.START, Pipe.PipeType.END]:
+			pipe.rotation_state = randi() % 4
+			pipe.rotation_degrees = pipe.rotation_state * 90
+			pipe._update_visuals()
 	
+	# Сброс воды
 	for pipe in pipes.values():
 		pipe.reset_fill()
 	
@@ -58,15 +71,6 @@ func reset_level() -> void:
 	update_moves.emit(0)
 	_check_connections()
 
-func _randomize_pipes() -> void:
-	for pipe in pipes.values():
-		if pipe.is_locked or pipe.pipe_type in [Pipe.PipeType.START, Pipe.PipeType.END]:
-			continue
-		
-		pipe.rotation_state = randi() % 4
-		pipe.rotation_degrees = pipe.rotation_state * 90
-		pipe._update_visuals()  # ✅ Обновляем визуал
-
 func _on_pipe_rotated(_pipe: Pipe) -> void:
 	if is_completed:
 		return
@@ -75,12 +79,14 @@ func _on_pipe_rotated(_pipe: Pipe) -> void:
 	_check_connections()
 
 func _check_connections() -> void:
+	if start_pipe == null or end_pipe == null:
+		return
+	
+	# Сброс
 	for pipe in pipes.values():
 		pipe.reset_fill()
 	
-	if start_pipe == null:
-		return
-	
+	# BFS
 	var visited: Dictionary = {}
 	var queue: Array = [start_pipe]
 	visited[start_pipe.grid_position] = true
@@ -90,12 +96,14 @@ func _check_connections() -> void:
 	
 	while queue.size() > 0:
 		var current: Pipe = queue.pop_front()
+		
 		if current == end_pipe:
 			reached_end = true
 			break
 		
 		for side in current.get_active_sides():
 			var neighbor_pos = _get_neighbor_pos(current.grid_position, side)
+			
 			if not pipes.has(neighbor_pos) or visited.has(neighbor_pos):
 				continue
 			

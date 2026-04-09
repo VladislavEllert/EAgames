@@ -2,13 +2,12 @@ extends Node
 
 signal level_changed(level_num: int)
 signal all_levels_complete()
+signal progress_reset()  # Сигнал для обновления UI при сбросе
 
-## Теперь уровни — это пути к сценам
 var levels: Array[String] = [
-	"res://scenes/levels/level_1.tscn", 
+	"res://scenes/levels/level_1.tscn",
 	"res://scenes/levels/level_2.tscn",
 	"res://scenes/levels/level_3.tscn"
-	# Добавляйте сюда новые уровни по мере создания
 ]
 
 var current_level: int = 0
@@ -19,16 +18,35 @@ var best_moves: Dictionary = {}
 func _ready() -> void:
 	_load_progress()
 
+## ✅ Все уровни всегда доступны
+func is_level_unlocked(_level_num: int) -> bool:
+	return true
+
+## ✅ 1 звезда = уровень пройден
+func get_stars(level_num: int) -> int:
+	return 1 if level_num in completed_levels else 0
+
+## ✅ Сумма всех звёзд
+func get_total_stars() -> int:
+	return completed_levels.size()
+
 func _load_progress() -> void:
 	if FileAccess.file_exists("user://progress.save"):
 		var file = FileAccess.open("user://progress.save", FileAccess.READ)
 		var json_str = file.get_as_text()
 		var json = JSON.new()
+		
 		if json.parse(json_str) == OK:
 			var data = json.data
 			if data is Dictionary:
 				current_level = data.get("current_level", 0)
-				completed_levels = data.get("completed_levels", [])
+				
+				var raw_completed = data.get("completed_levels", [])
+				completed_levels.clear()
+				if raw_completed is Array:
+					for item in raw_completed:
+						completed_levels.append(int(item))
+				
 				best_times = data.get("best_times", {})
 				best_moves = data.get("best_moves", {})
 
@@ -59,28 +77,24 @@ func complete_level(time: float, moves: int) -> void:
 	else:
 		all_levels_complete.emit()
 
-## ✅ ЭТА ФУНКЦИЯ ТЕПЕРЬ ЕСТЬ
+## ✅ Полный сброс прогресса
+func reset_progress() -> void:
+	current_level = 0
+	completed_levels.clear()
+	best_times.clear()
+	best_moves.clear()
+	
+	# Удаляем файл сохранения
+	if FileAccess.file_exists("user://progress.save"):
+		DirAccess.remove_absolute("user://progress.save")
+	
+	save_progress()
+	progress_reset.emit()
+	print("✅ Прогресс сброшен!")
+
 func get_current_level_path() -> String:
 	return levels[current_level]
 
 func go_to_level(level_num: int) -> void:
 	current_level = level_num
 	level_changed.emit(current_level)
-
-func is_level_unlocked(level_num: int) -> bool:
-	return level_num == 0 or (level_num - 1) in completed_levels
-
-func get_stars(level_num: int) -> int:
-	if level_num not in completed_levels:
-		return 0
-	
-	var stars = 1
-	var moves = best_moves.get(level_num, 999)
-	var time = best_times.get(level_num, 999.0)
-	
-	if moves <= 10:
-		stars += 1
-	if time <= 30:
-		stars += 1
-	
-	return min(stars, 3)

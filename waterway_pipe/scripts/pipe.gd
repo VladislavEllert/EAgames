@@ -33,34 +33,35 @@ var rotation_state: int = 0
 signal pipe_rotated(pipe: Pipe)
 
 func _ready() -> void:
+	# ✅ Включаем уведомления о трансформации
+	set_notify_transform(true)
+	
 	_update_visuals()
-	# Инициализируем позицию при старте
-	_update_grid_from_index()
+	_update_grid_from_position()
 	
 	if not Engine.is_editor_hint():
 		if touch_area:
 			touch_area.input_event.connect(_on_input_event)
 
-## Обработка изменений в редакторе и в игре
 func _notification(what: int) -> void:
-	# Срабатывает, когда узел добавляется, перемещается в дереве или сцена пересортировывается
-	if what == NOTIFICATION_ENTER_TREE or what == NOTIFICATION_MOVED_IN_PARENT:
-		_update_grid_from_index()
+	if what == NOTIFICATION_TRANSFORM_CHANGED:
+		_update_grid_from_position()
 
-func _update_grid_from_index() -> void:
+# ✅ Авто-расчёт координат по позиции
+func _update_grid_from_position() -> void:
+	if not Engine.is_editor_hint():
+		return
+	
 	var parent = get_parent()
-	if parent is GridContainer:
-		var columns = parent.columns
-		if columns > 0:
-			var idx = get_index()
-			var gx = idx % columns
-			var gy = idx / columns
-			
-			if grid_position != Vector2i(gx, gy):
-				grid_position = Vector2i(gx, gy)
-				# В редакторе обновляем имя для наглядности
-				if Engine.is_editor_hint():
-					name = "Pipe_%d_%d" % [gx, gy]
+	if parent and parent.has_method("get_cell_size"):
+		var cell_size = parent.get_cell_size()
+		var gx = roundi(position.x / cell_size)
+		var gy = roundi(position.y / cell_size)
+		
+		if grid_position != Vector2i(gx, gy):
+			grid_position = Vector2i(gx, gy)
+			if Engine.is_editor_hint():
+				name = "Pipe_%d_%d" % [gx, gy]
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -133,7 +134,6 @@ func _update_visuals() -> void:
 		sprite.texture = load(tex_path)
 		sprite.modulate = Color.WHITE
 	else:
-		# Фолбэк, если текстуры нет
 		match pipe_type:
 			PipeType.START: sprite.modulate = Color(0.2, 0.8, 0.3)
 			PipeType.END: sprite.modulate = Color(0.8, 0.3, 0.2)

@@ -8,11 +8,11 @@
 [node name="pipe" instance=ExtResource("1_1k64o")]
 pipe_type = 2
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_kcuro")
 
-[node name="WaterSprite2D" parent="." index="1"]
+[node name="WaterSprite2D" parent="." index="2"]
 texture = ExtResource("3_kcuro")
 
-[node name="Active" parent="." index="2"]
+[node name="Active" parent="." index="3"]
 texture = ExtResource("4_j3rju")

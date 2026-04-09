@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi8omm5lta2vn"]
+[gd_scene load_steps=8 format=3 uid="uid://bi8omm5lta2vn"]
 
 [ext_resource type="Script" uid="uid://76c8a67hhsxa" path="res://scripts/menu.gd" id="1_con2f"]
 [ext_resource type="Script" uid="uid://cvf0eg6tx40cl" path="res://scripts/level_manager.gd" id="1_yqeox"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_4ytvr"]
 [ext_resource type="Texture2D" uid="uid://bwsdxk4kxl340" path="res://assets/logo.png" id="3_4ytvr"]
 [ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="4_g3eks"]
+[ext_resource type="Texture2D" uid="uid://chlu0fcs43l2k" path="res://assets/Button_Dark (3).png" id="5_g3eks"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v86rl"]
 font = ExtResource("4_g3eks")
@@ -30,7 +31,7 @@ scale = Vector2(1, 1.00078)
 texture = ExtResource("2_4ytvr")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background"]
-position = Vector2(360, 1943)
+position = Vector2(360, 1911)
 scale = Vector2(1, 1.03672)
 texture = ExtResource("2_4ytvr")
 
@@ -45,7 +46,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="logo" type="Sprite2D" parent="MainPanel"]
-position = Vector2(358, 242)
+position = Vector2(360, 370)
+scale = Vector2(1.41031, 1.41031)
 texture = ExtResource("3_4ytvr")
 
 [node name="Title" type="Label" parent="MainPanel"]
@@ -61,35 +63,53 @@ offset_bottom = 23.0
 
 [node name="PlayButton" type="Button" parent="MainPanel"]
 layout_mode = 0
-offset_left = 221.0
-offset_top = 756.0
-offset_right = 505.0
-offset_bottom = 852.0
+offset_left = 184.0
+offset_top = 784.0
+offset_right = 538.0
+offset_bottom = 913.0
 theme_override_fonts/font = ExtResource("4_g3eks")
 theme_override_font_sizes/font_size = 54
 text = "ИГРАТЬ"
+icon = ExtResource("5_g3eks")
+flat = true
+autowrap_mode = 2
+icon_alignment = 1
+expand_icon = true
 
 [node name="LevelSelectPanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 1287.0
-offset_right = -2.0
-offset_bottom = 1316.0
+offset_left = 5.0
+offset_top = 1265.0
+offset_bottom = 1294.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
 [node name="Title" type="Label" parent="LevelSelectPanel"]
 layout_mode = 0
-offset_left = 188.0
-offset_top = 186.0
-offset_right = 542.0
-offset_bottom = 240.0
+offset_left = 186.0
+offset_top = 207.0
+offset_right = 540.0
+offset_bottom = 261.0
 text = "ВЫБОР УРОВНЯ"
 label_settings = SubResource("LabelSettings_v86rl")
+
+[node name="TotalStarsLabel" type="Label" parent="LevelSelectPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 67.0
+offset_right = -61.0
+offset_bottom = 102.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("4_g3eks")
+theme_override_font_sizes/font_size = 30
+text = "ЗВЁЗДЫ 0"
 
 [node name="Scroll" type="ScrollContainer" parent="LevelSelectPanel"]
 layout_mode = 1
@@ -119,6 +139,16 @@ theme_override_fonts/font = ExtResource("4_g3eks")
 theme_override_font_sizes/font_size = 34
 text = "НАЗАД
 "
+
+[node name="ResetButton" type="Button" parent="LevelSelectPanel"]
+layout_mode = 1
+offset_left = 53.0
+offset_top = 66.0
+offset_right = 331.0
+offset_bottom = 105.0
+theme_override_fonts/font = ExtResource("4_g3eks")
+theme_override_font_sizes/font_size = 27
+text = "СБРОСИТЬ ПРОГРЕСС"
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("1_yqeox")

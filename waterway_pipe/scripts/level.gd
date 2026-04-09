@@ -10,7 +10,6 @@ signal update_moves(count: int)
 @onready var grid_container: Node2D = $GridContainer
 
 var pipes: Dictionary = {}
-## ✅ Исправлен тип: теперь Pipe, а не Area2D
 var start_pipe: Pipe = null
 var end_pipe: Pipe = null
 
@@ -53,14 +52,12 @@ func _scan_pipes() -> void:
 				end_pipe = pipe
 
 func reset_level() -> void:
-	# Рандомизация
 	for pipe in pipes.values():
 		if not pipe.is_locked and pipe.pipe_type not in [Pipe.PipeType.START, Pipe.PipeType.END]:
 			pipe.rotation_state = randi() % 4
 			pipe.rotation_degrees = pipe.rotation_state * 90
 			pipe._update_visuals()
 	
-	# Сброс воды
 	for pipe in pipes.values():
 		pipe.reset_fill()
 	
@@ -82,11 +79,9 @@ func _check_connections() -> void:
 	if start_pipe == null or end_pipe == null:
 		return
 	
-	# Сброс
 	for pipe in pipes.values():
 		pipe.reset_fill()
 	
-	# BFS
 	var visited: Dictionary = {}
 	var queue: Array = [start_pipe]
 	visited[start_pipe.grid_position] = true

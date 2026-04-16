@@ -48,7 +48,7 @@ grid_position = Vector2i(3, 3)
 
 [node name="pipe9" parent="GridContainer" index="7" instance=ExtResource("7_tv7cl")]
 position = Vector2(381, 446)
-grid_position = Vector2i(4, 5)
+grid_position = Vector2i(3, 5)
 
 [node name="EmptyBlock" parent="GridContainer" index="8" instance=ExtResource("8_8qukl")]
 position = Vector2(31, -4)

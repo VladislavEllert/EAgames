@@ -8,14 +8,14 @@
 pipe_type = 5
 is_locked = true
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_m6j8w")
 
-[node name="WaterSprite2D" parent="." index="1"]
+[node name="WaterSprite2D" parent="." index="2"]
 texture = null
 
-[node name="Active" parent="." index="2"]
+[node name="Active" parent="." index="3"]
 texture = ExtResource("3_ered6")
 
-[node name="ConnectionBottom" parent="." index="6"]
+[node name="ConnectionBottom" parent="." index="7"]
 position = Vector2(0, 51)

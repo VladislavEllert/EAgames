@@ -28,11 +28,9 @@ var return_to_level_select: bool = false
 func _ready() -> void:
 	_load_progress()
 
-## ✅ Все уровни всегда доступны
 func is_level_unlocked(_level_num: int) -> bool:
 	return true
 
-## ✅ 1 звезда = уровень пройден
 func get_stars(level_num: int) -> int:
 	return 1 if level_num in completed_levels else 0
 

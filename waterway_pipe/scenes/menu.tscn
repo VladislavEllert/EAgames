@@ -24,13 +24,13 @@ offset_right = 720.0
 offset_bottom = 1279.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
-position = Vector2(360, 639)
-scale = Vector2(1, 1.00078)
+position = Vector2(360, 795.75)
+scale = Vector2(1, 1.2457)
 texture = ExtResource("2_4ytvr")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background"]
-position = Vector2(360, 1911)
-scale = Vector2(1, 1.03672)
+position = Vector2(360, 2402.5)
+scale = Vector2(1, 1.26328)
 texture = ExtResource("2_4ytvr")
 
 [node name="MainPanel" type="Panel" parent="."]
@@ -54,6 +54,7 @@ offset_left = 184.0
 offset_top = 784.0
 offset_right = 538.0
 offset_bottom = 913.0
+focus_mode = 0
 theme_override_fonts/font = ExtResource("4_g3eks")
 theme_override_font_sizes/font_size = 54
 text = "ИГРАТЬ"
@@ -68,6 +69,7 @@ offset_left = 200.0
 offset_top = 973.0
 offset_right = 510.0
 offset_bottom = 1099.0
+focus_mode = 0
 theme_override_fonts/font = ExtResource("4_g3eks")
 theme_override_font_sizes/font_size = 54
 text = "ВЫЙТИ"
@@ -78,9 +80,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 1265.0
-offset_bottom = 1294.0
+offset_left = 2.0
+offset_top = 1589.0
+offset_right = -3.0
+offset_bottom = 1618.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -131,6 +134,7 @@ offset_left = 288.0
 offset_top = 1052.0
 offset_right = 430.0
 offset_bottom = 1109.0
+focus_mode = 0
 theme_override_fonts/font = ExtResource("4_g3eks")
 theme_override_font_sizes/font_size = 43
 text = "НАЗАД
@@ -142,6 +146,7 @@ offset_left = 32.0
 offset_top = 68.0
 offset_right = 310.0
 offset_bottom = 107.0
+focus_mode = 0
 theme_override_fonts/font = ExtResource("4_g3eks")
 theme_override_font_sizes/font_size = 27
 text = "СБРОСИТЬ ПРОГРЕСС"

@@ -28,7 +28,6 @@ func _update_stars() -> void:
 	for child in stars_container.get_children():
 		child.queue_free()
 	
-	# ✅ Одна звезда
 	var star = Sprite2D.new()
 	if stars > 0:
 		star.texture = star_yellow

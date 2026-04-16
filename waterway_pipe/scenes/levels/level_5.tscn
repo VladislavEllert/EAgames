@@ -75,45 +75,34 @@ position = Vector2(-193, 224)
 grid_position = Vector2i(1, 5)
 
 [node name="EmptyBlock" parent="GridContainer" index="15" instance=ExtResource("7_fsnos")]
-z_index = 0
 position = Vector2(57, -126)
 
 [node name="EmptyBlock2" parent="GridContainer" index="16" instance=ExtResource("7_fsnos")]
-z_index = 0
 position = Vector2(57, -226)
 
 [node name="EmptyBlock3" parent="GridContainer" index="17" instance=ExtResource("7_fsnos")]
-z_index = 0
 position = Vector2(-43, -226)
 
 [node name="EmptyBlock4" parent="GridContainer" index="18" instance=ExtResource("7_fsnos")]
-z_index = 0
 position = Vector2(-43, -126)
 
 [node name="EmptyBlock5" parent="GridContainer" index="19" instance=ExtResource("7_fsnos")]
-z_index = 0
 position = Vector2(-143, -226)
 
 [node name="EmptyBlock6" parent="GridContainer" index="20" instance=ExtResource("7_fsnos")]
-z_index = 0
 position = Vector2(-243, -226)
 
 [node name="EmptyBlock7" parent="GridContainer" index="21" instance=ExtResource("7_fsnos")]
-z_index = 0
 position = Vector2(-243, -126)
 
 [node name="EmptyBlock9" parent="GridContainer" index="22" instance=ExtResource("7_fsnos")]
-z_index = 0
 position = Vector2(-143, 74)
 
 [node name="EmptyBlock10" parent="GridContainer" index="23" instance=ExtResource("7_fsnos")]
-z_index = 0
 position = Vector2(-143, 174)
 
 [node name="EmptyBlock11" parent="GridContainer" index="24" instance=ExtResource("7_fsnos")]
-z_index = 0
 position = Vector2(-143, 174)
 
 [node name="EmptyBlock8" parent="GridContainer" index="25" instance=ExtResource("7_fsnos")]
-z_index = 0
 position = Vector2(-143, -126)

@@ -27,7 +27,6 @@ func _ready() -> void:
 	$UI/PausePanel/Buttons/RestartButton.pressed.connect(_on_restart_button_pressed)
 	$UI/PausePanel/Buttons/MenuButton.pressed.connect(_on_menu_button_pressed)
 	
-	# ✅ ДОБАВЛЕНО: Подключение кнопки "Далее"
 	var next_btn = $UI/CompletePanel/Buttons/NextButton as Button
 	if next_btn:
 		next_btn.pressed.connect(_on_next_button_pressed)
@@ -37,17 +36,25 @@ func _ready() -> void:
 	_load_level(LevelManager.current_level)
 
 func _load_level(level_num: int) -> void:
+	# Удаляем старый уровень
 	if current_level_instance:
 		current_level_instance.queue_free()
 	
+	# Загружаем новый
 	var level_path = LevelManager.get_current_level_path()
 	var level_scene = load(level_path)
+	
+	# Проверка на ошибку загрузки
+	if level_scene == null:
+		push_error("Не удалось загрузить уровень: " + level_path)
+		return
+
 	current_level_instance = level_scene.instantiate()
 	current_level_instance.name = "Level"
-	add_child(current_level_instance)
-	move_child(current_level_instance, 0)
 	
-	# Подключаем сигналы уровня
+	$LevelContainer.add_child(current_level_instance)
+	
+	# Подключаем сигналы
 	if current_level_instance.has_signal("level_complete"):
 		current_level_instance.level_complete.connect(_on_level_complete)
 	if current_level_instance.has_signal("update_timer"):
@@ -81,7 +88,7 @@ func _on_restart_button_pressed() -> void:
 
 func _on_menu_button_pressed() -> void:
 	_set_pause(false)
-	LevelManager.return_to_level_select = true
+	
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _on_level_complete(success: bool, time: float, moves: int) -> void:
@@ -94,12 +101,12 @@ func _on_level_complete(success: bool, time: float, moves: int) -> void:
 			child.queue_free()
 		
 		var stars = LevelManager.get_stars(LevelManager.current_level)
-		var star_tex = preload("res://assets/sprites/star.png")
+		var star_tex = preload("res://assets/sprites/star_yellow.png")
 		
 		for i in 3:
 			var sprite = Sprite2D.new()
 			sprite.texture = star_tex
-			sprite.scale = Vector2(0.5, 0.5)
+			sprite.scale = Vector2(1.0, 1.0)
 			sprite.modulate = Color(1, 1, 1) if i < stars else Color(0.3, 0.3, 0.3)
 			stars_container.add_child(sprite)
 
@@ -113,7 +120,6 @@ func _on_update_timer(seconds: int) -> void:
 func _on_update_moves(count: int) -> void:
 	moves_label.text = "ХОДЫ: %d" % count
 
-## ✅ ИСПРАВЛЕННАЯ ФУНКЦИЯ: убраны неверные проверки
 func _on_next_button_pressed() -> void:
 	if current_level_instance:
 		# Получаем значения напрямую, так как это переменные уровня

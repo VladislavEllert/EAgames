@@ -8,6 +8,7 @@
 custom_minimum_size = Vector2(120, 120)
 offset_right = 100.0
 offset_bottom = 100.0
+focus_mode = 0
 script = ExtResource("1_i0sit")
 
 [node name="Label" type="Label" parent="."]

@@ -17,7 +17,15 @@ func _ready() -> void:
 	_setup_main_panel()
 	_create_level_buttons()
 	_update_total_stars()
-	_show_main_panel()
+	
+	# ✅ Если возвращаемся из игры – сразу показываем выбор уровней
+	if LevelManager.return_to_level_select:
+		LevelManager.return_to_level_select = false   # сбрасываем флаг
+		main_panel.hide()
+		level_select_panel.show()
+		_show_level_select()   # запускаем анимацию
+	else:
+		_show_main_panel()
 
 func _setup_main_panel() -> void:
 	var tween = create_tween()

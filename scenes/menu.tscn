@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://76c8a67hhsxa" path="res://scripts/menu.gd" id="1_con2f"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_4ytvr"]
+[ext_resource type="Script" uid="uid://cyb1ndmb7sjtw" path="res://scenes/background.gd" id="2_g3eks"]
 [ext_resource type="Texture2D" uid="uid://bwsdxk4kxl340" path="res://assets/logo.png" id="3_4ytvr"]
 [ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="4_g3eks"]
 
@@ -18,10 +19,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_con2f")
 
-[node name="Background" type="ColorRect" parent="." unique_id=185199625]
-layout_mode = 0
-offset_right = 720.0
-offset_bottom = 1279.0
+[node name="Background" type="Parallax2D" parent="." unique_id=642473849]
+script = ExtResource("2_g3eks")
 
 [node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=527503139]
 position = Vector2(360, 639)

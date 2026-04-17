@@ -1,7 +1,1 @@
-res://MainMenu.tscn
-res://new_style_box_flat.tres
-res://new_style_box_flat_focus.tres
-res://new_style_box_flat_hover.tres
-res://new_style_box_flat_pressed.tres
-res://shader/flicker.gdshader
-res://lvl_1.tscn
+res://Lvl_menu.tscn

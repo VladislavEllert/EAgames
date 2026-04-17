@@ -87,5 +87,3 @@ offset_bottom = 1109.0
 theme_override_fonts/font = ExtResource("3_d5ts1")
 theme_override_font_sizes/font_size = 43
 text = "Назад"
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=778006740]

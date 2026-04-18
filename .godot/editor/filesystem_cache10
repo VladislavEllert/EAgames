@@ -1,5 +1,5 @@
 72322a848ab928aa5c89f0cb78209805
-::res://::1776443240
+::res://::1776494170
 export_presets.cfg::TextFile::-1::1776412549::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::5007512491357917765::1776412549::1776412591::1::::<><><>0<>0<>d977acf8ae386fdf2c78a4b305fcc2e5<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://assets/::1776412591
@@ -38,10 +38,10 @@ star.png::CompressedTexture2D::2293724276799964517::1776412549::1776412591::1:::
 star_gray.png::CompressedTexture2D::5414929381926925669::1776412549::1776412591::1::::<><><>0<>0<>0d46f92b642e4724bba11d126deb7985<>res://.godot/imported/star_gray.png-bebf9e4d0cfbd211ceee390ebd091ee1.ctex::
 star_yellow.png::CompressedTexture2D::4181500859468696003::1776412549::1776412591::1::::<><><>0<>0<>99efa0e001ddfb7626979a0bb6e3014e<>res://.godot/imported/star_yellow.png-73d28051f4d1f407138737c29f2d42bf.ctex::
 ::res://scenes/::1776443250
+background.gd::GDScript::6461040025782350960::1776443198::0::1::::<>Parallax2D<><>0<>0<><>::
 game.tscn::PackedScene::2660238748839327288::1776412549::0::1::::<><><>0<>0<><>::uid://bi4pnfuq2a4ni::::res://scripts/game.gd<>uid://ccxnylgn7im4::::res://scripts/level.gd<>uid://c1g75tcn6ttgs::::res://assets/background.jpg<>uid://diiderh1qvujq::::res://assets/Tiny5-Regular.ttf<>uid://bqixfhmoko6cv::::res://assets/sprites/pause.png
 level_button.tscn::PackedScene::2745758806142221394::1776412549::0::1::::<><><>0<>0<><>::uid://bhknfo22o0nx7::::res://scripts/level_button.gd<>uid://diiderh1qvujq::::res://assets/Tiny5-Regular.ttf<>uid://dejn5u05xqq6p::::res://assets/sprites/lock.png
 menu.tscn::PackedScene::3016928043256468179::1776443250::0::1::::<><><>0<>0<><>::uid://76c8a67hhsxa::::res://scripts/menu.gd<>uid://c1g75tcn6ttgs::::res://assets/background.jpg<>uid://cyb1ndmb7sjtw::::res://scenes/background.gd<>uid://bwsdxk4kxl340::::res://assets/logo.png<>uid://diiderh1qvujq::::res://assets/Tiny5-Regular.ttf
-background.gd::GDScript::6461040025782350960::1776443198::0::1::::<>Parallax2D<><>0<>0<><>::
 ui.tscn::PackedScene::5610263179412921612::1776412549::0::1::::<><><>0<>0<><>::
 ::res://scenes/levels/::1776412549
 base_level.tscn::PackedScene::6879440717610354093::1776412549::0::1::::<><><>0<>0<><>::uid://ccxnylgn7im4::::res://scripts/level.gd<>uid://78bteo25yyoy::::res://assets/window-level-background.png

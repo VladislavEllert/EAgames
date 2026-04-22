@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bi8omm5lta2vn"]
+[gd_scene load_steps=7 format=3 uid="uid://bi8omm5lta2vn"]
 
 [ext_resource type="Script" uid="uid://76c8a67hhsxa" path="res://scripts/menu.gd" id="1_con2f"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_4ytvr"]
@@ -10,7 +10,7 @@
 font = ExtResource("4_g3eks")
 font_size = 48
 
-[node name="menu" type="Control" unique_id=2112770622]
+[node name="menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,20 +19,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_con2f")
 
-[node name="Background" type="Parallax2D" parent="." unique_id=642473849]
+[node name="Background" type="Parallax2D" parent="."]
 script = ExtResource("2_g3eks")
 
-[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=527503139]
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
 position = Vector2(360, 639)
 scale = Vector2(1, 1.00078)
 texture = ExtResource("2_4ytvr")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=2072542516]
+[node name="Sprite2D2" type="Sprite2D" parent="Background"]
 position = Vector2(360, 1911)
 scale = Vector2(1, 1.03672)
 texture = ExtResource("2_4ytvr")
 
-[node name="MainPanel" type="Panel" parent="." unique_id=714801319]
+[node name="MainPanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,12 +42,12 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="logo" type="Sprite2D" parent="MainPanel" unique_id=1925823853]
+[node name="logo" type="Sprite2D" parent="MainPanel"]
 position = Vector2(360, 370)
 scale = Vector2(1.41031, 1.41031)
 texture = ExtResource("3_4ytvr")
 
-[node name="PlayButton" type="Button" parent="MainPanel" unique_id=1261591460]
+[node name="PlayButton" type="Button" parent="MainPanel"]
 layout_mode = 0
 offset_left = 184.0
 offset_top = 784.0
@@ -61,7 +61,7 @@ autowrap_mode = 2
 icon_alignment = 1
 expand_icon = true
 
-[node name="ExitButton" type="Button" parent="MainPanel" unique_id=1140450124]
+[node name="ExitButton" type="Button" parent="MainPanel"]
 layout_mode = 0
 offset_left = 200.0
 offset_top = 973.0
@@ -72,7 +72,7 @@ theme_override_font_sizes/font_size = 54
 text = "ВЫЙТИ"
 flat = true
 
-[node name="LevelSelectPanel" type="Panel" parent="." unique_id=1815317416]
+[node name="LevelSelectPanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +83,7 @@ offset_bottom = 1294.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="LevelSelectPanel" unique_id=600148802]
+[node name="Title" type="Label" parent="LevelSelectPanel"]
 layout_mode = 0
 offset_left = 186.0
 offset_top = 207.0
@@ -92,7 +92,7 @@ offset_bottom = 261.0
 text = "ВЫБОР УРОВНЯ"
 label_settings = SubResource("LabelSettings_v86rl")
 
-[node name="TotalStarsLabel" type="Label" parent="LevelSelectPanel" unique_id=2090829963]
+[node name="TotalStarsLabel" type="Label" parent="LevelSelectPanel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -106,7 +106,7 @@ theme_override_fonts/font = ExtResource("4_g3eks")
 theme_override_font_sizes/font_size = 35
 text = "ЗВЁЗДЫ 0"
 
-[node name="Scroll" type="ScrollContainer" parent="LevelSelectPanel" unique_id=483711232]
+[node name="Scroll" type="ScrollContainer" parent="LevelSelectPanel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.016
@@ -119,12 +119,12 @@ offset_bottom = -288.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Levels" type="GridContainer" parent="LevelSelectPanel/Scroll" unique_id=15735877]
+[node name="Levels" type="GridContainer" parent="LevelSelectPanel/Scroll"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 columns = 5
 
-[node name="BackButton" type="Button" parent="LevelSelectPanel" unique_id=632544388]
+[node name="BackButton" type="Button" parent="LevelSelectPanel"]
 layout_mode = 0
 offset_left = 288.0
 offset_top = 1052.0
@@ -135,7 +135,7 @@ theme_override_font_sizes/font_size = 43
 text = "НАЗАД
 "
 
-[node name="ResetButton" type="Button" parent="LevelSelectPanel" unique_id=501303802]
+[node name="ResetButton" type="Button" parent="LevelSelectPanel"]
 layout_mode = 1
 offset_left = 32.0
 offset_top = 68.0

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://40t35yfp3t0q" path="res://scenes/pipes/pipe_end.tscn" id="7_f6egh"]
 [ext_resource type="PackedScene" uid="uid://b1s8iyydfqes6" path="res://scenes/pipes/empty_block.tscn" id="8_ugcn1"]
 
-[node name="Level" instance=ExtResource("1_fkk1g")]
+[node name="Level2" instance=ExtResource("1_fkk1g")]
 position = Vector2(0, 0)
 grid_size = Vector2i(6, 6)
 

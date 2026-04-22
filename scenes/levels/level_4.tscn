@@ -68,67 +68,51 @@ position = Vector2(164, 221)
 grid_position = Vector2i(5, 5)
 
 [node name="EmptyBlock" parent="GridContainer" index="13" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(-186, -229)
 
 [node name="EmptyBlock2" parent="GridContainer" index="14" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(-86, -229)
 
 [node name="EmptyBlock3" parent="GridContainer" index="15" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(14, -229)
 
 [node name="EmptyBlock4" parent="GridContainer" index="16" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(114, -229)
 
 [node name="EmptyBlock5" parent="GridContainer" index="17" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(-86, -129)
 
 [node name="EmptyBlock6" parent="GridContainer" index="18" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(14, -129)
 
 [node name="EmptyBlock7" parent="GridContainer" index="19" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(114, -129)
 
 [node name="EmptyBlock8" parent="GridContainer" index="20" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(14, -29)
 
 [node name="EmptyBlock9" parent="GridContainer" index="21" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(114, -29)
 
 [node name="EmptyBlock10" parent="GridContainer" index="22" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(-86, 171)
 
 [node name="EmptyBlock11" parent="GridContainer" index="23" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(14, 171)
 
 [node name="EmptyBlock12" parent="GridContainer" index="24" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(214, 171)
 
 [node name="EmptyBlock13" parent="GridContainer" index="25" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(214, 71)
 
 [node name="EmptyBlock14" parent="GridContainer" index="26" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(214, -29)
 
 [node name="EmptyBlock15" parent="GridContainer" index="27" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(214, -129)
 
 [node name="EmptyBlock16" parent="GridContainer" index="28" instance=ExtResource("7_5vn0v")]
-z_index = 0
 position = Vector2(214, -229)
 
 [node name="pipe3" parent="GridContainer" index="29" instance=ExtResource("5_ts8eg")]

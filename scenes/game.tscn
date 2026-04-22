@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd5v0jru0rfns"]
+[gd_scene load_steps=5 format=3 uid="uid://bd5v0jru0rfns"]
 
 [ext_resource type="Script" uid="uid://bi4pnfuq2a4ni" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://ccxnylgn7im4" path="res://scripts/level.gd" id="1_uwrxv"]
-[ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_p57ef"]
 [ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="4_iywne"]
-[ext_resource type="Texture2D" uid="uid://bqixfhmoko6cv" path="res://assets/sprites/pause.png" id="5_p57ef"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u5sy4"]
 
@@ -14,7 +12,6 @@ script = ExtResource("1_lnu2h")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.517184, 0.517184, 0.517184, 1)
 z_index = -1
-texture = ExtResource("2_p57ef")
 centered = false
 
 [node name="LevelContainer" type="Node2D" parent="."]
@@ -66,7 +63,6 @@ layout_mode = 0
 offset_left = 611.0
 offset_right = 693.0
 offset_bottom = 82.0
-icon = ExtResource("5_p57ef")
 flat = true
 icon_alignment = 1
 

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5apnbl4201dh"]
+
+[ext_resource type="Script" uid="uid://ccxnylgn7im4" path="res://scripts/level.gd" id="1_md458"]
+[ext_resource type="Texture2D" uid="uid://78bteo25yyoy" path="res://assets/window-level-background.png" id="2_uk53i"]
+
+[node name="Level" type="Node2D"]
+position = Vector2(359, 733)
+script = ExtResource("1_md458")
+
+[node name="LevelBlock" type="Sprite2D" parent="."]
+scale = Vector2(1.503, 1.427)
+texture = ExtResource("2_uk53i")
+
+[node name="GridContainer" type="Node2D" parent="."]

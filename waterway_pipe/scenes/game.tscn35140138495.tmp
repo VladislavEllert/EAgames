@@ -1,0 +1,126 @@
+[gd_scene load_steps=6 format=3 uid="uid://bd5v0jru0rfns"]
+
+[ext_resource type="Script" uid="uid://bi4pnfuq2a4ni" path="res://scripts/game.gd" id="1_lnu2h"]
+[ext_resource type="Script" uid="uid://ccxnylgn7im4" path="res://scripts/level.gd" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://1tg21wpb4lv3" path="res://assets/background_level.png" id="2_lbhrr"]
+[ext_resource type="Script" uid="uid://cvf0eg6tx40cl" path="res://scripts/level_manager.gd" id="2_yqjtg"]
+[ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="4_iywne"]
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_lnu2h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.517184, 0.517184, 0.517184, 1)
+z_index = -1
+texture = ExtResource("2_lbhrr")
+centered = false
+
+[node name="LevelContainer" type="Node2D" parent="."]
+position = Vector2(360, 640)
+script = ExtResource("1_uwrxv")
+
+[node name="GridContainer" type="Node2D" parent="LevelContainer"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TopBar" type="Panel" parent="UI"]
+offset_left = 189.0
+offset_top = 28.0
+offset_right = 513.0
+offset_bottom = 88.0
+
+[node name="LevelLabel" type="Label" parent="UI/TopBar"]
+offset_left = 29.0
+offset_top = 18.0
+offset_right = 55.0
+offset_bottom = 41.0
+
+[node name="TimerLabel" type="Label" parent="UI/TopBar"]
+offset_left = 138.0
+offset_top = 16.0
+offset_right = 167.0
+offset_bottom = 40.0
+
+[node name="MovesLabel" type="Label" parent="UI/TopBar"]
+offset_left = 262.0
+offset_top = 18.0
+offset_right = 292.0
+offset_bottom = 41.0
+
+[node name="PauseButton" type="Button" parent="UI/TopBar"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="CompletePanel" type="ColorRect" parent="UI"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="UI/CompletePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Уровень пройден!"
+
+[node name="TimeLabel" type="Label" parent="UI/CompletePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="MovesLabel" type="Label" parent="UI/CompletePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Stars" type="HBoxContainer" parent="UI/CompletePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PausePanel" type="ColorRect" parent="UI"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.223103, 0.223103, 0.223103, 0.773)
+
+[node name="Buttons" type="VBoxContainer" parent="UI/PausePanel"]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 243.0
+offset_right = 395.0
+offset_bottom = 283.0
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="UI/PausePanel/Buttons"]
+process_mode = 3
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="UI/PausePanel/Buttons"]
+process_mode = 3
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="UI/PausePanel/Buttons"]
+process_mode = 3
+layout_mode = 2
+
+[node name="Title" type="Label" parent="UI/PausePanel"]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 141.0
+offset_right = 459.0
+offset_bottom = 211.0
+theme_override_fonts/font = ExtResource("4_iywne")
+theme_override_font_sizes/font_size = 61
+text = "ПАУЗА"
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("2_yqjtg")
+
+[connection signal="pressed" from="UI/PausePanel/Buttons/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="UI/PausePanel/Buttons/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UI/PausePanel/Buttons/MenuButton" to="." method="_on_menu_button_pressed"]

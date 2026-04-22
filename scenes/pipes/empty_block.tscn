@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1s8iyydfqes6"]
+
+[ext_resource type="Texture2D" uid="uid://ch7rsj52ndkru" path="res://assets/sprites/BackTile_06.png" id="1_lt7k3"]
+
+[node name="EmptyBlock" type="Sprite2D"]
+texture = ExtResource("1_lt7k3")
+centered = false

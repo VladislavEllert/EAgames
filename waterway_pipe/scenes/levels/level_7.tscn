@@ -1,0 +1,146 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwuo480cqc612"]
+
+[ext_resource type="PackedScene" uid="uid://c5apnbl4201dh" path="res://scenes/levels/base_level.tscn" id="1_ntash"]
+[ext_resource type="PackedScene" uid="uid://dg5rr0f1ysgjk" path="res://scenes/pipes/pipe_start.tscn" id="2_hq5i0"]
+[ext_resource type="PackedScene" uid="uid://c4s0kqk36n2we" path="res://scenes/pipes/pipe_t.tscn" id="3_u1w5x"]
+[ext_resource type="PackedScene" uid="uid://df1fk5kbrppmg" path="res://scenes/pipes/pipe_corner.tscn" id="4_posk4"]
+[ext_resource type="PackedScene" uid="uid://cphe5ac1hhfhm" path="res://scenes/pipes/pipe.tscn" id="5_sjq8i"]
+[ext_resource type="PackedScene" uid="uid://40t35yfp3t0q" path="res://scenes/pipes/pipe_end.tscn" id="6_q0wsq"]
+[ext_resource type="PackedScene" uid="uid://b1s8iyydfqes6" path="res://scenes/pipes/empty_block.tscn" id="7_u1w5x"]
+
+[node name="Level" instance=ExtResource("1_ntash")]
+position = Vector2(359, 650)
+
+[node name="LevelBlock" parent="." index="0"]
+position = Vector2(9.53674e-06, 66)
+scale = Vector2(2.05038, 2.18507)
+
+[node name="pipe" parent="GridContainer" index="0" instance=ExtResource("2_hq5i0")]
+position = Vector2(153, -154)
+grid_position = Vector2i(5, 1)
+
+[node name="pipe2" parent="GridContainer" index="1" instance=ExtResource("3_u1w5x")]
+position = Vector2(153, -54)
+grid_position = Vector2i(5, 2)
+
+[node name="pipe14" parent="GridContainer" index="2" instance=ExtResource("3_u1w5x")]
+position = Vector2(-47, 346)
+grid_position = Vector2i(3, 6)
+
+[node name="pipe16" parent="GridContainer" index="3" instance=ExtResource("3_u1w5x")]
+position = Vector2(53, 246)
+grid_position = Vector2i(4, 5)
+
+[node name="pipe3" parent="GridContainer" index="4" instance=ExtResource("4_posk4")]
+position = Vector2(253, -54)
+grid_position = Vector2i(6, 2)
+
+[node name="pipe7" parent="GridContainer" index="5" instance=ExtResource("4_posk4")]
+position = Vector2(-147, -54)
+grid_position = Vector2i(2, 2)
+
+[node name="pipe8" parent="GridContainer" index="6" instance=ExtResource("4_posk4")]
+position = Vector2(-147, 46)
+grid_position = Vector2i(2, 3)
+
+[node name="pipe9" parent="GridContainer" index="7" instance=ExtResource("4_posk4")]
+position = Vector2(-47, 46)
+grid_position = Vector2i(3, 3)
+
+[node name="pipe10" parent="GridContainer" index="8" instance=ExtResource("4_posk4")]
+position = Vector2(-47, 146)
+grid_position = Vector2i(3, 4)
+
+[node name="pipe11" parent="GridContainer" index="9" instance=ExtResource("4_posk4")]
+position = Vector2(-147, 146)
+grid_position = Vector2i(2, 4)
+
+[node name="pipe13" parent="GridContainer" index="10" instance=ExtResource("4_posk4")]
+position = Vector2(-147, 346)
+grid_position = Vector2i(2, 6)
+
+[node name="pipe15" parent="GridContainer" index="11" instance=ExtResource("4_posk4")]
+position = Vector2(-47, 246)
+grid_position = Vector2i(3, 5)
+
+[node name="pipe18" parent="GridContainer" index="12" instance=ExtResource("4_posk4")]
+position = Vector2(153, 246)
+grid_position = Vector2i(5, 5)
+
+[node name="pipe17" parent="GridContainer" index="13" instance=ExtResource("4_posk4")]
+position = Vector2(53, 346)
+grid_position = Vector2i(4, 6)
+
+[node name="pipe4" parent="GridContainer" index="14" instance=ExtResource("5_sjq8i")]
+position = Vector2(253, 46)
+grid_position = Vector2i(6, 3)
+
+[node name="pipe20" parent="GridContainer" index="15" instance=ExtResource("5_sjq8i")]
+position = Vector2(253, 146)
+grid_position = Vector2i(6, 4)
+
+[node name="pipe21" parent="GridContainer" index="16" instance=ExtResource("5_sjq8i")]
+position = Vector2(253, 246)
+grid_position = Vector2i(6, 5)
+
+[node name="pipe22" parent="GridContainer" index="17" instance=ExtResource("5_sjq8i")]
+position = Vector2(253, 346)
+grid_position = Vector2i(6, 6)
+
+[node name="pipe12" parent="GridContainer" index="18" instance=ExtResource("5_sjq8i")]
+position = Vector2(-147, 246)
+grid_position = Vector2i(2, 5)
+
+[node name="pipe5" parent="GridContainer" index="19" instance=ExtResource("5_sjq8i")]
+position = Vector2(53, -54)
+grid_position = Vector2i(4, 2)
+
+[node name="pipe6" parent="GridContainer" index="20" instance=ExtResource("5_sjq8i")]
+position = Vector2(-47, -54)
+grid_position = Vector2i(3, 2)
+
+[node name="pipe19" parent="GridContainer" index="21" instance=ExtResource("6_q0wsq")]
+position = Vector2(153, 346)
+grid_position = Vector2i(5, 6)
+
+[node name="EmptyBlock" parent="GridContainer" index="22" instance=ExtResource("7_u1w5x")]
+position = Vector2(203, -204)
+
+[node name="EmptyBlock2" parent="GridContainer" index="23" instance=ExtResource("7_u1w5x")]
+position = Vector2(3, -204)
+
+[node name="EmptyBlock3" parent="GridContainer" index="24" instance=ExtResource("7_u1w5x")]
+position = Vector2(-97, -204)
+
+[node name="EmptyBlock4" parent="GridContainer" index="25" instance=ExtResource("7_u1w5x")]
+position = Vector2(-197, -204)
+
+[node name="EmptyBlock5" parent="GridContainer" index="26" instance=ExtResource("7_u1w5x")]
+position = Vector2(-297, -204)
+
+[node name="EmptyBlock6" parent="GridContainer" index="27" instance=ExtResource("7_u1w5x")]
+position = Vector2(-297, -104)
+
+[node name="EmptyBlock7" parent="GridContainer" index="28" instance=ExtResource("7_u1w5x")]
+position = Vector2(-297, -4)
+
+[node name="EmptyBlock8" parent="GridContainer" index="29" instance=ExtResource("7_u1w5x")]
+position = Vector2(-297, 96)
+
+[node name="EmptyBlock9" parent="GridContainer" index="30" instance=ExtResource("7_u1w5x")]
+position = Vector2(-297, 196)
+
+[node name="EmptyBlock10" parent="GridContainer" index="31" instance=ExtResource("7_u1w5x")]
+position = Vector2(-297, 296)
+
+[node name="EmptyBlock11" parent="GridContainer" index="32" instance=ExtResource("7_u1w5x")]
+position = Vector2(3, -4)
+
+[node name="EmptyBlock12" parent="GridContainer" index="33" instance=ExtResource("7_u1w5x")]
+position = Vector2(103, -4)
+
+[node name="EmptyBlock13" parent="GridContainer" index="34" instance=ExtResource("7_u1w5x")]
+position = Vector2(3, 96)
+
+[node name="EmptyBlock14" parent="GridContainer" index="35" instance=ExtResource("7_u1w5x")]
+position = Vector2(103, 96)

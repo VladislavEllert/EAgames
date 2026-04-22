@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd5v0jru0rfns"]
+
+[ext_resource type="Script" uid="uid://ccxnylgn7im4" path="res://scripts/level.gd" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://cvf0eg6tx40cl" path="res://scripts/level_manager.gd" id="2_yqjtg"]
+
+[node name="game" type="Node2D"]
+
+[node name="Level" type="Node" parent="."]
+script = ExtResource("1_uwrxv")
+metadata/_custom_type_script = "uid://ccxnylgn7im4"
+
+[node name="GridContainer" type="Node2D" parent="Level"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TopBar" type="Panel" parent="UI"]
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 38.0
+offset_bottom = 41.0
+
+[node name="LevelLabel" type="Node" parent="UI"]
+script = ExtResource("1_uwrxv")
+metadata/_custom_type_script = "uid://ccxnylgn7im4"
+
+[node name="TimerLabel" type="Node" parent="UI"]
+script = ExtResource("1_uwrxv")
+metadata/_custom_type_script = "uid://ccxnylgn7im4"
+
+[node name="MovesLabel" type="Node" parent="UI"]
+script = ExtResource("1_uwrxv")
+metadata/_custom_type_script = "uid://ccxnylgn7im4"
+
+[node name="CompletePanel" type="ColorRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="CompletePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Уровень пройден!"
+
+[node name="TimeLabel" type="Label" parent="CompletePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="MovesLabel" type="Label" parent="CompletePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Stars" type="HBoxContainer" parent="CompletePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Buttons" type="HBoxContainer" parent="CompletePanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NextButton" type="Button" parent="CompletePanel/Buttons"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="CompletePanel/Buttons"]
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="CompletePanel/Buttons"]
+layout_mode = 2
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("2_yqjtg")

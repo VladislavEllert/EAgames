@@ -17,24 +17,22 @@ var is_paused: bool = false
 func _ready() -> void:
 	complete_panel.visible = false
 	pause_panel.visible = false
+	
+	if LevelManager.level_changed.is_connected(_on_level_changed):
+		LevelManager.level_changed.disconnect(_on_level_changed)
 	LevelManager.level_changed.connect(_on_level_changed)
 	
-	# Подключение кнопок
-	pause_button.pressed.connect(_on_pause_button_pressed)
-	
-	# Кнопки паузы
-	$UI/PausePanel/Buttons/ResumeButton.pressed.connect(_on_resume_button_pressed)
-	$UI/PausePanel/Buttons/RestartButton.pressed.connect(_on_restart_button_pressed)
-	$UI/PausePanel/Buttons/MenuButton.pressed.connect(_on_menu_button_pressed)
-	
-	# ✅ ДОБАВЛЕНО: Подключение кнопки "Далее"
-	var next_btn = $UI/CompletePanel/Buttons/NextButton as Button
-	if next_btn:
-		next_btn.pressed.connect(_on_next_button_pressed)
-	else:
-		push_warning("NextButton не найдена! Проверьте путь в сцене.")
+	_connect_safe(pause_button, _on_pause_button_pressed)
+	_connect_safe($UI/PausePanel/Buttons/ResumeButton, _on_resume_button_pressed)
+	_connect_safe($UI/PausePanel/Buttons/RestartButton, _on_restart_button_pressed)
+	_connect_safe($UI/PausePanel/Buttons/MenuButton, _on_menu_button_pressed)
+	_connect_safe($UI/CompletePanel/Buttons/NextButton, _on_next_button_pressed)
 	
 	_load_level(LevelManager.current_level)
+
+func _connect_safe(btn: Button, callback: Callable) -> void:
+	if btn and not btn.pressed.is_connected(callback):
+		btn.pressed.connect(callback)
 
 func _load_level(level_num: int) -> void:
 	if current_level_instance:
@@ -42,17 +40,33 @@ func _load_level(level_num: int) -> void:
 	
 	var level_path = LevelManager.get_current_level_path()
 	var level_scene = load(level_path)
+	
+	if level_scene == null:
+		push_error("❌ Не удалось загрузить уровень: " + level_path)
+		return
+	
 	current_level_instance = level_scene.instantiate()
 	current_level_instance.name = "Level"
-	add_child(current_level_instance)
-	move_child(current_level_instance, 0)
 	
-	# Подключаем сигналы уровня
+	if has_node("LevelContainer"):
+		$LevelContainer.add_child(current_level_instance)
+	else:
+		add_child(current_level_instance)
+		move_child(current_level_instance, 0)
+	
 	if current_level_instance.has_signal("level_complete"):
+		if current_level_instance.level_complete.is_connected(_on_level_complete):
+			current_level_instance.level_complete.disconnect(_on_level_complete)
 		current_level_instance.level_complete.connect(_on_level_complete)
+	
 	if current_level_instance.has_signal("update_timer"):
+		if current_level_instance.update_timer.is_connected(_on_update_timer):
+			current_level_instance.update_timer.disconnect(_on_update_timer)
 		current_level_instance.update_timer.connect(_on_update_timer)
+	
 	if current_level_instance.has_signal("update_moves"):
+		if current_level_instance.update_moves.is_connected(_on_update_moves):
+			current_level_instance.update_moves.disconnect(_on_update_moves)
 		current_level_instance.update_moves.connect(_on_update_moves)
 	
 	level_label.text = "УРОВЕНЬ %d" % (level_num + 1)
@@ -93,37 +107,32 @@ func _on_level_complete(success: bool, time: float, moves: int) -> void:
 		for child in stars_container.get_children():
 			child.queue_free()
 		
-		var stars = LevelManager.get_stars(LevelManager.current_level)
-		var star_tex = preload("res://assets/sprites/star.png")
+		var stars = 1  # 1 звезда за прохождение
 		
+		var star_tex = preload("res://assets/sprites/star.png")
 		for i in 3:
 			var sprite = Sprite2D.new()
 			sprite.texture = star_tex
-			sprite.scale = Vector2(0.5, 0.5)
+			sprite.scale = Vector2(1.0, 1.0)
 			sprite.modulate = Color(1, 1, 1) if i < stars else Color(0.3, 0.3, 0.3)
 			stars_container.add_child(sprite)
 
 func _on_update_timer(seconds: int) -> void:
-	# Рассчитываем минуты и остаток секунд
 	var minutes = seconds / 60
 	var secs = seconds % 60
-	
 	timer_label.text = "%02d:%02d" % [minutes, secs]
 
 func _on_update_moves(count: int) -> void:
 	moves_label.text = "ХОДЫ: %d" % count
 
-## ✅ ИСПРАВЛЕННАЯ ФУНКЦИЯ: убраны неверные проверки
 func _on_next_button_pressed() -> void:
 	if current_level_instance:
-		# Получаем значения напрямую, так как это переменные уровня
 		var time = current_level_instance.get("elapsed_time")
 		var moves = current_level_instance.get("move_count")
-		
 		if time != null and moves != null:
 			LevelManager.complete_level(time, moves)
 		else:
-			push_error("Не удалось получить elapsed_time или move_count из уровня!")
+			push_error("Не удалось получить elapsed_time или move_count!")
 
 func _on_level_changed(_level_num: int) -> void:
 	_load_level(_level_num)

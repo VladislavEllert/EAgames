@@ -33,9 +33,7 @@ var rotation_state: int = 0
 signal pipe_rotated(pipe: Pipe)
 
 func _ready() -> void:
-	# ✅ Включаем уведомления о трансформации
 	set_notify_transform(true)
-	
 	_update_visuals()
 	_update_grid_from_position()
 	
@@ -47,7 +45,6 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
 		_update_grid_from_position()
 
-# ✅ Авто-расчёт координат по позиции
 func _update_grid_from_position() -> void:
 	if not Engine.is_editor_hint():
 		return
@@ -134,10 +131,12 @@ func _update_visuals() -> void:
 		sprite.texture = load(tex_path)
 		sprite.modulate = Color.WHITE
 	else:
+		sprite.texture = null
 		match pipe_type:
-			PipeType.START: sprite.modulate = Color(0.2, 0.8, 0.3)
+			PipeType.START: sprite.modulate = Color.TRANSPARENT  
 			PipeType.END: sprite.modulate = Color(0.8, 0.3, 0.2)
 			_: sprite.modulate = Color(0.6, 0.7, 0.8)
+		push_error("❌ Текстура не найдена: " + tex_path)
 	
 	if water_sprite:
 		water_sprite.visible = is_filled

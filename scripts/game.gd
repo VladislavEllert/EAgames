@@ -100,24 +100,28 @@ func _on_menu_button_pressed() -> void:
 
 func _on_level_complete(success: bool, time: float, moves: int) -> void:
 	if success:
+		# Сохраняем прогресс сразу
 		LevelManager.save_level_progress(time, moves)
 		
 		complete_panel.visible = true
 		complete_time.text = "ВРЕМЯ: %.1f сек" % time
 		complete_moves.text = "ХОДЫ: %d" % moves
 		
+		# Очищаем старые звёзды
 		for child in stars_container.get_children():
 			child.queue_free()
 		
-		var stars = LevelManager.get_stars(LevelManager.current_level)
-		var star_tex = preload("res://assets/sprites/star.png")
+		# Создаём одну звезду
+		var star = Sprite2D.new()
+		star.texture = preload("res://assets/sprites/star_yellow.png")
+		star.scale = Vector2(0, 0)  
+		stars_container.add_child(star)
 		
-		for i in 3:
-			var sprite = Sprite2D.new()
-			sprite.texture = star_tex
-			sprite.scale = Vector2(1.0, 1.0)
 			sprite.modulate = Color(1, 1, 1) if i < stars else Color(0.3, 0.3, 0.3)
-			stars_container.add_child(sprite)
+		var tween = create_tween()
+		tween.tween_property(star, "scale", Vector2(1.0, 1.0), 0.4) \
+			.set_trans(Tween.TRANS_BACK) \
+			.set_ease(Tween.EASE_OUT)
 
 func _on_update_timer(seconds: int) -> void:
 	var minutes = seconds / 60

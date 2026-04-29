@@ -100,6 +100,8 @@ func _on_menu_button_pressed() -> void:
 
 func _on_level_complete(success: bool, time: float, moves: int) -> void:
 	if success:
+		LevelManager.save_level_progress(time, moves)
+		
 		complete_panel.visible = true
 		complete_time.text = "ВРЕМЯ: %.1f сек" % time
 		complete_moves.text = "ХОДЫ: %d" % moves
@@ -107,9 +109,9 @@ func _on_level_complete(success: bool, time: float, moves: int) -> void:
 		for child in stars_container.get_children():
 			child.queue_free()
 		
-		var stars = 1  # 1 звезда за прохождение
-		
+		var stars = LevelManager.get_stars(LevelManager.current_level)
 		var star_tex = preload("res://assets/sprites/star.png")
+		
 		for i in 3:
 			var sprite = Sprite2D.new()
 			sprite.texture = star_tex
@@ -126,13 +128,7 @@ func _on_update_moves(count: int) -> void:
 	moves_label.text = "ХОДЫ: %d" % count
 
 func _on_next_button_pressed() -> void:
-	if current_level_instance:
-		var time = current_level_instance.get("elapsed_time")
-		var moves = current_level_instance.get("move_count")
-		if time != null and moves != null:
-			LevelManager.complete_level(time, moves)
-		else:
-			push_error("Не удалось получить elapsed_time или move_count!")
+	LevelManager.advance_level()
 
 func _on_level_changed(_level_num: int) -> void:
 	_load_level(_level_num)

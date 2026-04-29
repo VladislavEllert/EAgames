@@ -16,7 +16,6 @@ var levels: Array[String] = [
 	"res://scenes/levels/level_9.tscn",
 	"res://scenes/levels/level_10.tscn",
 	"res://scenes/levels/level_11.tscn"
-	
 ]
 
 var current_level: int = 0
@@ -27,6 +26,36 @@ var return_to_level_select: bool = false
 
 func _ready() -> void:
 	_load_progress()
+
+func save_level_progress(time: float, moves: int) -> void:
+	if current_level not in completed_levels:
+		completed_levels.append(current_level)
+	
+	if not best_times.has(current_level) or time < best_times[current_level]:
+		best_times[current_level] = time
+	if not best_moves.has(current_level) or moves < best_moves[current_level]:
+		best_moves[current_level] = moves
+	
+	save_progress()
+
+func advance_level() -> void:
+	if current_level < levels.size() - 1:
+		current_level += 1
+		save_progress()
+		level_changed.emit(current_level)
+	else:
+		all_levels_complete.emit()
+
+func complete_level(time: float, moves: int) -> void:
+	save_level_progress(time, moves)
+	advance_level()
+
+func get_current_level_path() -> String:
+	return levels[current_level]
+
+func go_to_level(level_num: int) -> void:
+	current_level = level_num
+	level_changed.emit(current_level)
 
 func is_level_unlocked(_level_num: int) -> bool:
 	return true
@@ -66,30 +95,6 @@ func save_progress() -> void:
 	}
 	var file = FileAccess.open("user://progress.save", FileAccess.WRITE)
 	file.store_string(JSON.stringify(data))
-
-func complete_level(time: float, moves: int) -> void:
-	if current_level not in completed_levels:
-		completed_levels.append(current_level)
-	
-	if not best_times.has(current_level) or time < best_times[current_level]:
-		best_times[current_level] = time
-	if not best_moves.has(current_level) or moves < best_moves[current_level]:
-		best_moves[current_level] = moves
-	
-	save_progress()
-	
-	if current_level < levels.size() - 1:
-		current_level += 1
-		level_changed.emit(current_level)
-	else:
-		all_levels_complete.emit()
-
-func get_current_level_path() -> String:
-	return levels[current_level]
-
-func go_to_level(level_num: int) -> void:
-	current_level = level_num
-	level_changed.emit(current_level)
 
 func reset_progress() -> void:
 	current_level = 0

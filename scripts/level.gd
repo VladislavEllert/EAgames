@@ -94,7 +94,8 @@ func _check_connections() -> void:
 		
 		if current == end_pipe:
 			reached_end = true
-			break
+			# Не выходим сразу, чтобы заполнить водой весь путь
+			# break 
 		
 		for side in current.get_active_sides():
 			var neighbor_pos = _get_neighbor_pos(current.grid_position, side)
@@ -110,11 +111,36 @@ func _check_connections() -> void:
 				neighbor.fill_with_water()
 				queue.append(neighbor)
 	
-	if reached_end and not is_completed:
+	var all_pipes_closed: bool = _check_all_pipes_closed()
+	
+	if reached_end and not all_pipes_closed:
+		print("⚠️ Путь собран, но есть незакрытые соединения! Уровень не завершён.")
+	
+	if reached_end and all_pipes_closed and not is_completed:
 		is_completed = true
 		is_playing = false
 		await get_tree().create_timer(1.0).timeout
 		level_complete.emit(true, elapsed_time, move_count)
+
+## проверка, что у всех труб нет открытых концов
+func _check_all_pipes_closed() -> bool:
+	for pipe in pipes.values():
+		for side in pipe.get_active_sides():
+			var neighbor_pos = _get_neighbor_pos(pipe.grid_position, side)
+			
+			# Если с активной стороны нет соседа — это разрыв
+			if not pipes.has(neighbor_pos):
+				return false
+			
+			var neighbor: Pipe = pipes[neighbor_pos]
+			var opposite = Pipe.get_opposite_side(side)
+			
+			# Если сосед есть, но у него нет ответного соединения — это разрыв
+			if not neighbor.has_connection_to(opposite):
+				return false
+	
+	# Если цикл завершился без возвратов false, значит все трубы закрыты
+	return true
 
 func _get_neighbor_pos(pos: Vector2i, side: int) -> Vector2i:
 	match side:

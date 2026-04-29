@@ -20,7 +20,7 @@ var is_completed: bool = false
 
 func _ready() -> void:
 	_scan_pipes()
-	reset_level()
+	await reset_level()
 
 func _process(delta: float) -> void:
 	if is_playing and not is_completed:
@@ -52,11 +52,20 @@ func _scan_pipes() -> void:
 				end_pipe = pipe
 
 func reset_level() -> void:
-	for pipe in pipes.values():
-		if not pipe.is_locked and pipe.pipe_type not in [Pipe.PipeType.START, Pipe.PipeType.END]:
-			pipe.rotation_state = randi() % 4
-			pipe.rotation_degrees = pipe.rotation_state * 90
-			pipe._update_visuals()
+	var attempts = 0
+	var max_attempts = 50
+	
+	while attempts < max_attempts:
+		_randomize_pipes()
+		
+		if not await _check_connections(true):
+			break
+		
+		attempts += 1
+	
+	if attempts >= max_attempts:
+		push_warning("⚠️ Не удалось сгенерировать нерешённый уровень за %d попыток. Принудительный поворот." % max_attempts)
+		_force_break_solution()
 	
 	for pipe in pipes.values():
 		pipe.reset_fill()
@@ -66,26 +75,46 @@ func reset_level() -> void:
 	is_completed = false
 	is_playing = true
 	update_moves.emit(0)
-	_check_connections()
+	
+	await _check_connections(false)
+
+## Перемешивание труб
+func _randomize_pipes() -> void:
+	for pipe in pipes.values():
+		if not pipe.is_locked and pipe.pipe_type not in [Pipe.PipeType.START, Pipe.PipeType.END]:
+			pipe.rotation_state = randi() % 4
+			pipe.rotation_degrees = pipe.rotation_state * 90
+			pipe._update_visuals()
+
+## Принудительно ломает решение, поворачивая одну трубу
+func _force_break_solution() -> void:
+	for pipe in pipes.values():
+		if not pipe.is_locked and pipe.pipe_type not in [Pipe.PipeType.START, Pipe.PipeType.END]:
+			pipe.rotate_pipe()
+			return
 
 func _on_pipe_rotated(_pipe: Pipe) -> void:
 	if is_completed:
 		return
 	move_count += 1
 	update_moves.emit(move_count)
-	_check_connections()
-
-func _check_connections() -> void:
-	if start_pipe == null or end_pipe == null:
-		return
 	
-	for pipe in pipes.values():
-		pipe.reset_fill()
+	await _check_connections(false)
+
+func _check_connections(dry_run: bool = false) -> bool:
+	if start_pipe == null or end_pipe == null:
+		return false
+	
+	if not dry_run:
+		for pipe in pipes.values():
+			pipe.reset_fill()
 	
 	var visited: Dictionary = {}
 	var queue: Array = [start_pipe]
 	visited[start_pipe.grid_position] = true
-	start_pipe.fill_with_water()
+	
+	if not dry_run:
+		start_pipe.fill_with_water()
 	
 	var reached_end: bool = false
 	
@@ -94,8 +123,8 @@ func _check_connections() -> void:
 		
 		if current == end_pipe:
 			reached_end = true
-			# Не выходим сразу, чтобы заполнить водой весь путь
-			# break 
+			if dry_run:
+				pass
 		
 		for side in current.get_active_sides():
 			var neighbor_pos = _get_neighbor_pos(current.grid_position, side)
@@ -108,38 +137,44 @@ func _check_connections() -> void:
 			
 			if current.has_connection_to(side) and neighbor.has_connection_to(opposite):
 				visited[neighbor_pos] = true
-				neighbor.fill_with_water()
+				
+				if not dry_run:
+					neighbor.fill_with_water()
+				
 				queue.append(neighbor)
 	
 	var all_pipes_closed: bool = _check_all_pipes_closed()
 	
-	if reached_end and not all_pipes_closed:
-		print("⚠️ Путь собран, но есть незакрытые соединения! Уровень не завершён.")
+	var is_solved: bool = reached_end and all_pipes_closed
 	
-	if reached_end and all_pipes_closed and not is_completed:
+	# Отладка
+	if reached_end and not all_pipes_closed:
+		if not dry_run:
+			print("⚠️ Путь собран, но есть незакрытые соединения! Уровень не завершён.")
+	
+	if not dry_run and is_solved and not is_completed:
 		is_completed = true
 		is_playing = false
 		await get_tree().create_timer(1.0).timeout
 		level_complete.emit(true, elapsed_time, move_count)
+	
+	return is_solved
 
-## проверка, что у всех труб нет открытых концов
+## Проверка закрытости всех труб
 func _check_all_pipes_closed() -> bool:
 	for pipe in pipes.values():
 		for side in pipe.get_active_sides():
 			var neighbor_pos = _get_neighbor_pos(pipe.grid_position, side)
 			
-			# Если с активной стороны нет соседа — это разрыв
 			if not pipes.has(neighbor_pos):
 				return false
 			
 			var neighbor: Pipe = pipes[neighbor_pos]
 			var opposite = Pipe.get_opposite_side(side)
 			
-			# Если сосед есть, но у него нет ответного соединения — это разрыв
 			if not neighbor.has_connection_to(opposite):
 				return false
 	
-	# Если цикл завершился без возвратов false, значит все трубы закрыты
 	return true
 
 func _get_neighbor_pos(pos: Vector2i, side: int) -> Vector2i:

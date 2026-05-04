@@ -72,66 +72,52 @@ grid_position = Vector2i(4, 4)
 position = Vector2(-26, 242)
 grid_position = Vector2i(3, 5)
 
-[node name="pipe16" parent="GridContainer" index="14" instance=ExtResource("6_kydov")]
-position = Vector2(74, 242)
-grid_position = Vector2i(4, 5)
-
-[node name="pipe14" parent="GridContainer" index="15" instance=ExtResource("6_kydov")]
+[node name="pipe14" parent="GridContainer" index="14" instance=ExtResource("6_kydov")]
 position = Vector2(174, 142)
 grid_position = Vector2i(5, 4)
 
-[node name="EmptyBlock" parent="GridContainer" index="16" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock" parent="GridContainer" index="15" instance=ExtResource("8_b6i88")]
 position = Vector2(-176, -208)
 
-[node name="EmptyBlock2" parent="GridContainer" index="17" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock2" parent="GridContainer" index="16" instance=ExtResource("8_b6i88")]
 position = Vector2(-276, -208)
 
-[node name="EmptyBlock3" parent="GridContainer" index="18" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock3" parent="GridContainer" index="17" instance=ExtResource("8_b6i88")]
 position = Vector2(-276, -108)
 
-[node name="EmptyBlock4" parent="GridContainer" index="19" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock4" parent="GridContainer" index="18" instance=ExtResource("8_b6i88")]
 position = Vector2(-276, -8)
 
-[node name="EmptyBlock5" parent="GridContainer" index="20" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock5" parent="GridContainer" index="19" instance=ExtResource("8_b6i88")]
 position = Vector2(-276, 92)
 
-[node name="EmptyBlock6" parent="GridContainer" index="21" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock6" parent="GridContainer" index="20" instance=ExtResource("8_b6i88")]
 position = Vector2(-276, 192)
 
-[node name="EmptyBlock7" parent="GridContainer" index="22" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock7" parent="GridContainer" index="21" instance=ExtResource("8_b6i88")]
 position = Vector2(-176, 192)
 
-[node name="EmptyBlock9" parent="GridContainer" index="23" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock9" parent="GridContainer" index="22" instance=ExtResource("8_b6i88")]
 position = Vector2(124, 192)
 
-[node name="EmptyBlock12" parent="GridContainer" index="24" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock12" parent="GridContainer" index="23" instance=ExtResource("8_b6i88")]
 position = Vector2(124, 292)
 
-[node name="EmptyBlock13" parent="GridContainer" index="25" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock13" parent="GridContainer" index="24" instance=ExtResource("8_b6i88")]
 position = Vector2(-76, 292)
 
-[node name="EmptyBlock14" parent="GridContainer" index="26" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock14" parent="GridContainer" index="25" instance=ExtResource("8_b6i88")]
 position = Vector2(-176, 292)
 
-[node name="EmptyBlock15" parent="GridContainer" index="27" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock15" parent="GridContainer" index="26" instance=ExtResource("8_b6i88")]
 position = Vector2(-276, 292)
 
-[node name="EmptyBlock10" parent="GridContainer" index="28" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock10" parent="GridContainer" index="27" instance=ExtResource("8_b6i88")]
 position = Vector2(24, -208)
 
-[node name="EmptyBlock11" parent="GridContainer" index="29" instance=ExtResource("8_b6i88")]
-z_index = 0
+[node name="EmptyBlock11" parent="GridContainer" index="28" instance=ExtResource("8_b6i88")]
 position = Vector2(124, -208)
+
+[node name="pipe16" parent="GridContainer" index="29" instance=ExtResource("5_m5qie")]
+position = Vector2(74, 242)
+grid_position = Vector2i(4, 5)

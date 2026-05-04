@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bls1ehh1cer45"]
+[gd_scene load_steps=9 format=3 uid="uid://bls1ehh1cer45"]
 
 [ext_resource type="PackedScene" uid="uid://c5apnbl4201dh" path="res://scenes/levels/base_level.tscn" id="1_gr7jt"]
 [ext_resource type="PackedScene" uid="uid://dg5rr0f1ysgjk" path="res://scenes/pipes/pipe_start.tscn" id="2_bk8ll"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://df1fk5kbrppmg" path="res://scenes/pipes/pipe_corner.tscn" id="5_5tmw6"]
 [ext_resource type="PackedScene" uid="uid://bspspxnucomja" path="res://scenes/pipes/pipe_cross.tscn" id="6_c8dgj"]
 [ext_resource type="PackedScene" uid="uid://40t35yfp3t0q" path="res://scenes/pipes/pipe_end.tscn" id="7_yf4k5"]
+[ext_resource type="PackedScene" uid="uid://b1s8iyydfqes6" path="res://scenes/pipes/empty_block.tscn" id="8_gr7jt"]
 
 [node name="Level" instance=ExtResource("1_gr7jt")]
 
@@ -157,46 +158,52 @@ grid_position = Vector2i(2, 1)
 position = Vector2(-26.3763, -349.538)
 grid_position = Vector2i(3, 1)
 
-[node name="pipe13" parent="GridContainer" index="35" instance=ExtResource("3_4fty2")]
-position = Vector2(173.624, -249.538)
-grid_position = Vector2i(5, 2)
-
-[node name="pipe14" parent="GridContainer" index="36" instance=ExtResource("3_4fty2")]
+[node name="pipe14" parent="GridContainer" index="35" instance=ExtResource("3_4fty2")]
 position = Vector2(273.624, -249.538)
 grid_position = Vector2i(6, 2)
 
-[node name="pipe22" parent="GridContainer" index="37" instance=ExtResource("3_4fty2")]
+[node name="pipe22" parent="GridContainer" index="36" instance=ExtResource("3_4fty2")]
 position = Vector2(273.624, -49.5375)
 grid_position = Vector2i(6, 4)
 
-[node name="pipe19" parent="GridContainer" index="38" instance=ExtResource("3_4fty2")]
+[node name="pipe19" parent="GridContainer" index="37" instance=ExtResource("3_4fty2")]
 position = Vector2(-226.376, 50.4625)
 grid_position = Vector2i(1, 5)
 
-[node name="pipe20" parent="GridContainer" index="39" instance=ExtResource("3_4fty2")]
+[node name="pipe20" parent="GridContainer" index="38" instance=ExtResource("3_4fty2")]
 position = Vector2(-126.376, 50.4625)
 grid_position = Vector2i(2, 5)
 
-[node name="pipe39" parent="GridContainer" index="40" instance=ExtResource("3_4fty2")]
+[node name="pipe39" parent="GridContainer" index="39" instance=ExtResource("3_4fty2")]
 position = Vector2(173.624, 250.462)
 grid_position = Vector2i(5, 7)
 
-[node name="pipe35" parent="GridContainer" index="41" instance=ExtResource("3_4fty2")]
+[node name="pipe35" parent="GridContainer" index="40" instance=ExtResource("3_4fty2")]
 position = Vector2(-226.376, 250.462)
 grid_position = Vector2i(1, 7)
 
-[node name="pipe43" parent="GridContainer" index="42" instance=ExtResource("3_4fty2")]
+[node name="pipe43" parent="GridContainer" index="41" instance=ExtResource("3_4fty2")]
 position = Vector2(-26.3763, 350.462)
 grid_position = Vector2i(3, 8)
 
-[node name="pipe5" parent="GridContainer" index="43" instance=ExtResource("6_c8dgj")]
+[node name="pipe5" parent="GridContainer" index="42" instance=ExtResource("6_c8dgj")]
 position = Vector2(73.6237, -249.538)
 grid_position = Vector2i(4, 2)
 
-[node name="pipe27" parent="GridContainer" index="44" instance=ExtResource("6_c8dgj")]
+[node name="pipe27" parent="GridContainer" index="43" instance=ExtResource("6_c8dgj")]
 position = Vector2(73.6237, 50.4625)
 grid_position = Vector2i(4, 5)
 
-[node name="pipe46" parent="GridContainer" index="45" instance=ExtResource("7_yf4k5")]
+[node name="pipe46" parent="GridContainer" index="44" instance=ExtResource("7_yf4k5")]
 position = Vector2(273.624, 350.462)
 grid_position = Vector2i(6, 8)
+
+[node name="pipe13" parent="GridContainer" index="45" instance=ExtResource("6_c8dgj")]
+position = Vector2(173.624, -249.538)
+grid_position = Vector2i(5, 2)
+
+[node name="EmptyBlock" parent="GridContainer" index="46" instance=ExtResource("8_gr7jt")]
+position = Vector2(-76.3763, -199.538)
+
+[node name="EmptyBlock2" parent="GridContainer" index="47" instance=ExtResource("8_gr7jt")]
+position = Vector2(-76.3763, -99.5375)

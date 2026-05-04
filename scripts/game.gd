@@ -117,7 +117,6 @@ func _on_level_complete(success: bool, time: float, moves: int) -> void:
 		star.scale = Vector2(0, 0)  
 		stars_container.add_child(star)
 		
-			sprite.modulate = Color(1, 1, 1) if i < stars else Color(0.3, 0.3, 0.3)
 		var tween = create_tween()
 		tween.tween_property(star, "scale", Vector2(1.0, 1.0), 0.4) \
 			.set_trans(Tween.TRANS_BACK) \

@@ -1,16 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi8omm5lta2vn"]
+[gd_scene format=3 uid="uid://bi8omm5lta2vn"]
 
 [ext_resource type="Script" uid="uid://76c8a67hhsxa" path="res://scripts/menu.gd" id="1_con2f"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_4ytvr"]
-[ext_resource type="Script" uid="uid://cyb1ndmb7sjtw" path="res://scripts/background.gd" id="2_g3eks"]
 [ext_resource type="Texture2D" uid="uid://bwsdxk4kxl340" path="res://assets/logo.png" id="3_4ytvr"]
 [ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="4_g3eks"]
+[ext_resource type="Texture2D" uid="uid://bqixfhmoko6cv" path="res://assets/sprites/pause.png" id="5_4ytvr"]
+
+[sub_resource type="GDScript" id="GDScript_mhnvy"]
+script/source = "extends Parallax2D
+
+@onready var sprite = $Sprite2D
+
+func _ready():
+
+	var texture_size = sprite.texture.get_size()
+	repeat_size = texture_size
+	
+	print(\"Фон настроен! Размер: \", texture_size)
+
+func _process(delta):
+	scroll_offset.y -= 10 * delta
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_v86rl"]
 font = ExtResource("4_g3eks")
 font_size = 48
 
-[node name="menu" type="Control"]
+[node name="menu" type="Control" unique_id=22128205]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,20 +35,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_con2f")
 
-[node name="Background" type="Parallax2D" parent="."]
-script = ExtResource("2_g3eks")
+[node name="Background" type="Parallax2D" parent="." unique_id=1577172785]
+script = SubResource("GDScript_mhnvy")
 
-[node name="Sprite2D" type="Sprite2D" parent="Background"]
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=915321298]
 position = Vector2(360, 639)
 scale = Vector2(1, 1.00078)
 texture = ExtResource("2_4ytvr")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Background"]
+[node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=311373641]
 position = Vector2(360, 1911)
 scale = Vector2(1, 1.03672)
 texture = ExtResource("2_4ytvr")
 
-[node name="MainPanel" type="Panel" parent="."]
+[node name="MainPanel" type="Panel" parent="." unique_id=1285609752]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,12 +58,12 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="logo" type="Sprite2D" parent="MainPanel"]
+[node name="logo" type="Sprite2D" parent="MainPanel" unique_id=1004368000]
 position = Vector2(360, 370)
 scale = Vector2(1.41031, 1.41031)
 texture = ExtResource("3_4ytvr")
 
-[node name="PlayButton" type="Button" parent="MainPanel"]
+[node name="PlayButton" type="Button" parent="MainPanel" unique_id=417304098]
 layout_mode = 0
 offset_left = 184.0
 offset_top = 784.0
@@ -61,7 +77,7 @@ autowrap_mode = 2
 icon_alignment = 1
 expand_icon = true
 
-[node name="ExitButton" type="Button" parent="MainPanel"]
+[node name="ExitButton" type="Button" parent="MainPanel" unique_id=2090752754]
 layout_mode = 0
 offset_left = 200.0
 offset_top = 973.0
@@ -72,7 +88,14 @@ theme_override_font_sizes/font_size = 54
 text = "ВЫЙТИ"
 flat = true
 
-[node name="LevelSelectPanel" type="Panel" parent="."]
+[node name="Settings" type="Button" parent="MainPanel" unique_id=796769842]
+layout_mode = 0
+offset_left = 638.0
+offset_right = 720.0
+offset_bottom = 82.0
+icon = ExtResource("5_4ytvr")
+
+[node name="LevelSelectPanel" type="Panel" parent="." unique_id=402209658]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +106,7 @@ offset_bottom = 1294.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="LevelSelectPanel"]
+[node name="Title" type="Label" parent="LevelSelectPanel" unique_id=276511724]
 layout_mode = 0
 offset_left = 186.0
 offset_top = 207.0
@@ -92,7 +115,7 @@ offset_bottom = 261.0
 text = "ВЫБОР УРОВНЯ"
 label_settings = SubResource("LabelSettings_v86rl")
 
-[node name="TotalStarsLabel" type="Label" parent="LevelSelectPanel"]
+[node name="TotalStarsLabel" type="Label" parent="LevelSelectPanel" unique_id=1881519363]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -106,7 +129,7 @@ theme_override_fonts/font = ExtResource("4_g3eks")
 theme_override_font_sizes/font_size = 35
 text = "ЗВЁЗДЫ 0"
 
-[node name="Scroll" type="ScrollContainer" parent="LevelSelectPanel"]
+[node name="Scroll" type="ScrollContainer" parent="LevelSelectPanel" unique_id=1577871882]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.016
@@ -119,12 +142,12 @@ offset_bottom = -288.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Levels" type="GridContainer" parent="LevelSelectPanel/Scroll"]
+[node name="Levels" type="GridContainer" parent="LevelSelectPanel/Scroll" unique_id=1819160818]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 columns = 5
 
-[node name="BackButton" type="Button" parent="LevelSelectPanel"]
+[node name="BackButton" type="Button" parent="LevelSelectPanel" unique_id=1311311769]
 layout_mode = 0
 offset_left = 288.0
 offset_top = 1052.0
@@ -135,7 +158,7 @@ theme_override_font_sizes/font_size = 43
 text = "НАЗАД
 "
 
-[node name="ResetButton" type="Button" parent="LevelSelectPanel"]
+[node name="ResetButton" type="Button" parent="LevelSelectPanel" unique_id=203668222]
 layout_mode = 1
 offset_left = 32.0
 offset_top = 68.0
@@ -147,5 +170,6 @@ text = "СБРОСИТЬ ПРОГРЕСС"
 
 [connection signal="pressed" from="MainPanel/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainPanel/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MainPanel/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="LevelSelectPanel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="LevelSelectPanel/ResetButton" to="." method="_on_reset_button_pressed"]

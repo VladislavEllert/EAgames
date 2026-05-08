@@ -1,13 +1,11 @@
 extends Parallax2D
 
-@onready var sprite = $Sprite2D
 
-func _ready():
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
 
-	var texture_size = sprite.texture.get_size()
-	repeat_size = texture_size
-	
-	print("Фон настроен! Размер: ", texture_size)
 
-func _process(delta):
-	scroll_offset.y -= 10 * delta
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass

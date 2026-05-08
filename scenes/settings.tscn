@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://dcqva53rmols2"]
+
+[ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="1_5p8wc"]
+[ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="2_r6d6q"]
+
+[sub_resource type="GDScript" id="GDScript_r6d6q"]
+script/source = "extends Parallax2D
+
+@onready var sprite = $Sprite2D
+
+func _ready():
+
+	var texture_size = sprite.texture.get_size()
+	repeat_size = texture_size
+	
+	print(\"Фон настроен! Размер: \", texture_size)
+
+func _process(delta):
+	scroll_offset.y -= 10 * delta
+"
+
+[node name="Settings" type="Panel" unique_id=698975321]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Parallax2D" parent="." unique_id=1462307264]
+script = SubResource("GDScript_r6d6q")
+
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=1692081941]
+position = Vector2(360, 641)
+texture = ExtResource("1_5p8wc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=1813436420]
+position = Vector2(360, 1919)
+texture = ExtResource("1_5p8wc")
+
+[node name="Label" type="Label" parent="." unique_id=883713099]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 30.0
+offset_right = 478.0
+offset_bottom = 99.0
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 57
+text = "Настройки"
+
+[node name="Label2" type="Label" parent="." unique_id=1210547611]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 200.0
+offset_right = 378.0
+offset_bottom = 240.0
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 35
+text = "Сбросить прогресс"
+
+[node name="Label3" type="Label" parent="." unique_id=930130395]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 300.0
+offset_right = 303.0
+offset_bottom = 340.0
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 35
+text = "Фоновый звук"
+
+[node name="Label4" type="Label" parent="." unique_id=1233576577]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 500.0
+offset_right = 290.0
+offset_bottom = 540.0
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 35
+text = "Игровой звук"
+
+[node name="Label5" type="Label" parent="." unique_id=1376405320]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 700.0
+offset_right = 209.0
+offset_bottom = 723.0
+theme_override_fonts/font = ExtResource("2_r6d6q")
+theme_override_font_sizes/font_size = 35
+text = "Поменять язык "

@@ -52,6 +52,8 @@ func _scan_pipes() -> void:
 				end_pipe = pipe
 
 func reset_level() -> void:
+	_unlock_all_pipes()
+	
 	var attempts = 0
 	var max_attempts = 50
 	
@@ -64,7 +66,7 @@ func reset_level() -> void:
 		attempts += 1
 	
 	if attempts >= max_attempts:
-		push_warning("⚠️ Не удалось сгенерировать нерешённый уровень за %d попыток. Принудительный поворот." % max_attempts)
+		push_warning("⚠️ Не удалось сгенерировать нерешённый уровень. Принудительный поворот.")
 		_force_break_solution()
 	
 	for pipe in pipes.values():
@@ -78,7 +80,16 @@ func reset_level() -> void:
 	
 	await _check_connections(false)
 
-## Перемешивание труб
+func _lock_all_pipes() -> void:
+	for pipe in pipes.values():
+		if pipe.touch_area:
+			pipe.touch_area.input_pickable = false
+
+func _unlock_all_pipes() -> void:
+	for pipe in pipes.values():
+		if pipe.touch_area:
+			pipe.touch_area.input_pickable = true
+
 func _randomize_pipes() -> void:
 	for pipe in pipes.values():
 		if not pipe.is_locked and pipe.pipe_type not in [Pipe.PipeType.START, Pipe.PipeType.END]:
@@ -86,7 +97,6 @@ func _randomize_pipes() -> void:
 			pipe.rotation_degrees = pipe.rotation_state * 90
 			pipe._update_visuals()
 
-## Принудительно ломает решение, поворачивая одну трубу
 func _force_break_solution() -> void:
 	for pipe in pipes.values():
 		if not pipe.is_locked and pipe.pipe_type not in [Pipe.PipeType.START, Pipe.PipeType.END]:
@@ -98,7 +108,6 @@ func _on_pipe_rotated(_pipe: Pipe) -> void:
 		return
 	move_count += 1
 	update_moves.emit(move_count)
-	
 	await _check_connections(false)
 
 func _check_connections(dry_run: bool = false) -> bool:
@@ -123,8 +132,6 @@ func _check_connections(dry_run: bool = false) -> bool:
 		
 		if current == end_pipe:
 			reached_end = true
-			if dry_run:
-				pass
 		
 		for side in current.get_active_sides():
 			var neighbor_pos = _get_neighbor_pos(current.grid_position, side)
@@ -144,23 +151,23 @@ func _check_connections(dry_run: bool = false) -> bool:
 				queue.append(neighbor)
 	
 	var all_pipes_closed: bool = _check_all_pipes_closed()
-	
 	var is_solved: bool = reached_end and all_pipes_closed
 	
-	# Отладка
 	if reached_end and not all_pipes_closed:
 		if not dry_run:
-			print("⚠️ Путь собран, но есть незакрытые соединения! Уровень не завершён.")
+			print("⚠️ Путь собран, но есть незакрытые соединения!")
 	
 	if not dry_run and is_solved and not is_completed:
 		is_completed = true
 		is_playing = false
+		
+		_lock_all_pipes()
+		
 		await get_tree().create_timer(1.0).timeout
 		level_complete.emit(true, elapsed_time, move_count)
 	
 	return is_solved
 
-## Проверка закрытости всех труб
 func _check_all_pipes_closed() -> bool:
 	for pipe in pipes.values():
 		for side in pipe.get_active_sides():

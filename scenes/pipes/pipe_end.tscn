@@ -9,11 +9,11 @@
 pipe_type = 6
 is_locked = true
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_cn77c")
 
-[node name="WaterSprite2D" parent="." index="2"]
+[node name="WaterSprite2D" parent="." index="3"]
 texture = ExtResource("3_owwya")
 
-[node name="Active" parent="." index="3"]
+[node name="Active" parent="." index="4"]
 texture = ExtResource("3_cn77c")

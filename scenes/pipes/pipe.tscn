@@ -1,22 +1,24 @@
 [gd_scene load_steps=8 format=3 uid="uid://cphe5ac1hhfhm"]
 
 [ext_resource type="Script" uid="uid://bpqobppqsf7tf" path="res://scripts/pipe.gd" id="1_6vbg7"]
-[ext_resource type="Texture2D" uid="uid://ch7rsj52ndkru" path="res://assets/sprites/BackTile_06.png" id="2_bkawh"]
+[ext_resource type="PackedScene" uid="uid://b1s8iyydfqes6" path="res://scenes/pipes/empty_block.tscn" id="2_bkawh"]
 [ext_resource type="Texture2D" uid="uid://c44tx10kqnm1x" path="res://assets/sprites/pipe_straight.png" id="2_qcqug"]
 [ext_resource type="Texture2D" uid="uid://baoidvc2v64a" path="res://assets/sprites/pipe_straight_water.png" id="3_v3omj"]
 [ext_resource type="Texture2D" uid="uid://de5uifwaoqkj" path="res://assets/sprites/pipe_straight_active.png" id="4_v3omj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8ywd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3omj"]
 size = Vector2(100, 100)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3omj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8ywd"]
 size = Vector2(100, 100)
 
 [node name="pipe" type="Area2D"]
 script = ExtResource("1_6vbg7")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-texture = ExtResource("2_bkawh")
+[node name="EmptyBlock" parent="." instance=ExtResource("2_bkawh")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v3omj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_qcqug")
@@ -45,6 +47,3 @@ position = Vector2(0, 50)
 
 [node name="ConnectionLeft" type="Marker2D" parent="."]
 position = Vector2(-50, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_v3omj")

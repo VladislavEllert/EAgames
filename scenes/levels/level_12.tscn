@@ -28,7 +28,8 @@ position = Vector2(-114, -65)
 position = Vector2(-114, -165)
 
 [node name="pipe5" parent="GridContainer" index="4" instance=ExtResource("6_vcewm")]
-position = Vector2(-213, 217)
+position = Vector2(287, 391)
+rotation = 1.5708
 
 [node name="pipe6" parent="GridContainer" index="5" instance=ExtResource("4_aj8n2")]
 position = Vector2(-114, 35)

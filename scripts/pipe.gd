@@ -89,9 +89,9 @@ func get_active_sides() -> Array[int]:
 	var base: Array[int] = []
 	match pipe_type:
 		PipeType.STRAIGHT: base = [Side.TOP, Side.BOTTOM]
-		PipeType.CORNER: base = [Side.TOP, Side.RIGHT]
+		PipeType.CORNER: base = [Side.BOTTOM, Side.RIGHT]
 		PipeType.CROSS: base = [Side.TOP, Side.RIGHT, Side.BOTTOM, Side.LEFT]
-		PipeType.T_JUNCTION: base = [Side.TOP, Side.RIGHT, Side.BOTTOM]
+		PipeType.T_JUNCTION: base = [Side.LEFT, Side.RIGHT, Side.BOTTOM]
 		PipeType.START: base = [Side.BOTTOM]
 		PipeType.END: base = [Side.TOP]
 		_: return []

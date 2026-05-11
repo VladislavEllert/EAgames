@@ -1,3 +1,4 @@
+TextureRect
 Button
 Control
 RichTextLabel
@@ -9,5 +10,4 @@ ParallaxLayer
 Node2D
 TileMapLayer
 RayCast2D
-TextureRect
 VBoxContainer

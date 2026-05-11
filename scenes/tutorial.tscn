@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://cpvh1uqc841vh" path="res://scripts/background.gd" id="1_8ho6b"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_ph3nu"]
 [ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="3_ph3nu"]
+[ext_resource type="Texture2D" uid="uid://c44tx10kqnm1x" path="res://assets/sprites/pipe_straight.png" id="5_gbqnl"]
+[ext_resource type="Texture2D" uid="uid://bvkaovkngov7u" path="res://assets/sprites/pipe_corner.png" id="6_ckvwl"]
+[ext_resource type="Texture2D" uid="uid://mre2rovoelmv" path="res://assets/sprites/pipe_end_active.png" id="7_nlqja"]
 
 [node name="Tutorial" type="Control" unique_id=17696490]
 layout_mode = 3
@@ -45,17 +48,55 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="AnimationArea" type="Control" parent="Panel" unique_id=571208209]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ActivePipe" type="TextureRect" parent="Panel" unique_id=1457869079]
+layout_mode = 0
+offset_left = 317.0
+offset_top = 750.0
+offset_right = 417.0
+offset_bottom = 850.0
+texture = ExtResource("5_gbqnl")
+
+[node name="StaticPipe" type="TextureRect" parent="Panel" unique_id=625920968]
+layout_mode = 0
+offset_left = 317.0
+offset_top = 849.0
+offset_right = 417.0
+offset_bottom = 949.0
+texture = ExtResource("6_ckvwl")
+
+[node name="StaticPipe2" type="TextureRect" parent="Panel" unique_id=544613477]
+layout_mode = 0
+offset_left = 417.0
+offset_top = 750.0
+offset_right = 517.0
+offset_bottom = 850.0
+rotation = 3.1415927
+texture = ExtResource("6_ckvwl")
+
+[node name="StaticPipe3" type="TextureRect" parent="Panel" unique_id=1235636444]
+layout_mode = 0
+offset_left = 516.0
+offset_top = 848.0
+offset_right = 616.0
+offset_bottom = 948.0
+rotation = 1.5707964
+texture = ExtResource("7_nlqja")
+
+[node name="StaticPipe4" type="TextureRect" parent="Panel" unique_id=1163536470]
+layout_mode = 0
+offset_left = 317.0
+offset_top = 650.0
+offset_right = 417.0
+offset_bottom = 750.0
+rotation = 1.5707964
+texture = ExtResource("7_nlqja")
 
 [node name="BackButton" type="Button" parent="Panel" unique_id=182140974]
 layout_mode = 0
 offset_left = 320.0
-offset_top = 1000.0
+offset_top = 1100.0
 offset_right = 416.0
-offset_bottom = 1048.0
+offset_bottom = 1148.0
 theme_override_fonts/font = ExtResource("3_ph3nu")
 theme_override_font_sizes/font_size = 35
 text = "меню"

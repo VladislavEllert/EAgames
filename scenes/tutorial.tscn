@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dp6no6oi41lyy"]
 
+[ext_resource type="Script" uid="uid://tscvp22f02ei" path="res://scenes/tutorial.gd" id="1_4kmhl"]
 [ext_resource type="Script" uid="uid://cpvh1uqc841vh" path="res://scripts/background.gd" id="1_8ho6b"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_ph3nu"]
 [ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="3_ph3nu"]
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4kmhl")
 
 [node name="Background" type="Parallax2D" parent="." unique_id=680654932]
 script = ExtResource("1_8ho6b")
@@ -20,7 +22,7 @@ position = Vector2(360, 640)
 texture = ExtResource("2_ph3nu")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=1792065980]
-position = Vector2(360, 640)
+position = Vector2(360, 1920)
 texture = ExtResource("2_ph3nu")
 
 [node name="Panel" type="Panel" parent="." unique_id=2039557016]
@@ -28,7 +30,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Panel" unique_id=257023085]
+[node name="Title" type="Label" parent="Panel" unique_id=257023085]
 layout_mode = 0
 offset_left = 250.0
 offset_top = 50.0
@@ -37,3 +39,25 @@ offset_bottom = 108.0
 theme_override_fonts/font = ExtResource("3_ph3nu")
 theme_override_font_sizes/font_size = 51
 text = "Обучение"
+
+[node name="Text" type="RichTextLabel" parent="Panel" unique_id=1200081645]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimationArea" type="Control" parent="Panel" unique_id=571208209]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackButton" type="Button" parent="Panel" unique_id=182140974]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 1000.0
+offset_right = 416.0
+offset_bottom = 1048.0
+theme_override_fonts/font = ExtResource("3_ph3nu")
+theme_override_font_sizes/font_size = 35
+text = "меню"
+
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

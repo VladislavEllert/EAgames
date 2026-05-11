@@ -1,8 +1,10 @@
+Button
+Control
+RichTextLabel
 Label
 Panel
 Sprite2D
 Parallax2D
-Button
 ParallaxLayer
 Node2D
 TileMapLayer

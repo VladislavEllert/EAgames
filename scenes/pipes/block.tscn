@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbys3loeudi1"]
+[gd_scene load_steps=6 format=3 uid="uid://cbys3loeudi1"]
 
 [ext_resource type="Script" uid="uid://bpqobppqsf7tf" path="res://scripts/pipe.gd" id="1_4moec"]
-[ext_resource type="Texture2D" uid="uid://ch7rsj52ndkru" path="res://assets/sprites/BackTile_06.png" id="2_fre7p"]
 [ext_resource type="Texture2D" uid="uid://baoidvc2v64a" path="res://assets/sprites/pipe_straight_water.png" id="4_ayur7"]
 [ext_resource type="Texture2D" uid="uid://de5uifwaoqkj" path="res://assets/sprites/pipe_straight_active.png" id="5_6hqyo"]
 
@@ -16,7 +15,6 @@ script = ExtResource("1_4moec")
 pipe_type = 0
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-texture = ExtResource("2_fre7p")
 
 [node name="WaterSprite2D" type="Sprite2D" parent="."]
 visible = false

@@ -45,20 +45,34 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
 		_update_grid_from_position()
 
+## ✅ Надёжное обновление координат с защитой от дрейфа
 func _update_grid_from_position() -> void:
 	if not Engine.is_editor_hint():
 		return
 	
+	if not is_inside_tree():
+		return
+	
 	var parent = get_parent()
-	if parent and parent.has_method("get_cell_size"):
-		var cell_size = parent.get_cell_size()
-		var gx = roundi(position.x / cell_size)
-		var gy = roundi(position.y / cell_size)
-		
-		if grid_position != Vector2i(gx, gy):
-			grid_position = Vector2i(gx, gy)
-			if Engine.is_editor_hint():
-				name = "Pipe_%d_%d" % [gx, gy]
+	if not parent or not parent.has_method("get_cell_size"):
+		return
+	
+	var cell_size = parent.get_cell_size()
+	
+	# ✅ Защита от деления на ноль и некорректных значений
+	if cell_size <= 0:
+		return
+	
+	# Вычисляем новые координаты
+	var gx = roundi(position.x / cell_size)
+	var gy = roundi(position.y / cell_size)
+	var new_grid = Vector2i(gx, gy)
+	
+	# ✅ Обновляем только если координаты действительно изменились
+	# Это предотвращает бесконечные циклы и микро-сдвиги
+	if grid_position != new_grid:
+		grid_position = new_grid
+		name = "Pipe_%d_%d" % [gx, gy]
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -75,9 +89,9 @@ func get_active_sides() -> Array[int]:
 	var base: Array[int] = []
 	match pipe_type:
 		PipeType.STRAIGHT: base = [Side.TOP, Side.BOTTOM]
-		PipeType.CORNER: base = [Side.TOP, Side.RIGHT]
+		PipeType.CORNER: base = [Side.BOTTOM, Side.RIGHT]
 		PipeType.CROSS: base = [Side.TOP, Side.RIGHT, Side.BOTTOM, Side.LEFT]
-		PipeType.T_JUNCTION: base = [Side.TOP, Side.RIGHT, Side.BOTTOM]
+		PipeType.T_JUNCTION: base = [Side.LEFT, Side.RIGHT, Side.BOTTOM]
 		PipeType.START: base = [Side.BOTTOM]
 		PipeType.END: base = [Side.TOP]
 		_: return []
@@ -133,7 +147,7 @@ func _update_visuals() -> void:
 	else:
 		sprite.texture = null
 		match pipe_type:
-			PipeType.START: sprite.modulate = Color.TRANSPARENT  
+			PipeType.START: sprite.modulate = Color.TRANSPARENT
 			PipeType.END: sprite.modulate = Color(0.8, 0.3, 0.2)
 			_: sprite.modulate = Color(0.6, 0.7, 0.8)
 		push_error("❌ Текстура не найдена: " + tex_path)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu5kt3su421mg"]
+
+[ext_resource type="PackedScene" uid="uid://c5apnbl4201dh" path="res://scenes/levels/base_level.tscn" id="1_mm5w3"]
+
+[node name="Level" instance=ExtResource("1_mm5w3")]
+
+[node name="GridContainer" parent="." index="1"]
+position = Vector2(-249, -249)

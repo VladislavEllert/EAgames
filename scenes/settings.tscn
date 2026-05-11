@@ -76,7 +76,7 @@ theme_override_fonts/font = ExtResource("2_r6d6q")
 theme_override_font_sizes/font_size = 35
 text = "Поменять язык "
 
-[node name="Button" type="Button" parent="." unique_id=159301902]
+[node name="ResetButton" type="Button" parent="." unique_id=159301902]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 200.0
@@ -96,4 +96,5 @@ theme_override_fonts/font = ExtResource("2_r6d6q")
 theme_override_font_sizes/font_size = 35
 text = "Выйти"
 
+[connection signal="pressed" from="ResetButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

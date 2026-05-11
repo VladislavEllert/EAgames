@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpvh1uqc841vh" path="res://scripts/background.gd" id="1_8ho6b"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_ph3nu"]
+[ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="3_ph3nu"]
 
 [node name="Tutorial" type="Control" unique_id=17696490]
 layout_mode = 3
@@ -21,3 +22,18 @@ texture = ExtResource("2_ph3nu")
 [node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=1792065980]
 position = Vector2(360, 640)
 texture = ExtResource("2_ph3nu")
+
+[node name="Panel" type="Panel" parent="." unique_id=2039557016]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=257023085]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 50.0
+offset_right = 467.0
+offset_bottom = 108.0
+theme_override_fonts/font = ExtResource("3_ph3nu")
+theme_override_font_sizes/font_size = 51
+text = "Обучение"

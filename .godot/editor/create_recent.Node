@@ -1,9 +1,9 @@
+Label
+Panel
 Sprite2D
 Parallax2D
 Button
-Label
 ParallaxLayer
-Panel
 Node2D
 TileMapLayer
 RayCast2D

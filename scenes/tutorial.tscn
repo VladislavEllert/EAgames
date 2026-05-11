@@ -45,60 +45,89 @@ theme_override_font_sizes/font_size = 51
 text = "Обучение"
 
 [node name="Fon" type="Sprite2D" parent="Panel" unique_id=1945319434]
-position = Vector2(372, 793)
+position = Vector2(357, 927)
 scale = Vector2(1.1179105, 1)
 texture = ExtResource("5_ckvwl")
 
 [node name="Text" type="RichTextLabel" parent="Panel" unique_id=1200081645]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 133.0
+offset_top = 176.0
+offset_right = 585.0
+offset_bottom = 722.0
+theme_override_fonts/normal_font = ExtResource("3_ph3nu")
+theme_override_font_sizes/normal_font_size = 19
+text = "🚀 СЮЖЕТ ИГРЫ 🚀
+
+На КОСМИЧЕСКОМ КОРАБЛЕ авария!
+
+👨‍🚀👩‍🚀👨‍🚀👩‍🚀👨‍🚀👩‍🚀
+
+Пробит охлаждающий контур! НУЖНО СРОЧНО ЗАПУСТИТЬ ВОДУ! Чтобы предотвратить взрыв и спасти экипаж.
+
+🎮 КАК ИГРАТЬ 🎮
+
+СОЕДИНИ ВСЕ ТРУБЫ так, чтобы вода дошла от точки А до точки Б.
+
+➡ Нажимай на трубы → они поворачиваются на 90°
+
+➡ Собирай ЗВЁЗДЫ → чем меньше ходов, тем лучше
+
+🎯 ЦЕЛЬ 🎯
+
+ПРОЙДИ ВСЕ 11 УРОВНЕЙ! Когда вода пойдёт по трубам -
+
+💥 ВЗРЫВ БУДЕТ ПРЕДОТВРАЩЁН 💥
+
+🛸 ЭКИПАЖ БУДЕТ СПАСЕН! 🛸
+
+👆 Смотри как поворачивается труба 👆"
 
 [node name="AnimatedPipe" type="Sprite2D" parent="Panel" unique_id=2000175337]
-position = Vector2(367, 799)
+position = Vector2(362, 935)
 texture = ExtResource("5_gbqnl")
 
 [node name="StaticPipe" type="TextureRect" parent="Panel" unique_id=625920968]
 layout_mode = 0
-offset_left = 317.0
-offset_top = 849.0
-offset_right = 417.0
-offset_bottom = 949.0
+offset_left = 313.0
+offset_top = 985.0
+offset_right = 413.0
+offset_bottom = 1085.0
 texture = ExtResource("6_ckvwl")
 
 [node name="StaticPipe2" type="TextureRect" parent="Panel" unique_id=544613477]
 layout_mode = 0
-offset_left = 417.0
-offset_top = 750.0
-offset_right = 517.0
-offset_bottom = 850.0
+offset_left = 412.0
+offset_top = 885.0
+offset_right = 512.0
+offset_bottom = 985.0
 rotation = 3.1415927
 texture = ExtResource("6_ckvwl")
 
 [node name="StaticPipe3" type="TextureRect" parent="Panel" unique_id=1235636444]
 layout_mode = 0
-offset_left = 516.0
-offset_top = 848.0
-offset_right = 616.0
-offset_bottom = 948.0
+offset_left = 512.0
+offset_top = 985.0
+offset_right = 612.0
+offset_bottom = 1085.0
 rotation = 1.5707964
 texture = ExtResource("7_nlqja")
 
 [node name="StaticPipe4" type="TextureRect" parent="Panel" unique_id=1163536470]
 layout_mode = 0
-offset_left = 317.0
-offset_top = 650.0
-offset_right = 417.0
-offset_bottom = 750.0
+offset_left = 312.0
+offset_top = 785.0
+offset_right = 412.0
+offset_bottom = 885.0
 rotation = 1.5707964
 texture = ExtResource("7_nlqja")
 
 [node name="BackButton" type="Button" parent="Panel" unique_id=182140974]
 layout_mode = 0
-offset_left = 320.0
-offset_top = 1100.0
-offset_right = 416.0
-offset_bottom = 1148.0
+offset_left = 309.0
+offset_top = 1137.0
+offset_right = 405.0
+offset_bottom = 1185.0
 theme_override_fonts/font = ExtResource("3_ph3nu")
 theme_override_font_sizes/font_size = 35
 text = "меню"

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dp6no6oi41lyy"]
+
+[ext_resource type="Script" uid="uid://cpvh1uqc841vh" path="res://scripts/background.gd" id="1_8ho6b"]
+[ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_ph3nu"]
+
+[node name="Tutorial" type="Control" unique_id=17696490]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Parallax2D" parent="." unique_id=680654932]
+script = ExtResource("1_8ho6b")
+
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=1728527784]
+position = Vector2(360, 640)
+texture = ExtResource("2_ph3nu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=1792065980]
+position = Vector2(360, 640)
+texture = ExtResource("2_ph3nu")

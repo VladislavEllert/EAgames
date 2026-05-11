@@ -1,7 +1,7 @@
-Button
-Label
 Sprite2D
 Parallax2D
+Button
+Label
 ParallaxLayer
 Panel
 Node2D

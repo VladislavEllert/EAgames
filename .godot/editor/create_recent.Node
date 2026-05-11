@@ -1,10 +1,10 @@
+Sprite2D
 TextureRect
 Button
 Control
 RichTextLabel
 Label
 Panel
-Sprite2D
 Parallax2D
 ParallaxLayer
 Node2D

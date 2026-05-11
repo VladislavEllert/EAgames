@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cpvh1uqc841vh" path="res://scripts/background.gd" id="1_8ho6b"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_ph3nu"]
 [ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="3_ph3nu"]
+[ext_resource type="Texture2D" uid="uid://78bteo25yyoy" path="res://assets/window-level-background.png" id="5_ckvwl"]
 [ext_resource type="Texture2D" uid="uid://c44tx10kqnm1x" path="res://assets/sprites/pipe_straight.png" id="5_gbqnl"]
 [ext_resource type="Texture2D" uid="uid://bvkaovkngov7u" path="res://assets/sprites/pipe_corner.png" id="6_ckvwl"]
 [ext_resource type="Texture2D" uid="uid://mre2rovoelmv" path="res://assets/sprites/pipe_end_active.png" id="7_nlqja"]
@@ -43,17 +44,18 @@ theme_override_fonts/font = ExtResource("3_ph3nu")
 theme_override_font_sizes/font_size = 51
 text = "Обучение"
 
+[node name="Fon" type="Sprite2D" parent="Panel" unique_id=1945319434]
+position = Vector2(372, 793)
+scale = Vector2(1.1179105, 1)
+texture = ExtResource("5_ckvwl")
+
 [node name="Text" type="RichTextLabel" parent="Panel" unique_id=1200081645]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ActivePipe" type="TextureRect" parent="Panel" unique_id=1457869079]
-layout_mode = 0
-offset_left = 317.0
-offset_top = 750.0
-offset_right = 417.0
-offset_bottom = 850.0
+[node name="AnimatedPipe" type="Sprite2D" parent="Panel" unique_id=2000175337]
+position = Vector2(367, 799)
 texture = ExtResource("5_gbqnl")
 
 [node name="StaticPipe" type="TextureRect" parent="Panel" unique_id=625920968]

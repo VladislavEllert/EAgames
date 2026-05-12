@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cphe5ac1hhfhm"]
+[gd_scene load_steps=9 format=3 uid="uid://cphe5ac1hhfhm"]
 
 [ext_resource type="Script" uid="uid://bpqobppqsf7tf" path="res://scripts/pipe.gd" id="1_6vbg7"]
 [ext_resource type="PackedScene" uid="uid://b1s8iyydfqes6" path="res://scenes/pipes/empty_block.tscn" id="2_bkawh"]
 [ext_resource type="Texture2D" uid="uid://c44tx10kqnm1x" path="res://assets/sprites/pipe_straight.png" id="2_qcqug"]
+[ext_resource type="Texture2D" uid="uid://dgdvd6vrhu1b6" path="res://assets/sprites/empty_block_2.png" id="3_e2gg1"]
 [ext_resource type="Texture2D" uid="uid://baoidvc2v64a" path="res://assets/sprites/pipe_straight_water.png" id="3_v3omj"]
 [ext_resource type="Texture2D" uid="uid://de5uifwaoqkj" path="res://assets/sprites/pipe_straight_active.png" id="4_v3omj"]
 
@@ -16,6 +17,7 @@ size = Vector2(100, 100)
 script = ExtResource("1_6vbg7")
 
 [node name="EmptyBlock" parent="." instance=ExtResource("2_bkawh")]
+texture = ExtResource("3_e2gg1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v3omj")

@@ -169,19 +169,22 @@ func _check_connections(dry_run: bool = false) -> bool:
 	return is_solved
 
 func _check_all_pipes_closed() -> bool:
+	var side_names = ["TOP", "RIGHT", "BOTTOM", "LEFT"]
+	
 	for pipe in pipes.values():
 		for side in pipe.get_active_sides():
 			var neighbor_pos = _get_neighbor_pos(pipe.grid_position, side)
 			
 			if not pipes.has(neighbor_pos):
+				print("❌ Открытый конец у трубы на %s в сторону %s (нет соседа)" % [pipe.grid_position, side_names[side]])
 				return false
 			
 			var neighbor: Pipe = pipes[neighbor_pos]
 			var opposite = Pipe.get_opposite_side(side)
 			
 			if not neighbor.has_connection_to(opposite):
+				print("❌ Разрыв между %s и %s (сосед не отвечает в сторону %s)" % [pipe.grid_position, neighbor.grid_position, opposite])
 				return false
-	
 	return true
 
 func _get_neighbor_pos(pos: Vector2i, side: int) -> Vector2i:

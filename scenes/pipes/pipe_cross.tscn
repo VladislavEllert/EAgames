@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://0kth82vnhx3e" path="res://assets/sprites/pipe_cross_active.png" id="4_mhews"]
 
 [node name="pipe" instance=ExtResource("1_m07xy")]
-pipe_type = 3
+pipe_type = 2
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_mhews")

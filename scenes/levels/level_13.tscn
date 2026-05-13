@@ -13,10 +13,12 @@ grid_size = Vector2i(6, 8)
 
 [node name="pipe" parent="GridContainer" index="0" instance=ExtResource("2_4habk")]
 position = Vector2(-250, -350)
+blocked_side = 0
 grid_position = Vector2i(1, 1)
 
 [node name="pipe2" parent="GridContainer" index="1" instance=ExtResource("3_a8b8j")]
 position = Vector2(250, -350)
+blocked_side = 0
 grid_position = Vector2i(6, 1)
 
 [node name="pipe3" parent="GridContainer" index="2" instance=ExtResource("4_4sh85")]

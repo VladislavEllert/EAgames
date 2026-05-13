@@ -14,6 +14,7 @@ grid_position = Vector2i(1, 2)
 
 [node name="pipe2" parent="GridContainer" index="1" instance=ExtResource("6_qxy0u")]
 position = Vector2(0, -200)
+blocked_side = 0
 grid_position = Vector2i(1, 1)
 
 [node name="pipe3" parent="GridContainer" index="2" instance=ExtResource("2_sk5k4")]
@@ -25,6 +26,7 @@ grid_position = Vector2i(1, 4)
 
 [node name="pipe5" parent="GridContainer" index="4" instance=ExtResource("7_oc4kc")]
 position = Vector2(0, 200)
+blocked_side = 2
 grid_position = Vector2i(1, 5)
 
 [node name="EmptyBlock" parent="GridContainer" index="5" instance=ExtResource("5_6761a")]

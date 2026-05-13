@@ -13,7 +13,10 @@ size = Vector2(100, 100)
 
 [node name="pipe" type="Area2D"]
 script = ExtResource("1_4moec")
-pipe_type = 0
+is_start = null
+is_end = null
+is_mandatory = null
+blocked_side = null
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture = ExtResource("2_advrd")

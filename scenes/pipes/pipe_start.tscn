@@ -7,8 +7,6 @@
 [node name="pipe" instance=ExtResource("1_d3bnn")]
 pipe_type = 4
 is_start = true
-is_end = false
-is_mandatory = false
 is_locked = true
 
 [node name="Sprite2D" parent="." index="2"]

@@ -41,14 +41,18 @@ func _ready() -> void:
 	# Синхронизируем логический поворот с визуальным
 	rotation_state = int(round(rotation_degrees / 90.0)) % 4
 	if rotation_state < 0: rotation_state += 4
+	
 	set_notify_transform(true)
 	_update_visuals()
 	_update_grid_from_position()
+	
 	if not Engine.is_editor_hint():
-		if touch_area: touch_area.input_event.connect(_on_input_event)
+		if touch_area:
+			touch_area.input_event.connect(_on_input_event)
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_TRANSFORM_CHANGED: _update_grid_from_position()
+	if what == NOTIFICATION_TRANSFORM_CHANGED:
+		_update_grid_from_position()
 
 func _update_grid_from_position() -> void:
 	if not Engine.is_editor_hint(): return
@@ -59,7 +63,8 @@ func _update_grid_from_position() -> void:
 		var gy = roundi(position.y / cell_size)
 		if grid_position != Vector2i(gx, gy):
 			grid_position = Vector2i(gx, gy)
-			if Engine.is_editor_hint(): name = "Pipe_%d_%d" % [gx, gy]
+			if Engine.is_editor_hint():
+				name = "Pipe_%d_%d" % [gx, gy]
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -75,7 +80,7 @@ func rotate_pipe() -> void:
 func get_active_sides() -> Array[int]:
 	var base: Array[int] = []
 	
-	# Определяем ФОРМУ трубы (для текстуры и базовых соединений)
+	# Определяем соединения ТОЛЬКО по форме трубы
 	match pipe_type:
 		PipeType.STRAIGHT, PipeType.STRAIGHT_VALVE: base = [Side.TOP, Side.BOTTOM]
 		PipeType.CORNER, PipeType.CORNER_VALVE: base = [Side.BOTTOM, Side.RIGHT]
@@ -85,26 +90,23 @@ func get_active_sides() -> Array[int]:
 		PipeType.END: base = [Side.TOP]      
 		_: return []
 
-	# Если труба помечена как START/END — переопределяем направления
-	# Это позволяет ЛЮБОЙ форме быть началом или концом
-	if is_start:
-		base = [Side.BOTTOM] 
-	elif is_end:
-		base = [Side.TOP]  
 
-	# Применяем поворот ко всем сторонам
+	# Применяем визуальный поворот
 	var result: Array[int] = []
 	for side in base:
 		result.append((side + rotation_state) % 4)
 	
-	# Убираем заблокированную сторону (работает с визуальной ориентацией)
+	# Убираем заблокированную сторону (край сетки)
 	if blocked_side != -1:
 		result.erase(blocked_side)
 		
 	return result
 
-func has_connection_to(side: int) -> bool: return side in get_active_sides()
-static func get_opposite_side(side: int) -> int: return (side + 2) % 4
+func has_connection_to(side: int) -> bool:
+	return side in get_active_sides()
+
+static func get_opposite_side(side: int) -> int:
+	return (side + 2) % 4
 
 func fill_with_water() -> void:
 	if is_filled: return
@@ -117,7 +119,8 @@ func fill_with_water() -> void:
 
 func reset_fill() -> void:
 	is_filled = false
-	if water_sprite: water_sprite.visible = false
+	if water_sprite:
+		water_sprite.visible = false
 
 func _update_visuals() -> void:
 	if not is_inside_tree(): return
@@ -153,6 +156,8 @@ func _update_visuals() -> void:
 			_: sprite.modulate = Color(0.6, 0.7, 0.8)
 		push_error("❌ Текстура не найдена: " + tex_path)
 
-	if water_sprite: water_sprite.visible = is_filled
+	if water_sprite:
+		water_sprite.visible = is_filled
+	
 	if is_locked and not is_start and not is_end and not is_mandatory:
 		sprite.modulate = sprite.modulate * Color(0.5, 0.5, 0.5)

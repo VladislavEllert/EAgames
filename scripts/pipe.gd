@@ -1,7 +1,7 @@
 @tool
 class_name Pipe extends Area2D
 
-enum PipeType { STRAIGHT, CORNER, CROSS, T_JUNCTION, START, END }
+enum PipeType { STRAIGHT, CORNER, CROSS, T_JUNCTION, START, END, STRAIGHT_VALVE, CORNER_VALVE, CROSS_VALVE, T_JUNCTION_VALVE }
 enum Side { TOP = 0, RIGHT = 1, BOTTOM = 2, LEFT = 3 }
 
 @export var pipe_type: PipeType = PipeType.STRAIGHT:
@@ -38,6 +38,9 @@ var rotation_state: int = 0
 signal pipe_rotated(pipe: Pipe)
 
 func _ready() -> void:
+	# Синхронизируем логический поворот с визуальным
+	rotation_state = int(round(rotation_degrees / 90.0)) % 4
+	if rotation_state < 0: rotation_state += 4
 	set_notify_transform(true)
 	_update_visuals()
 	_update_grid_from_position()
@@ -73,20 +76,23 @@ func get_active_sides() -> Array[int]:
 	var base: Array[int] = []
 	match pipe_type:
 		PipeType.STRAIGHT: base = [Side.TOP, Side.BOTTOM]
-		PipeType.CORNER: base = [Side.BOTTOM, Side.RIGHT]
+		PipeType.CORNER: base = [Side.BOTTOM, Side.RIGHT]  
 		PipeType.CROSS: base = [Side.TOP, Side.RIGHT, Side.BOTTOM, Side.LEFT]
-		PipeType.T_JUNCTION: base = [Side.LEFT, Side.RIGHT, Side.BOTTOM]
-		PipeType.START: base = [Side.BOTTOM, Side.TOP] # Legacy fallback
-		PipeType.END: base = [Side.TOP, Side.BOTTOM]     # Legacy fallback
+		PipeType.T_JUNCTION: base = [Side.LEFT, Side.RIGHT, Side.BOTTOM] 
+		PipeType.START: base = [Side.BOTTOM]  
+		PipeType.END: base = [Side.TOP]     
 		_: return []
 
-	# Убираем заблокированную сторону (для краевых труб)
-	if blocked_side != -1:
-		base.erase(blocked_side)
-
+	# Сначала применяем поворот к базовым сторонам
 	var result: Array[int] = []
 	for side in base:
 		result.append((side + rotation_state) % 4)
+	
+	# Потом убираем заблокированную сторону из УЖЕ ПОВЁРНУТЫХ сторон
+	# blocked_side работает с визуальной ориентацией
+	if blocked_side != -1:
+		result.erase(blocked_side)
+		
 	return result
 
 func has_connection_to(side: int) -> bool: return side in get_active_sides()
@@ -118,6 +124,12 @@ func _update_visuals() -> void:
 		PipeType.T_JUNCTION: type_name = "t"
 		PipeType.START: type_name = "start"
 		PipeType.END: type_name = "end"
+		
+		# Вентильные текстуры
+		PipeType.STRAIGHT_VALVE: type_name = "straight_valve"
+		PipeType.CORNER_VALVE: type_name = "corner_valve"
+		PipeType.CROSS_VALVE: type_name = "cross_valve"
+		PipeType.T_JUNCTION_VALVE: type_name = "t_valve"
 		_:
 			sprite.texture = null
 			return

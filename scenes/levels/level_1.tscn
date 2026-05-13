@@ -10,9 +10,6 @@
 
 [node name="pipe" parent="GridContainer" index="0" instance=ExtResource("2_sk5k4")]
 position = Vector2(0, -100)
-is_start = false
-is_end = false
-is_mandatory = false
 grid_position = Vector2i(1, 2)
 
 [node name="pipe2" parent="GridContainer" index="1" instance=ExtResource("6_qxy0u")]
@@ -21,21 +18,14 @@ blocked_side = 0
 grid_position = Vector2i(1, 1)
 
 [node name="pipe3" parent="GridContainer" index="2" instance=ExtResource("2_sk5k4")]
-is_start = false
-is_end = false
-is_mandatory = false
 grid_position = Vector2i(1, 3)
 
 [node name="pipe4" parent="GridContainer" index="3" instance=ExtResource("2_sk5k4")]
 position = Vector2(0, 100)
-is_start = false
-is_end = false
-is_mandatory = false
 grid_position = Vector2i(1, 4)
 
 [node name="pipe5" parent="GridContainer" index="4" instance=ExtResource("7_oc4kc")]
 position = Vector2(0, 200)
-is_start = true
 blocked_side = 2
 grid_position = Vector2i(1, 5)
 

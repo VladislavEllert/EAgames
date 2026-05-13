@@ -7,14 +7,12 @@
 
 [node name="pipe" instance=ExtResource("1_1k64o")]
 pipe_type = 1
-is_start = false
-is_end = false
-is_mandatory = false
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_kcuro")
 
 [node name="WaterSprite2D" parent="." index="3"]
+visible = false
 texture = ExtResource("3_kcuro")
 
 [node name="Active" parent="." index="4"]

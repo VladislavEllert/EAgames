@@ -112,15 +112,14 @@ func fill_with_water() -> void:
 	if is_filled: return
 	is_filled = true
 	if water_sprite:
-		water_sprite.visible = true
-		water_sprite.modulate.a = 0.0
-		var tween = create_tween()
-		tween.tween_property(water_sprite, "modulate:a", 1.0, 0.3)
+		water_sprite.visible = true  
+		water_sprite.modulate.a = 0.9  
 
 func reset_fill() -> void:
 	is_filled = false
 	if water_sprite:
 		water_sprite.visible = false
+		water_sprite.modulate.a = 0.2  
 
 func _update_visuals() -> void:
 	if not is_inside_tree(): return

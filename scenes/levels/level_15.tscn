@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0up5d4dvxa4a"]
+[gd_scene load_steps=4 format=3 uid="uid://d0up5d4dvxa4a"]
 
 [ext_resource type="PackedScene" uid="uid://c5apnbl4201dh" path="res://scenes/levels/base_level.tscn" id="1_oq25s"]
+[ext_resource type="PackedScene" uid="uid://n4tg163evt3n" path="res://scenes/pipes/pipe_t_valve.tscn" id="2_2ajnc"]
+[ext_resource type="PackedScene" uid="uid://c4s0kqk36n2we" path="res://scenes/pipes/pipe_t.tscn" id="3_721gy"]
 
 [node name="Level" instance=ExtResource("1_oq25s")]
+grid_size = Vector2i(6, 8)
 
-[node name="GridContainer" parent="." index="1"]
-position = Vector2(-249, -249)
+[node name="pipe" parent="GridContainer" index="0" instance=ExtResource("2_2ajnc")]
+position = Vector2(-269, -156)
+rotation = -1.57079
+is_start = true
+blocked_side = 0
+is_locked = true
+grid_position = Vector2i(1, 1)
+
+[node name="pipe2" parent="GridContainer" index="1" instance=ExtResource("3_721gy")]
+position = Vector2(-169, -156)
+grid_position = Vector2i(2, 1)

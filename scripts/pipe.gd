@@ -9,7 +9,7 @@ enum Side { TOP = 0, RIGHT = 1, BOTTOM = 2, LEFT = 3 }
 		pipe_type = value
 		_update_visuals()
 
-# Роли трубы
+# Роли трубы (отдельно от формы)
 @export var is_start: bool = false:
 	set(value): is_start = value; _update_visuals()
 @export var is_end: bool = false:
@@ -66,7 +66,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		rotate_pipe()
 
 func rotate_pipe() -> void:
-	# Не крутим стартовые, конечные и обязательные трубы
+	# Не крутим стартовые, конечные, обязательные и заблокированные трубы
 	if is_locked or is_start or is_end or is_mandatory: return
 	rotation_state = (rotation_state + 1) % 4
 	rotation_degrees = rotation_state * 90
@@ -74,22 +74,30 @@ func rotate_pipe() -> void:
 
 func get_active_sides() -> Array[int]:
 	var base: Array[int] = []
+	
+	# Определяем ФОРМУ трубы (для текстуры и базовых соединений)
 	match pipe_type:
-		PipeType.STRAIGHT: base = [Side.TOP, Side.BOTTOM]
-		PipeType.CORNER: base = [Side.BOTTOM, Side.RIGHT]  
-		PipeType.CROSS: base = [Side.TOP, Side.RIGHT, Side.BOTTOM, Side.LEFT]
-		PipeType.T_JUNCTION: base = [Side.LEFT, Side.RIGHT, Side.BOTTOM] 
-		PipeType.START: base = [Side.BOTTOM]  
-		PipeType.END: base = [Side.TOP]     
+		PipeType.STRAIGHT, PipeType.STRAIGHT_VALVE: base = [Side.TOP, Side.BOTTOM]
+		PipeType.CORNER, PipeType.CORNER_VALVE: base = [Side.BOTTOM, Side.RIGHT]
+		PipeType.CROSS, PipeType.CROSS_VALVE: base = [Side.TOP, Side.RIGHT, Side.BOTTOM, Side.LEFT]
+		PipeType.T_JUNCTION, PipeType.T_JUNCTION_VALVE: base = [Side.LEFT, Side.RIGHT, Side.BOTTOM]
+		PipeType.START: base = [Side.BOTTOM] 
+		PipeType.END: base = [Side.TOP]      
 		_: return []
 
-	# Сначала применяем поворот к базовым сторонам
+	# Если труба помечена как START/END — переопределяем направления
+	# Это позволяет ЛЮБОЙ форме быть началом или концом
+	if is_start:
+		base = [Side.BOTTOM] 
+	elif is_end:
+		base = [Side.TOP]  
+
+	# Применяем поворот ко всем сторонам
 	var result: Array[int] = []
 	for side in base:
 		result.append((side + rotation_state) % 4)
 	
-	# Потом убираем заблокированную сторону из УЖЕ ПОВЁРНУТЫХ сторон
-	# blocked_side работает с визуальной ориентацией
+	# Убираем заблокированную сторону (работает с визуальной ориентацией)
 	if blocked_side != -1:
 		result.erase(blocked_side)
 		

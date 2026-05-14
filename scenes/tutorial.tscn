@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://78bteo25yyoy" path="res://assets/window-level-background.png" id="5_ckvwl"]
 [ext_resource type="Texture2D" uid="uid://c44tx10kqnm1x" path="res://assets/sprites/pipe_straight.png" id="5_gbqnl"]
 [ext_resource type="Texture2D" uid="uid://bvkaovkngov7u" path="res://assets/sprites/pipe_corner.png" id="6_ckvwl"]
+[ext_resource type="Texture2D" uid="uid://ch7rsj52ndkru" path="res://assets/sprites/BackTile_06.png" id="6_nlqja"]
 [ext_resource type="Texture2D" uid="uid://mre2rovoelmv" path="res://assets/sprites/pipe_end_active.png" id="7_nlqja"]
 
 [node name="Tutorial" type="Control" unique_id=17696490]
@@ -45,23 +46,59 @@ theme_override_font_sizes/font_size = 51
 text = "Обучение"
 
 [node name="Fon" type="Sprite2D" parent="Panel" unique_id=1945319434]
-position = Vector2(357, 927)
-scale = Vector2(1.1179105, 1)
+position = Vector2(359.4375, 922.75)
+scale = Vector2(1.0123136, 1.0522391)
 texture = ExtResource("5_ckvwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=692802737]
+position = Vector2(263, 835)
+texture = ExtResource("6_nlqja")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Panel" unique_id=331472012]
+position = Vector2(362, 835)
+texture = ExtResource("6_nlqja")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Panel" unique_id=1329674766]
+position = Vector2(462, 835)
+texture = ExtResource("6_nlqja")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Panel" unique_id=1891674151]
+position = Vector2(462, 935)
+texture = ExtResource("6_nlqja")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Panel" unique_id=1125770504]
+position = Vector2(362, 935)
+texture = ExtResource("6_nlqja")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Panel" unique_id=2023424136]
+position = Vector2(362, 1035)
+texture = ExtResource("6_nlqja")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Panel" unique_id=302762919]
+position = Vector2(462, 1035)
+texture = ExtResource("6_nlqja")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Panel" unique_id=880384788]
+position = Vector2(263, 935)
+texture = ExtResource("6_nlqja")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Panel" unique_id=2031029063]
+position = Vector2(263, 1035)
+texture = ExtResource("6_nlqja")
 
 [node name="Text" type="RichTextLabel" parent="Panel" unique_id=1200081645]
 layout_mode = 0
-offset_left = 133.0
-offset_top = 176.0
-offset_right = 585.0
+offset_left = 80.0
+offset_top = 127.0
+offset_right = 644.0
 offset_bottom = 722.0
 theme_override_fonts/normal_font = ExtResource("3_ph3nu")
 theme_override_font_sizes/normal_font_size = 19
+theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
 text = "🚀 СЮЖЕТ ИГРЫ 🚀
 
 На КОСМИЧЕСКОМ КОРАБЛЕ авария!
-
-👨‍🚀👩‍🚀👨‍🚀👩‍🚀👨‍🚀👩‍🚀
 
 Пробит охлаждающий контур! НУЖНО СРОЧНО ЗАПУСТИТЬ ВОДУ! Чтобы предотвратить взрыв и спасти экипаж.
 
@@ -82,6 +119,7 @@ text = "🚀 СЮЖЕТ ИГРЫ 🚀
 🛸 ЭКИПАЖ БУДЕТ СПАСЕН! 🛸
 
 👆 Смотри как поворачивается труба 👆"
+horizontal_alignment = 1
 
 [node name="AnimatedPipe" type="Sprite2D" parent="Panel" unique_id=2000175337]
 position = Vector2(362, 935)
@@ -115,18 +153,18 @@ texture = ExtResource("7_nlqja")
 
 [node name="StaticPipe4" type="TextureRect" parent="Panel" unique_id=1163536470]
 layout_mode = 0
-offset_left = 312.0
+offset_left = 313.0
 offset_top = 785.0
-offset_right = 412.0
+offset_right = 413.0
 offset_bottom = 885.0
 rotation = 1.5707964
 texture = ExtResource("7_nlqja")
 
 [node name="BackButton" type="Button" parent="Panel" unique_id=182140974]
 layout_mode = 0
-offset_left = 309.0
+offset_left = 319.0
 offset_top = 1137.0
-offset_right = 405.0
+offset_right = 415.0
 offset_bottom = 1185.0
 theme_override_fonts/font = ExtResource("3_ph3nu")
 theme_override_font_sizes/font_size = 35

@@ -47,14 +47,14 @@ func set_sfx_volume(value: float) -> void:
 	sfx_volume = clamp(value, 0.0, 1.0)
 	var db_value = linear_to_db(sfx_volume)
 	
-	if pipe_turn_sound:
-		pipe_turn_sound.volume_db = db_value
-	if button_click_sound:
-		button_click_sound.volume_db = db_value
-	if level_complete_sound:
-		level_complete_sound.volume_db = db_value
+	# Меняем громкость каждого плеера
+	pipe_turn_sound.volume_db = db_value
+	button_click_sound.volume_db = db_value
+	level_complete_sound.volume_db = db_value
 	
 	save_sfx_volume()
+	print("🔊 Громкость SFX: ", sfx_volume, " → ", db_value, " dB")
+
 
 func save_sfx_volume() -> void:
 	var data = {"sfx_volume": sfx_volume}

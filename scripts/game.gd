@@ -75,7 +75,7 @@ func _load_level(level_num: int) -> void:
 	_set_pause(false)
 
 func _set_pause(paused: bool) -> void:
-	SoundManager.play_button_click()
+
 	is_paused = paused
 	get_tree().paused = paused
 	pause_panel.visible = paused

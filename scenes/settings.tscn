@@ -66,16 +66,6 @@ theme_override_fonts/font = ExtResource("2_r6d6q")
 theme_override_font_sizes/font_size = 35
 text = "Игровой звук :"
 
-[node name="Label5" type="Label" parent="." unique_id=1376405320]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 700.0
-offset_right = 209.0
-offset_bottom = 723.0
-theme_override_fonts/font = ExtResource("2_r6d6q")
-theme_override_font_sizes/font_size = 35
-text = "Поменять язык :"
-
 [node name="ResetButton" type="Button" parent="." unique_id=159301902]
 layout_mode = 0
 offset_left = 80.0
@@ -100,9 +90,9 @@ text = "Выйти"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
 offset_left = 85.0
-offset_top = 800.0
+offset_top = 600.0
 offset_right = 654.0
-offset_bottom = 816.0
+offset_bottom = 616.0
 max_value = 1.0
 step = 0.01
 value = 0.8
@@ -121,9 +111,9 @@ text = "100%"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
 offset_left = 85.0
-offset_top = 600.0
+offset_top = 400.0
 offset_right = 653.0
-offset_bottom = 616.0
+offset_bottom = 416.0
 max_value = 1.0
 step = 0.01
 value = 0.7
@@ -131,9 +121,9 @@ value = 0.7
 [node name="MusicPercent" type="Label" parent="." unique_id=908974816]
 layout_mode = 0
 offset_left = 363.0
-offset_top = 700.0
+offset_top = 300.0
 offset_right = 437.0
-offset_bottom = 740.0
+offset_bottom = 340.0
 theme_override_fonts/font = ExtResource("2_r6d6q")
 theme_override_font_sizes/font_size = 35
 text = "100%"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://xrf0nfi1k5db"
+path="res://.godot/imported/quick short clicking sound on the button of an old typewriter.mp3-0807649cd8cb2e9ff4c1a5bd3534627e.mp3str"
+
+[deps]
+
+source_file="res://assets/Music/quick short clicking sound on the button of an old typewriter.mp3"
+dest_files=["res://.godot/imported/quick short clicking sound on the button of an old typewriter.mp3-0807649cd8cb2e9ff4c1a5bd3534627e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

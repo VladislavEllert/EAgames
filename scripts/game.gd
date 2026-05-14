@@ -35,6 +35,7 @@ func _connect_safe(btn: Button, callback: Callable) -> void:
 		btn.pressed.connect(callback)
 
 func _load_level(level_num: int) -> void:
+	MusicManager.start_music()
 	if current_level_instance:
 		current_level_instance.queue_free()
 	
@@ -103,6 +104,8 @@ func _on_level_complete(success: bool, time: float, moves: int) -> void:
 		complete_panel.visible = true
 		complete_time.text = "ВРЕМЯ: %.1f сек" % time
 		complete_moves.text = "ХОДЫ: %d" % moves
+		MusicManager.fade_out_music(0.5)
+		SoundManager.play_level_complete() 
 		
 		for child in stars_container.get_children():
 			child.queue_free()

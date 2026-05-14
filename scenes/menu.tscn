@@ -97,9 +97,10 @@ icon = ExtResource("5_4ytvr")
 
 [node name="Tutorial" type="Button" parent="MainPanel" unique_id=1165020929]
 layout_mode = 0
-offset_left = 530.0
-offset_right = 612.0
-offset_bottom = 81.0
+offset_left = 637.0
+offset_top = 89.0
+offset_right = 719.0
+offset_bottom = 170.0
 theme_override_fonts/font = ExtResource("4_g3eks")
 theme_override_font_sizes/font_size = 64
 text = "?"

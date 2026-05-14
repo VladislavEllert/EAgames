@@ -1,3 +1,0 @@
-TileSet
-Shader
-Animation

@@ -6,11 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://84ykquqm8bwm" path="res://assets/sprites/pipe_t_active.png" id="4_6p47r"]
 
 [node name="pipe" instance=ExtResource("1_f8a3y")]
-pipe_type = 4
-
-[node name="EmptyBlock" parent="." index="0"]
-texture = null
-cell_size = 100
+pipe_type = 3
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_6p47r")

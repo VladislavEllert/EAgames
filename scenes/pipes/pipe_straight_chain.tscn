@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4irw23d3hfw7"]
+
+[ext_resource type="PackedScene" uid="uid://cphe5ac1hhfhm" path="res://scenes/pipes/pipe.tscn" id="1_xvp4j"]
+[ext_resource type="Texture2D" uid="uid://ddohkj14hgbki" path="res://assets/sprites/chain.png" id="2_o3h8f"]
+
+[node name="pipe" instance=ExtResource("1_xvp4j")]
+
+[node name="lock" type="Sprite2D" parent="." index="10"]
+position = Vector2(-3, 1)
+rotation = -0.760964
+scale = Vector2(1.38156, 1.38156)
+texture = ExtResource("2_o3h8f")

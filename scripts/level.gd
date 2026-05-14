@@ -8,10 +8,11 @@ signal update_moves(count: int)
 @export var cell_size: int = 100
 
 @onready var grid_container: Node2D = $GridContainer
+@onready var hint_label: Label = $HintLabel
 
 var pipes: Dictionary = {}
 var start_pipe: Pipe = null
-var end_pipe: Pipe = null
+var end_pipes: Array[Pipe] = []
 
 var elapsed_time: float = 0.0
 var move_count: int = 0
@@ -20,7 +21,7 @@ var is_completed: bool = false
 
 func _ready() -> void:
 	_scan_pipes()
-	reset_level()
+	await reset_level()
 
 func _process(delta: float) -> void:
 	if is_playing and not is_completed:
@@ -31,7 +32,7 @@ func _process(delta: float) -> void:
 func _scan_pipes() -> void:
 	pipes.clear()
 	start_pipe = null
-	end_pipe = null
+	end_pipes.clear()
 	
 	if grid_container == null:
 		push_error("GridContainer не найден!")
@@ -46,17 +47,27 @@ func _scan_pipes() -> void:
 			if not pipe.pipe_rotated.is_connected(_on_pipe_rotated):
 				pipe.pipe_rotated.connect(_on_pipe_rotated)
 			
-			if pipe.pipe_type == Pipe.PipeType.START:
+			# ✅ Новая логика сбора труб
+			if pipe.is_start:
 				start_pipe = pipe
-			elif pipe.pipe_type == Pipe.PipeType.END:
-				end_pipe = pipe
+			if pipe.is_end or pipe.is_mandatory:
+				end_pipes.append(pipe)
 
 func reset_level() -> void:
-	for pipe in pipes.values():
-		if not pipe.is_locked and pipe.pipe_type not in [Pipe.PipeType.START, Pipe.PipeType.END]:
-			pipe.rotation_state = randi() % 4
-			pipe.rotation_degrees = pipe.rotation_state * 90
-			pipe._update_visuals()
+	_unlock_all_pipes()
+	
+	var attempts = 0
+	var max_attempts = 50
+	
+	while attempts < max_attempts:
+		_randomize_pipes()
+		if not await _check_connections(true):
+			break
+		attempts += 1
+	
+	if attempts >= max_attempts:
+		push_warning("⚠️ Не удалось сгенерировать нерешённый уровень. Принудительный поворот.")
+		_force_break_solution()
 	
 	for pipe in pipes.values():
 		pipe.reset_fill()
@@ -66,55 +77,99 @@ func reset_level() -> void:
 	is_completed = false
 	is_playing = true
 	update_moves.emit(0)
-	_check_connections()
+	
+	await _check_connections(false)
+
+func _lock_all_pipes() -> void:
+	for pipe in pipes.values():
+		if pipe.touch_area: pipe.touch_area.input_pickable = false
+
+func _unlock_all_pipes() -> void:
+	for pipe in pipes.values():
+		if pipe.touch_area: pipe.touch_area.input_pickable = true
+
+func _randomize_pipes() -> void:
+	for pipe in pipes.values():
+		# Не трогаем стартовые, конечные, обязательные и заблокированные
+		if not pipe.is_locked and not pipe.is_start and not pipe.is_end and not pipe.is_mandatory:
+			pipe.rotation_state = randi() % 4
+			pipe.rotation_degrees = pipe.rotation_state * 90
+			pipe._update_visuals()
+
+func _force_break_solution() -> void:
+	for pipe in pipes.values():
+		if not pipe.is_locked and not pipe.is_start and not pipe.is_end and not pipe.is_mandatory:
+			pipe.rotate_pipe()
+			return
 
 func _on_pipe_rotated(_pipe: Pipe) -> void:
-	if is_completed:
-		return
+	if is_completed: return
 	move_count += 1
 	update_moves.emit(move_count)
-	_check_connections()
+	await _check_connections(false)
 
-func _check_connections() -> void:
-	if start_pipe == null or end_pipe == null:
-		return
+func _check_connections(dry_run: bool = false) -> bool:
+	if start_pipe == null or end_pipes.size() == 0:
+		return false
 	
-	for pipe in pipes.values():
-		pipe.reset_fill()
+	if not dry_run:
+		for pipe in pipes.values(): pipe.reset_fill()
 	
 	var visited: Dictionary = {}
 	var queue: Array = [start_pipe]
 	visited[start_pipe.grid_position] = true
-	start_pipe.fill_with_water()
+	if not dry_run: start_pipe.fill_with_water()
 	
-	var reached_end: bool = false
+	var reached_end_count: int = 0
+	var targets_reached: Dictionary = {}
 	
 	while queue.size() > 0:
 		var current: Pipe = queue.pop_front()
 		
-		if current == end_pipe:
-			reached_end = true
-			break
+		if current in end_pipes and not targets_reached.has(current):
+			targets_reached[current] = true
+			reached_end_count += 1
 		
 		for side in current.get_active_sides():
 			var neighbor_pos = _get_neighbor_pos(current.grid_position, side)
-			
-			if not pipes.has(neighbor_pos) or visited.has(neighbor_pos):
-				continue
+			if not pipes.has(neighbor_pos) or visited.has(neighbor_pos): continue
 			
 			var neighbor: Pipe = pipes[neighbor_pos]
 			var opposite = Pipe.get_opposite_side(side)
 			
 			if current.has_connection_to(side) and neighbor.has_connection_to(opposite):
 				visited[neighbor_pos] = true
-				neighbor.fill_with_water()
+				if not dry_run: neighbor.fill_with_water()
 				queue.append(neighbor)
 	
-	if reached_end and not is_completed:
+	var all_pipes_closed: bool = _check_all_pipes_closed()
+	var all_ends_reached: bool = (reached_end_count == end_pipes.size())
+	var is_solved: bool = all_ends_reached and all_pipes_closed
+	
+	if not dry_run and is_solved and not is_completed:
 		is_completed = true
 		is_playing = false
+		_lock_all_pipes()
 		await get_tree().create_timer(1.0).timeout
 		level_complete.emit(true, elapsed_time, move_count)
+	
+	return is_solved
+
+func _check_all_pipes_closed() -> bool:
+	var side_names = ["TOP", "RIGHT", "BOTTOM", "LEFT"]
+	for pipe in pipes.values():
+		for side in pipe.get_active_sides():
+			var neighbor_pos = _get_neighbor_pos(pipe.grid_position, side)
+			if not pipes.has(neighbor_pos):
+				print("❌ Открытый конец у трубы на %s в сторону %s" % [pipe.grid_position, side_names[side]])
+				return false
+			
+			var neighbor: Pipe = pipes[neighbor_pos]
+			var opposite = Pipe.get_opposite_side(side)
+			if not neighbor.has_connection_to(opposite):
+				print("❌ Разрыв между %s и %s" % [pipe.grid_position, neighbor.grid_position])
+				return false
+	return true
 
 func _get_neighbor_pos(pos: Vector2i, side: int) -> Vector2i:
 	match side:
@@ -124,5 +179,47 @@ func _get_neighbor_pos(pos: Vector2i, side: int) -> Vector2i:
 		Pipe.Side.LEFT: return pos + Vector2i(-1, 0)
 	return pos
 
-func get_cell_size() -> int:
-	return cell_size
+func get_cell_size() -> int: return cell_size
+
+func show_hint() -> void:
+	# Находим все трубы с разрывами
+	var problem_pipes: Array[Pipe] = []
+	var side_names = ["сверху", "справа", "снизу", "слева"]
+	
+	for pipe in pipes.values():
+		for side in pipe.get_active_sides():
+			var neighbor_pos = _get_neighbor_pos(pipe.grid_position, side)
+			
+			# Проверяем: есть ли сосед и соединён ли он
+			if not pipes.has(neighbor_pos):
+				# Нет соседа — это разрыв
+				if pipe not in problem_pipes:
+					problem_pipes.append(pipe)
+				continue
+			
+			var neighbor: Pipe = pipes[neighbor_pos]
+			var opposite = Pipe.get_opposite_side(side)
+			
+			if not neighbor.has_connection_to(opposite):
+				# Сосед есть, но не соединён
+				if pipe not in problem_pipes:
+					problem_pipes.append(pipe)
+				if neighbor not in problem_pipes:
+					problem_pipes.append(neighbor)
+	
+	# Подсвечиваем проблемные трубы
+	if problem_pipes.size() > 0:
+		_highlight_pipes(problem_pipes)
+
+# Вспомогательная функция подсветки
+func _highlight_pipes(pipes_to_highlight: Array[Pipe]) -> void:
+	# Подсвечиваем трубы (жёлтым цветом)
+	for pipe in pipes_to_highlight:
+		if pipe.sprite:
+			pipe.sprite.modulate = Color(1.5, 1.5, 0.3)  # Ярко-жёлтый
+	
+	# Возвращаем обычный цвет через 3 секунды
+	await get_tree().create_timer(1.0).timeout
+	for pipe in pipes_to_highlight:
+		if pipe.sprite:
+				pipe.sprite.modulate = Color.WHITE

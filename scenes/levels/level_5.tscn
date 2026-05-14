@@ -16,6 +16,7 @@ scale = Vector2(1.85598, 1.76213)
 
 [node name="pipe" parent="GridContainer" index="0" instance=ExtResource("2_845dy")]
 position = Vector2(200, -200)
+blocked_side = 0
 grid_position = Vector2i(5, 1)
 
 [node name="pipe2" parent="GridContainer" index="1" instance=ExtResource("3_hldbq")]
@@ -28,18 +29,22 @@ grid_position = Vector2i(5, 3)
 
 [node name="pipe4" parent="GridContainer" index="3" instance=ExtResource("4_fsnos")]
 position = Vector2(200, 100)
+rotation = 1.57079
 grid_position = Vector2i(5, 4)
 
 [node name="pipe5" parent="GridContainer" index="4" instance=ExtResource("5_mxx4w")]
 position = Vector2(200, 200)
+rotation = -3.14159
 grid_position = Vector2i(5, 5)
 
 [node name="pipe6" parent="GridContainer" index="5" instance=ExtResource("3_hldbq")]
 position = Vector2(100, 200)
+rotation = 1.57079
 grid_position = Vector2i(4, 5)
 
 [node name="pipe7" parent="GridContainer" index="6" instance=ExtResource("5_mxx4w")]
 position = Vector2(0, 200)
+rotation = -1.57079
 grid_position = Vector2i(3, 5)
 
 [node name="pipe8" parent="GridContainer" index="7" instance=ExtResource("5_mxx4w")]
@@ -48,13 +53,16 @@ grid_position = Vector2i(3, 4)
 
 [node name="pipe10" parent="GridContainer" index="8" instance=ExtResource("5_mxx4w")]
 position = Vector2(100, 0)
+rotation = 1.57079
 grid_position = Vector2i(4, 3)
 
 [node name="pipe11" parent="GridContainer" index="9" instance=ExtResource("3_hldbq")]
+rotation = 1.57079
 grid_position = Vector2i(3, 3)
 
 [node name="pipe12" parent="GridContainer" index="10" instance=ExtResource("3_hldbq")]
 position = Vector2(-100, 0)
+rotation = 1.57079
 grid_position = Vector2i(2, 3)
 
 [node name="pipe13" parent="GridContainer" index="11" instance=ExtResource("5_mxx4w")]
@@ -65,60 +73,42 @@ grid_position = Vector2i(1, 3)
 position = Vector2(-200, 100)
 grid_position = Vector2i(1, 4)
 
-[node name="pipe15" parent="GridContainer" index="13" instance=ExtResource("6_vvoq0")]
-position = Vector2(-200, 200)
-grid_position = Vector2i(1, 5)
-
-[node name="pipe9" parent="GridContainer" index="14" instance=ExtResource("4_fsnos")]
+[node name="pipe9" parent="GridContainer" index="13" instance=ExtResource("4_fsnos")]
 position = Vector2(100, 100)
+rotation = -3.14159
 grid_position = Vector2i(4, 4)
 
-[node name="EmptyBlock" parent="GridContainer" index="15" instance=ExtResource("7_fsnos")]
+[node name="EmptyBlock" parent="GridContainer" index="14" instance=ExtResource("7_fsnos")]
 position = Vector2(100, -200)
-texture = null
-cell_size = 100
 
-[node name="EmptyBlock2" parent="GridContainer" index="16" instance=ExtResource("7_fsnos")]
+[node name="EmptyBlock2" parent="GridContainer" index="15" instance=ExtResource("7_fsnos")]
 position = Vector2(100, -100)
-texture = null
-cell_size = 100
 
-[node name="EmptyBlock3" parent="GridContainer" index="17" instance=ExtResource("7_fsnos")]
+[node name="EmptyBlock3" parent="GridContainer" index="16" instance=ExtResource("7_fsnos")]
 position = Vector2(0, -200)
-texture = null
-cell_size = 100
 
-[node name="EmptyBlock4" parent="GridContainer" index="18" instance=ExtResource("7_fsnos")]
+[node name="EmptyBlock4" parent="GridContainer" index="17" instance=ExtResource("7_fsnos")]
 position = Vector2(0, -100)
-texture = null
-cell_size = 100
 
-[node name="EmptyBlock5" parent="GridContainer" index="19" instance=ExtResource("7_fsnos")]
+[node name="EmptyBlock5" parent="GridContainer" index="18" instance=ExtResource("7_fsnos")]
 position = Vector2(-100, -200)
-texture = null
-cell_size = 100
 
-[node name="EmptyBlock6" parent="GridContainer" index="20" instance=ExtResource("7_fsnos")]
+[node name="EmptyBlock6" parent="GridContainer" index="19" instance=ExtResource("7_fsnos")]
 position = Vector2(-100, -100)
-texture = null
-cell_size = 100
 
-[node name="EmptyBlock7" parent="GridContainer" index="21" instance=ExtResource("7_fsnos")]
+[node name="EmptyBlock7" parent="GridContainer" index="20" instance=ExtResource("7_fsnos")]
 position = Vector2(-200, -200)
-texture = null
-cell_size = 100
 
-[node name="EmptyBlock8" parent="GridContainer" index="22" instance=ExtResource("7_fsnos")]
+[node name="EmptyBlock8" parent="GridContainer" index="21" instance=ExtResource("7_fsnos")]
 position = Vector2(-200, -100)
-texture = null
-cell_size = 100
 
-[node name="EmptyBlock9" parent="GridContainer" index="23" instance=ExtResource("7_fsnos")]
+[node name="EmptyBlock9" parent="GridContainer" index="22" instance=ExtResource("7_fsnos")]
 position = Vector2(-100, 100)
-texture = null
-cell_size = 100
 
-[node name="EmptyBlock10" parent="GridContainer" index="24" instance=ExtResource("7_fsnos")]
+[node name="EmptyBlock10" parent="GridContainer" index="23" instance=ExtResource("7_fsnos")]
 position = Vector2(-100, 200)
-texture = null
-cell_size = 100
+
+[node name="pipe15" parent="GridContainer" index="24" instance=ExtResource("6_vvoq0")]
+position = Vector2(-200, 200)
+blocked_side = 2
+grid_position = Vector2i(1, 5)

@@ -10,6 +10,7 @@ extends Node
 @onready var stars_container: HBoxContainer = $UI/CompletePanel/Stars
 @onready var pause_panel: ColorRect = $UI/PausePanel
 @onready var pause_button: Button = $UI/TopBar/PauseButton
+@onready var hint_button: Button = $UI/TopBar/HintButton
 
 var current_level_instance: Node2D = null
 var is_paused: bool = false
@@ -27,8 +28,9 @@ func _ready() -> void:
 	_connect_safe($UI/PausePanel/Buttons/RestartButton, _on_restart_button_pressed)
 	_connect_safe($UI/PausePanel/Buttons/MenuButton, _on_menu_button_pressed)
 	_connect_safe($UI/CompletePanel/Buttons/NextButton, _on_next_button_pressed)
-	
 	_load_level(LevelManager.current_level)
+	if hint_button:
+		hint_button.pressed.connect(_on_hint_button_pressed)
 
 func _connect_safe(btn: Button, callback: Callable) -> void:
 	if btn and not btn.pressed.is_connected(callback):
@@ -100,22 +102,27 @@ func _on_menu_button_pressed() -> void:
 
 func _on_level_complete(success: bool, time: float, moves: int) -> void:
 	if success:
+		# Сохраняем прогресс сразу
+		LevelManager.save_level_progress(time, moves)
+		
 		complete_panel.visible = true
 		complete_time.text = "ВРЕМЯ: %.1f сек" % time
 		complete_moves.text = "ХОДЫ: %d" % moves
 		
+		# Очищаем старые звёзды
 		for child in stars_container.get_children():
 			child.queue_free()
 		
-		var stars = 1  # 1 звезда за прохождение
+		# Создаём одну звезду
+		var star = Sprite2D.new()
+		star.texture = preload("res://assets/sprites/star_yellow.png")
+		star.scale = Vector2(0, 0)  
+		stars_container.add_child(star)
 		
-		var star_tex = preload("res://assets/sprites/star.png")
-		for i in 3:
-			var sprite = Sprite2D.new()
-			sprite.texture = star_tex
-			sprite.scale = Vector2(1.0, 1.0)
-			sprite.modulate = Color(1, 1, 1) if i < stars else Color(0.3, 0.3, 0.3)
-			stars_container.add_child(sprite)
+		var tween = create_tween()
+		tween.tween_property(star, "scale", Vector2(1.0, 1.0), 0.4) \
+			.set_trans(Tween.TRANS_BACK) \
+			.set_ease(Tween.EASE_OUT)
 
 func _on_update_timer(seconds: int) -> void:
 	var minutes = seconds / 60
@@ -126,13 +133,13 @@ func _on_update_moves(count: int) -> void:
 	moves_label.text = "ХОДЫ: %d" % count
 
 func _on_next_button_pressed() -> void:
-	if current_level_instance:
-		var time = current_level_instance.get("elapsed_time")
-		var moves = current_level_instance.get("move_count")
-		if time != null and moves != null:
-			LevelManager.complete_level(time, moves)
-		else:
-			push_error("Не удалось получить elapsed_time или move_count!")
+	LevelManager.advance_level()
 
 func _on_level_changed(_level_num: int) -> void:
 	_load_level(_level_num)
+
+
+func _on_hint_button_pressed() -> void:
+	if current_level_instance and current_level_instance.has_method("show_hint"):
+		current_level_instance.show_hint()
+	

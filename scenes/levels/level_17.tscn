@@ -1,8 +1,285 @@
-[gd_scene load_steps=2 format=3 uid="uid://m1rh45hptqax"]
+[gd_scene load_steps=7 format=3 uid="uid://cf6pefi5ng463"]
 
 [ext_resource type="PackedScene" uid="uid://c5apnbl4201dh" path="res://scenes/levels/base_level.tscn" id="1_imly0"]
+[ext_resource type="PackedScene" uid="uid://rvx21vydaoj5" path="res://scenes/pipes/pipe_corner_valve.tscn" id="2_s5aqk"]
+[ext_resource type="PackedScene" uid="uid://df1fk5kbrppmg" path="res://scenes/pipes/pipe_corner.tscn" id="3_ddhf2"]
+[ext_resource type="PackedScene" uid="uid://c4s0kqk36n2we" path="res://scenes/pipes/pipe_t.tscn" id="4_r3g1g"]
+[ext_resource type="PackedScene" uid="uid://cphe5ac1hhfhm" path="res://scenes/pipes/pipe.tscn" id="5_ddhf2"]
+[ext_resource type="PackedScene" uid="uid://bspspxnucomja" path="res://scenes/pipes/pipe_cross.tscn" id="6_r3g1g"]
 
 [node name="Level" instance=ExtResource("1_imly0")]
+grid_size = Vector2i(7, 8)
 
-[node name="GridContainer" parent="." index="1"]
-position = Vector2(-249, -249)
+[node name="pipe" parent="GridContainer" index="0" instance=ExtResource("2_s5aqk")]
+position = Vector2(-300, -300)
+rotation = -1.57079
+is_start = true
+blocked_side = 0
+is_locked = true
+grid_position = Vector2i(1, 1)
+
+[node name="pipe2" parent="GridContainer" index="1" instance=ExtResource("3_ddhf2")]
+position = Vector2(-200, -300)
+rotation = 1.57079
+grid_position = Vector2i(2, 1)
+
+[node name="pipe8" parent="GridContainer" index="2" instance=ExtResource("3_ddhf2")]
+position = Vector2(-300, -200)
+grid_position = Vector2i(1, 2)
+
+[node name="pipe16" parent="GridContainer" index="3" instance=ExtResource("3_ddhf2")]
+position = Vector2(-200, -100)
+grid_position = Vector2i(2, 3)
+
+[node name="pipe33" parent="GridContainer" index="4" instance=ExtResource("3_ddhf2")]
+position = Vector2(-200, 0)
+rotation = 3.14159
+grid_position = Vector2i(2, 4)
+
+[node name="pipe34" parent="GridContainer" index="5" instance=ExtResource("3_ddhf2")]
+position = Vector2(-300, 0)
+rotation = -1.57079
+grid_position = Vector2i(1, 4)
+
+[node name="pipe35" parent="GridContainer" index="6" instance=ExtResource("3_ddhf2")]
+position = Vector2(-300, 100)
+grid_position = Vector2i(1, 5)
+
+[node name="pipe43" parent="GridContainer" index="7" instance=ExtResource("3_ddhf2")]
+position = Vector2(-300, 400)
+rotation = -1.57079
+grid_position = Vector2i(1, 8)
+
+[node name="pipe45" parent="GridContainer" index="8" instance=ExtResource("3_ddhf2")]
+position = Vector2(-100, 300)
+rotation = -3.14159
+grid_position = Vector2i(3, 7)
+
+[node name="pipe46" parent="GridContainer" index="9" instance=ExtResource("3_ddhf2")]
+position = Vector2(0, 300)
+rotation = -6.28318
+grid_position = Vector2i(4, 7)
+
+[node name="pipe53" parent="GridContainer" index="10" instance=ExtResource("3_ddhf2")]
+position = Vector2(0, 400)
+rotation = -3.14159
+grid_position = Vector2i(4, 8)
+
+[node name="pipe54" parent="GridContainer" index="11" instance=ExtResource("3_ddhf2")]
+position = Vector2(100, 400)
+rotation = -1.57079
+grid_position = Vector2i(5, 8)
+
+[node name="pipe55" parent="GridContainer" index="12" instance=ExtResource("3_ddhf2")]
+position = Vector2(200, 400)
+rotation = -3.14159
+grid_position = Vector2i(6, 8)
+
+[node name="pipe48" parent="GridContainer" index="13" instance=ExtResource("3_ddhf2")]
+position = Vector2(200, 300)
+rotation = -6.28318
+grid_position = Vector2i(6, 7)
+
+[node name="pipe49" parent="GridContainer" index="14" instance=ExtResource("3_ddhf2")]
+position = Vector2(300, 300)
+rotation = -4.71238
+grid_position = Vector2i(7, 7)
+
+[node name="pipe47" parent="GridContainer" index="15" instance=ExtResource("3_ddhf2")]
+position = Vector2(100, 300)
+rotation = -4.71238
+grid_position = Vector2i(5, 7)
+
+[node name="pipe36" parent="GridContainer" index="16" instance=ExtResource("3_ddhf2")]
+position = Vector2(-200, 100)
+rotation = 1.57079
+grid_position = Vector2i(2, 5)
+
+[node name="pipe18" parent="GridContainer" index="17" instance=ExtResource("3_ddhf2")]
+position = Vector2(0, -100)
+rotation = 3.14159
+grid_position = Vector2i(4, 3)
+
+[node name="pipe19" parent="GridContainer" index="18" instance=ExtResource("3_ddhf2")]
+position = Vector2(100, -100)
+grid_position = Vector2i(5, 3)
+
+[node name="pipe26" parent="GridContainer" index="19" instance=ExtResource("3_ddhf2")]
+position = Vector2(200, 0)
+grid_position = Vector2i(6, 4)
+
+[node name="pipe22" parent="GridContainer" index="20" instance=ExtResource("3_ddhf2")]
+position = Vector2(300, 200)
+rotation = 3.14159
+grid_position = Vector2i(7, 6)
+
+[node name="pipe29" parent="GridContainer" index="21" instance=ExtResource("3_ddhf2")]
+position = Vector2(100, 100)
+rotation = 1.57079
+grid_position = Vector2i(5, 5)
+
+[node name="pipe32" parent="GridContainer" index="22" instance=ExtResource("3_ddhf2")]
+position = Vector2(-100, 100)
+rotation = 4.71238
+grid_position = Vector2i(3, 5)
+
+[node name="pipe30" parent="GridContainer" index="23" instance=ExtResource("3_ddhf2")]
+position = Vector2(100, 0)
+rotation = 3.14159
+grid_position = Vector2i(5, 4)
+
+[node name="pipe3" parent="GridContainer" index="24" instance=ExtResource("3_ddhf2")]
+position = Vector2(-100, -300)
+grid_position = Vector2i(3, 1)
+
+[node name="pipe5" parent="GridContainer" index="25" instance=ExtResource("3_ddhf2")]
+position = Vector2(100, -300)
+rotation = 1.57079
+grid_position = Vector2i(5, 1)
+
+[node name="pipe12" parent="GridContainer" index="26" instance=ExtResource("3_ddhf2")]
+position = Vector2(100, -200)
+rotation = 3.14159
+grid_position = Vector2i(5, 2)
+
+[node name="pipe13" parent="GridContainer" index="27" instance=ExtResource("3_ddhf2")]
+position = Vector2(200, -200)
+rotation = 4.71238
+grid_position = Vector2i(6, 2)
+
+[node name="pipe6" parent="GridContainer" index="28" instance=ExtResource("3_ddhf2")]
+position = Vector2(200, -300)
+grid_position = Vector2i(6, 1)
+
+[node name="pipe7" parent="GridContainer" index="29" instance=ExtResource("3_ddhf2")]
+position = Vector2(300, -300)
+rotation = 1.57079
+grid_position = Vector2i(7, 1)
+
+[node name="pipe4" parent="GridContainer" index="30" instance=ExtResource("4_r3g1g")]
+position = Vector2(0, -300)
+grid_position = Vector2i(4, 1)
+
+[node name="pipe9" parent="GridContainer" index="31" instance=ExtResource("4_r3g1g")]
+position = Vector2(-200, -200)
+rotation = -3.14159
+grid_position = Vector2i(2, 2)
+
+[node name="pipe10" parent="GridContainer" index="32" instance=ExtResource("4_r3g1g")]
+position = Vector2(-100, -200)
+rotation = -4.71238
+grid_position = Vector2i(3, 2)
+
+[node name="pipe11" parent="GridContainer" index="33" instance=ExtResource("4_r3g1g")]
+position = Vector2(0, -200)
+rotation = -1.57079
+grid_position = Vector2i(4, 2)
+
+[node name="pipe37" parent="GridContainer" index="34" instance=ExtResource("4_r3g1g")]
+position = Vector2(-100, 0)
+rotation = -1.57079
+grid_position = Vector2i(3, 4)
+
+[node name="pipe14" parent="GridContainer" index="35" instance=ExtResource("4_r3g1g")]
+position = Vector2(300, -200)
+rotation = -4.71238
+grid_position = Vector2i(7, 2)
+
+[node name="pipe21" parent="GridContainer" index="36" instance=ExtResource("4_r3g1g")]
+position = Vector2(300, -100)
+rotation = -4.71238
+grid_position = Vector2i(7, 3)
+
+[node name="pipe27" parent="GridContainer" index="37" instance=ExtResource("4_r3g1g")]
+position = Vector2(200, 200)
+rotation = -3.14159
+grid_position = Vector2i(6, 6)
+
+[node name="pipe28" parent="GridContainer" index="38" instance=ExtResource("4_r3g1g")]
+position = Vector2(100, 200)
+rotation = -3.14159
+grid_position = Vector2i(5, 6)
+
+[node name="pipe40" parent="GridContainer" index="39" instance=ExtResource("4_r3g1g")]
+position = Vector2(-100, 200)
+grid_position = Vector2i(3, 6)
+
+[node name="pipe41" parent="GridContainer" index="40" instance=ExtResource("4_r3g1g")]
+position = Vector2(-200, 200)
+rotation = 3.14159
+grid_position = Vector2i(2, 6)
+
+[node name="pipe42" parent="GridContainer" index="41" instance=ExtResource("4_r3g1g")]
+position = Vector2(-300, 200)
+rotation = 4.71238
+grid_position = Vector2i(1, 6)
+
+[node name="pipe50" parent="GridContainer" index="42" instance=ExtResource("4_r3g1g")]
+position = Vector2(-298, 300)
+rotation = 4.71238
+grid_position = Vector2i(1, 7)
+
+[node name="pipe25" parent="GridContainer" index="43" instance=ExtResource("4_r3g1g")]
+position = Vector2(300, 0)
+rotation = -4.71238
+grid_position = Vector2i(7, 4)
+
+[node name="pipe15" parent="GridContainer" index="44" instance=ExtResource("5_ddhf2")]
+position = Vector2(-300, -100)
+grid_position = Vector2i(1, 3)
+
+[node name="pipe20" parent="GridContainer" index="45" instance=ExtResource("5_ddhf2")]
+position = Vector2(200, -100)
+rotation = 1.57079
+grid_position = Vector2i(6, 3)
+
+[node name="pipe31" parent="GridContainer" index="46" instance=ExtResource("5_ddhf2")]
+rotation = 1.57079
+grid_position = Vector2i(4, 4)
+
+[node name="pipe38" parent="GridContainer" index="47" instance=ExtResource("5_ddhf2")]
+position = Vector2(0, 100)
+rotation = 1.57079
+grid_position = Vector2i(4, 5)
+
+[node name="pipe39" parent="GridContainer" index="48" instance=ExtResource("5_ddhf2")]
+position = Vector2(0, 200)
+rotation = 1.57079
+grid_position = Vector2i(4, 6)
+
+[node name="pipe44" parent="GridContainer" index="49" instance=ExtResource("5_ddhf2")]
+position = Vector2(-200, 300)
+rotation = 1.57079
+grid_position = Vector2i(2, 7)
+
+[node name="pipe51" parent="GridContainer" index="50" instance=ExtResource("5_ddhf2")]
+position = Vector2(-200, 400)
+rotation = 1.57079
+grid_position = Vector2i(2, 8)
+
+[node name="pipe52" parent="GridContainer" index="51" instance=ExtResource("5_ddhf2")]
+position = Vector2(-100, 400)
+rotation = 1.57079
+grid_position = Vector2i(3, 8)
+
+[node name="pipe23" parent="GridContainer" index="52" instance=ExtResource("5_ddhf2")]
+position = Vector2(300, 100)
+rotation = 3.14159
+grid_position = Vector2i(7, 5)
+
+[node name="pipe24" parent="GridContainer" index="53" instance=ExtResource("5_ddhf2")]
+position = Vector2(200, 100)
+rotation = 3.14159
+grid_position = Vector2i(6, 5)
+
+[node name="pipe17" parent="GridContainer" index="54" instance=ExtResource("6_r3g1g")]
+position = Vector2(-100, -100)
+grid_position = Vector2i(3, 3)
+
+[node name="pipe56" parent="GridContainer" index="55" instance=ExtResource("2_s5aqk")]
+position = Vector2(300, 400)
+rotation = -1.57079
+is_end = true
+blocked_side = 1
+is_locked = true
+grid_position = Vector2i(7, 8)

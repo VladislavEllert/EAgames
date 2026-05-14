@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd5v0jru0rfns"]
+[gd_scene load_steps=8 format=3 uid="uid://bd5v0jru0rfns"]
 
 [ext_resource type="Script" uid="uid://bi4pnfuq2a4ni" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://ccxnylgn7im4" path="res://scripts/level.gd" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_iywne"]
 [ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="4_iywne"]
 [ext_resource type="Texture2D" uid="uid://bqixfhmoko6cv" path="res://assets/sprites/pause.png" id="5_p57ef"]
+[ext_resource type="Texture2D" uid="uid://cdja0a1afrcjn" path="res://assets/sprites/icons8-лампочка-50.png" id="5_u5sy4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u5sy4"]
 
@@ -28,45 +29,54 @@ grid_size = Vector2i(5, 5)
 [node name="TopBar" type="Panel" parent="UI"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 3.0
-offset_top = 31.0
-offset_right = 3.0
-offset_bottom = 157.0
+offset_left = -1.0
+offset_top = 15.0
+offset_right = -1.0
+offset_bottom = 141.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_u5sy4")
 
 [node name="LevelLabel" type="Label" parent="UI/TopBar"]
 layout_mode = 0
-offset_left = 52.0
-offset_top = 18.0
-offset_right = 236.0
-offset_bottom = 91.0
+offset_left = 51.0
+offset_top = 42.0
+offset_right = 235.0
+offset_bottom = 103.0
 theme_override_fonts/font = ExtResource("4_iywne")
 theme_override_font_sizes/font_size = 30
 
 [node name="TimerLabel" type="Label" parent="UI/TopBar"]
 layout_mode = 0
-offset_left = 322.0
-offset_top = 19.0
-offset_right = 390.0
-offset_bottom = 80.0
+offset_left = 259.0
+offset_top = 42.0
+offset_right = 327.0
+offset_bottom = 103.0
 theme_override_fonts/font = ExtResource("4_iywne")
 theme_override_font_sizes/font_size = 30
 
 [node name="MovesLabel" type="Label" parent="UI/TopBar"]
 layout_mode = 0
-offset_left = 494.0
-offset_top = 20.0
-offset_right = 625.0
-offset_bottom = 81.0
+offset_left = 371.0
+offset_top = 43.0
+offset_right = 502.0
+offset_bottom = 104.0
 theme_override_fonts/font = ExtResource("4_iywne")
 theme_override_font_sizes/font_size = 30
 
+[node name="HintButton" type="Button" parent="UI/TopBar"]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 44.0
+offset_right = 594.0
+offset_bottom = 102.0
+icon = ExtResource("5_u5sy4")
+
 [node name="PauseButton" type="Button" parent="UI/TopBar"]
 layout_mode = 0
-offset_left = 611.0
-offset_right = 693.0
-offset_bottom = 82.0
+offset_left = 612.0
+offset_top = 32.0
+offset_right = 694.0
+offset_bottom = 114.0
 icon = ExtResource("5_p57ef")
 flat = true
 icon_alignment = 1
@@ -236,6 +246,7 @@ theme_override_font_sizes/font_size = 44
 text = "МЕНЮ"
 flat = true
 
+[connection signal="pressed" from="UI/TopBar/HintButton" to="." method="_on_hint_button_pressed"]
 [connection signal="pressed" from="UI/TopBar/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="UI/CompletePanel/Buttons/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="UI/CompletePanel/Buttons/MenuButton" to="." method="_on_menu_button_pressed"]

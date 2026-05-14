@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 LevelManager="*res://scripts/level_manager.gd"
+MusicManager="*uid://dcek73mao5sig"
 
 [display]
 

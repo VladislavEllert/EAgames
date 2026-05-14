@@ -15,7 +15,11 @@ enum Side { TOP = 0, RIGHT = 1, BOTTOM = 2, LEFT = 3 }
 @export var is_end: bool = false:
 	set(value): is_end = value; _update_visuals()
 @export var is_mandatory: bool = false:
-	set(value): is_mandatory = value; _update_visuals()
+	set(value):
+		is_mandatory = value
+		if is_mandatory:
+			is_locked = true
+		_update_visuals()
 
 # Сторона, упирающаяся в край (не соединяется)
 @export_enum("None:-1", "Top:0", "Right:1", "Bottom:2", "Left:3") 
@@ -25,7 +29,13 @@ var blocked_side: int = -1:
 		_update_visuals()
 
 @export var is_locked: bool = false:
-	set(value): is_locked = value; _update_visuals()
+	set(value):
+		# Если труба обязательная, не даём снять блокировку
+		if is_mandatory:
+			is_locked = true
+		else:
+			is_locked = value
+		_update_visuals()
 @export var is_filled: bool = false:
 	set(value): is_filled = value; _update_visuals()
 @export var grid_position: Vector2i = Vector2i.ZERO

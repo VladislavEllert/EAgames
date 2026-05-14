@@ -88,11 +88,13 @@ func _show_level_select() -> void:
 	tween.parallel().tween_property(level_select_panel, "position:y", 0, 0.3).set_ease(Tween.EASE_OUT)
 
 func _on_play_button_pressed() -> void:
+	SoundManager.play_button_click()
 	main_panel.hide()
 	level_select_panel.show()
 	_show_level_select()
 
 func _on_back_button_pressed() -> void:
+	SoundManager.play_button_click()
 	level_select_panel.hide()
 	main_panel.show()
 	_show_main_panel()
@@ -106,11 +108,24 @@ func _on_level_changed(_level_num: int) -> void:
 	_update_total_stars()
 
 func _on_reset_button_pressed() -> void:
+	SoundManager.play_button_click()
 	LevelManager.reset_progress()
 
 func _on_progress_reset() -> void:
+
 	_create_level_buttons()
 	_update_total_stars()
 
 func _on_exit_button_pressed() -> void:
+	SoundManager.play_button_click()
 	get_tree().quit()
+
+
+func _on_button_pressed() -> void:
+	SoundManager.play_button_click()
+	get_tree().change_scene_to_file("res://scenes/settings.tscn")
+
+
+func _on_tutorial_pressed() -> void:
+	SoundManager.play_button_click()
+	get_tree().change_scene_to_file("res://scenes/tutorial.tscn")

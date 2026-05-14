@@ -12,7 +12,6 @@ pipe_type = 1
 texture = ExtResource("2_kcuro")
 
 [node name="WaterSprite2D" parent="." index="3"]
-visible = false
 texture = ExtResource("3_kcuro")
 
 [node name="Active" parent="." index="4"]

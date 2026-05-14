@@ -82,39 +82,24 @@ grid_position = Vector2i(4, 6)
 
 [node name="pipe4" parent="GridContainer" index="13" instance=ExtResource("5_sjq8i")]
 position = Vector2(250, 51)
-is_start = false
-is_end = false
-is_mandatory = false
 grid_position = Vector2i(6, 3)
 
 [node name="pipe20" parent="GridContainer" index="14" instance=ExtResource("5_sjq8i")]
 position = Vector2(250, 151)
-is_start = false
-is_end = false
-is_mandatory = false
 grid_position = Vector2i(6, 4)
 
 [node name="pipe12" parent="GridContainer" index="15" instance=ExtResource("5_sjq8i")]
 position = Vector2(-150, 251)
-is_start = false
-is_end = false
-is_mandatory = false
 grid_position = Vector2i(2, 5)
 
 [node name="pipe5" parent="GridContainer" index="16" instance=ExtResource("5_sjq8i")]
 position = Vector2(50, -49)
 rotation = 1.57079
-is_start = false
-is_end = false
-is_mandatory = false
 grid_position = Vector2i(4, 2)
 
 [node name="pipe6" parent="GridContainer" index="17" instance=ExtResource("5_sjq8i")]
 position = Vector2(-50, -49)
 rotation = 1.57079
-is_start = false
-is_end = false
-is_mandatory = false
 grid_position = Vector2i(3, 2)
 
 [node name="pipe19" parent="GridContainer" index="18" instance=ExtResource("6_q0wsq")]

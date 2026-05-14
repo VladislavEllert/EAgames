@@ -13,7 +13,6 @@ is_locked = true
 texture = ExtResource("2_m6j8w")
 
 [node name="WaterSprite2D" parent="." index="3"]
-visible = false
 texture = null
 
 [node name="Active" parent="." index="4"]

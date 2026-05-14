@@ -12,7 +12,6 @@ pipe_type = 3
 texture = ExtResource("2_6p47r")
 
 [node name="WaterSprite2D" parent="." index="3"]
-visible = false
 texture = ExtResource("3_c5urn")
 
 [node name="Active" parent="." index="4"]

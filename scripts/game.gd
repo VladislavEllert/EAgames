@@ -10,6 +10,7 @@ extends Node
 @onready var stars_container: HBoxContainer = $UI/CompletePanel/Stars
 @onready var pause_panel: ColorRect = $UI/PausePanel
 @onready var pause_button: Button = $UI/TopBar/PauseButton
+@onready var hint_button: Button = $UI/TopBar/HintButton
 
 var current_level_instance: Node2D = null
 var is_paused: bool = false
@@ -27,8 +28,9 @@ func _ready() -> void:
 	_connect_safe($UI/PausePanel/Buttons/RestartButton, _on_restart_button_pressed)
 	_connect_safe($UI/PausePanel/Buttons/MenuButton, _on_menu_button_pressed)
 	_connect_safe($UI/CompletePanel/Buttons/NextButton, _on_next_button_pressed)
-	
 	_load_level(LevelManager.current_level)
+	if hint_button:
+		hint_button.pressed.connect(_on_hint_button_pressed)
 
 func _connect_safe(btn: Button, callback: Callable) -> void:
 	if btn and not btn.pressed.is_connected(callback):
@@ -135,3 +137,9 @@ func _on_next_button_pressed() -> void:
 
 func _on_level_changed(_level_num: int) -> void:
 	_load_level(_level_num)
+
+
+func _on_hint_button_pressed() -> void:
+	if current_level_instance and current_level_instance.has_method("show_hint"):
+		current_level_instance.show_hint()
+	

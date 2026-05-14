@@ -8,6 +8,7 @@ signal update_moves(count: int)
 @export var cell_size: int = 100
 
 @onready var grid_container: Node2D = $GridContainer
+@onready var hint_label: Label = $HintLabel
 
 var pipes: Dictionary = {}
 var start_pipe: Pipe = null
@@ -179,3 +180,46 @@ func _get_neighbor_pos(pos: Vector2i, side: int) -> Vector2i:
 	return pos
 
 func get_cell_size() -> int: return cell_size
+
+func show_hint() -> void:
+	# Находим все трубы с разрывами
+	var problem_pipes: Array[Pipe] = []
+	var side_names = ["сверху", "справа", "снизу", "слева"]
+	
+	for pipe in pipes.values():
+		for side in pipe.get_active_sides():
+			var neighbor_pos = _get_neighbor_pos(pipe.grid_position, side)
+			
+			# Проверяем: есть ли сосед и соединён ли он
+			if not pipes.has(neighbor_pos):
+				# Нет соседа — это разрыв
+				if pipe not in problem_pipes:
+					problem_pipes.append(pipe)
+				continue
+			
+			var neighbor: Pipe = pipes[neighbor_pos]
+			var opposite = Pipe.get_opposite_side(side)
+			
+			if not neighbor.has_connection_to(opposite):
+				# Сосед есть, но не соединён
+				if pipe not in problem_pipes:
+					problem_pipes.append(pipe)
+				if neighbor not in problem_pipes:
+					problem_pipes.append(neighbor)
+	
+	# Подсвечиваем проблемные трубы
+	if problem_pipes.size() > 0:
+		_highlight_pipes(problem_pipes)
+
+# Вспомогательная функция подсветки
+func _highlight_pipes(pipes_to_highlight: Array[Pipe]) -> void:
+	# Подсвечиваем трубы (жёлтым цветом)
+	for pipe in pipes_to_highlight:
+		if pipe.sprite:
+			pipe.sprite.modulate = Color(1.5, 1.5, 0.3)  # Ярко-жёлтый
+	
+	# Возвращаем обычный цвет через 3 секунды
+	await get_tree().create_timer(1.0).timeout
+	for pipe in pipes_to_highlight:
+		if pipe.sprite:
+				pipe.sprite.modulate = Color.WHITE

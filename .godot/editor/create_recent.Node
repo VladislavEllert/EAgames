@@ -1,3 +1,4 @@
+Button
 Sprite2D
 Node
 Parallax2D
@@ -6,5 +7,4 @@ TileMapLayer
 RayCast2D
 TextureRect
 Label
-Button
 VBoxContainer

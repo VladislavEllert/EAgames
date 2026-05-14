@@ -104,7 +104,7 @@ grid_position = Vector2i(4, 8)
 [node name="pipe47" parent="GridContainer" index="18" instance=ExtResource("3_u7mae")]
 position = Vector2(150, 350)
 rotation = 1.57079
-grid_position = Vector2i(7, 8)
+grid_position = Vector2i(5, 8)
 
 [node name="pipe36" parent="GridContainer" index="19" instance=ExtResource("3_u7mae")]
 position = Vector2(50, 150)

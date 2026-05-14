@@ -29,4 +29,5 @@ func start_demo_animation() -> void:
 		await tween.finished
 
 func _on_back_button_pressed() -> void:
+	SoundManager.play_button_click()
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")

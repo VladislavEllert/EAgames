@@ -1,14 +1,14 @@
+HBoxContainer
+Label
+HSlider
 AudioStreamPlayer
 Sprite2D
 TextureRect
 Button
 Control
 RichTextLabel
-Label
 Panel
 Parallax2D
 ParallaxLayer
 Node2D
 TileMapLayer
-RayCast2D
-VBoxContainer

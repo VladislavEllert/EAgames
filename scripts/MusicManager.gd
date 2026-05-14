@@ -1,7 +1,7 @@
 extends Node
 
 var music_player: AudioStreamPlayer
-var current_volume: float = 0.0 
+var current_volume: float = 0.5 
 
 func _ready() -> void:
 	music_player = AudioStreamPlayer.new()

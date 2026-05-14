@@ -75,26 +75,31 @@ func _load_level(level_num: int) -> void:
 	_set_pause(false)
 
 func _set_pause(paused: bool) -> void:
+	SoundManager.play_button_click()
 	is_paused = paused
 	get_tree().paused = paused
 	pause_panel.visible = paused
 	pause_button.disabled = paused
 
 func _on_pause_button_pressed() -> void:
+	SoundManager.play_button_click()
 	if current_level_instance and current_level_instance.get("is_completed"):
 		return
 	_set_pause(true)
 
 func _on_resume_button_pressed() -> void:
+	SoundManager.play_button_click()
 	_set_pause(false)
 
 func _on_restart_button_pressed() -> void:
+	SoundManager.play_button_click()
 	if current_level_instance and current_level_instance.has_method("reset_level"):
 		current_level_instance.reset_level()
 	complete_panel.visible = false
 	_set_pause(false)
 
 func _on_menu_button_pressed() -> void:
+	SoundManager.play_button_click()
 	_set_pause(false)
 	LevelManager.return_to_level_select = true
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
@@ -129,6 +134,7 @@ func _on_update_moves(count: int) -> void:
 	moves_label.text = "ХОДЫ: %d" % count
 
 func _on_next_button_pressed() -> void:
+	SoundManager.play_button_click()
 	if current_level_instance:
 		var time = current_level_instance.get("elapsed_time")
 		var moves = current_level_instance.get("move_count")

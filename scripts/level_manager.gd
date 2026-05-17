@@ -52,6 +52,7 @@ var completed_levels: Array[int] = []
 var best_times: Dictionary = {}
 var best_moves: Dictionary = {}
 var return_to_level_select: bool = false
+var pending_popup_level: int = -1 #Флаг для показа попапа после возврата в меню
 
 func _ready() -> void:
 	_load_progress()
@@ -86,8 +87,9 @@ func go_to_level(level_num: int) -> void:
 	current_level = level_num
 	level_changed.emit(current_level)
 
-func is_level_unlocked(_level_num: int) -> bool:
-	return true
+func is_level_unlocked(level_num: int) -> bool:
+	# Первый уровень всегда открыт. Остальные открываются, если предыдущий пройден.
+	return level_num == 0 or (level_num - 1) in completed_levels
 
 func get_stars(level_num: int) -> int:
 	return 1 if level_num in completed_levels else 0

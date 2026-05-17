@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://n4tg163evt3n"]
+[gd_scene load_steps=5 format=3 uid="uid://n4tg163evt3n"]
 
 [ext_resource type="PackedScene" uid="uid://b30v54i5defj7" path="res://scenes/pipes/pipe_straight_valve.tscn" id="1_k5qno"]
 [ext_resource type="Texture2D" uid="uid://b8ehugrl1s6rs" path="res://assets/sprites/pipe_t_valve.png" id="2_qah18"]
 [ext_resource type="Texture2D" uid="uid://ifngxr87t4fm" path="res://assets/sprites/pipe_t_valve_water.png" id="3_loe60"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k5qno"]
+load_path = "res://.godot/imported/pipe_straight_active.png-aaf6954e4bb69391106f6fbe3a54c286.ctex"
 
 [node name="pipe" instance=ExtResource("1_k5qno")]
 pipe_type = 9
@@ -12,3 +15,6 @@ texture = ExtResource("2_qah18")
 
 [node name="WaterSprite2D" parent="." index="3"]
 texture = ExtResource("3_loe60")
+
+[node name="Active" parent="." index="4"]
+texture = SubResource("CompressedTexture2D_k5qno")

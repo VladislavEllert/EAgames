@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dp6no6oi41lyy"]
+[gd_scene load_steps=10 format=3 uid="uid://dp6no6oi41lyy"]
 
-[ext_resource type="Script" uid="uid://tscvp22f02ei" path="res://scenes/tutorial.gd" id="1_4kmhl"]
+[ext_resource type="Script" uid="uid://tscvp22f02ei" path="res://scripts/tutorial.gd" id="1_4kmhl"]
 [ext_resource type="Script" uid="uid://cpvh1uqc841vh" path="res://scripts/background.gd" id="1_8ho6b"]
 [ext_resource type="Texture2D" uid="uid://c1g75tcn6ttgs" path="res://assets/background.jpg" id="2_ph3nu"]
 [ext_resource type="FontFile" uid="uid://diiderh1qvujq" path="res://assets/Tiny5-Regular.ttf" id="3_ph3nu"]
@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://c44tx10kqnm1x" path="res://assets/sprites/pipe_straight.png" id="5_gbqnl"]
 [ext_resource type="Texture2D" uid="uid://bvkaovkngov7u" path="res://assets/sprites/pipe_corner.png" id="6_ckvwl"]
 [ext_resource type="Texture2D" uid="uid://ch7rsj52ndkru" path="res://assets/sprites/BackTile_06.png" id="6_nlqja"]
-[ext_resource type="Texture2D" uid="uid://mre2rovoelmv" path="res://assets/sprites/pipe_end_active.png" id="7_nlqja"]
+[ext_resource type="Texture2D" uid="uid://cbjaqmqs26wum" path="res://assets/sprites/pipe_straight_valve.png" id="9_nlqja"]
 
-[node name="Tutorial" type="Control" unique_id=17696490]
+[node name="Tutorial" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,83 +19,91 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4kmhl")
 
-[node name="Background" type="Parallax2D" parent="." unique_id=680654932]
+[node name="Background" type="Parallax2D" parent="."]
 script = ExtResource("1_8ho6b")
 
-[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=1728527784]
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
 position = Vector2(360, 640)
 texture = ExtResource("2_ph3nu")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=1792065980]
+[node name="Sprite2D2" type="Sprite2D" parent="Background"]
 position = Vector2(360, 1920)
 texture = ExtResource("2_ph3nu")
 
-[node name="Panel" type="Panel" parent="." unique_id=2039557016]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Title" type="Label" parent="Panel" unique_id=257023085]
+[node name="Title" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 250.0
-offset_top = 50.0
-offset_right = 467.0
-offset_bottom = 108.0
+offset_left = 242.0
+offset_top = 110.0
+offset_right = 459.0
+offset_bottom = 168.0
 theme_override_fonts/font = ExtResource("3_ph3nu")
 theme_override_font_sizes/font_size = 51
 text = "Обучение"
 
-[node name="Fon" type="Sprite2D" parent="Panel" unique_id=1945319434]
-position = Vector2(359.4375, 922.75)
-scale = Vector2(1.0123136, 1.0522391)
+[node name="Fon" type="Sprite2D" parent="Panel"]
+position = Vector2(351.562, 1129.25)
+scale = Vector2(1.01231, 1.05224)
 texture = ExtResource("5_ckvwl")
 
-[node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=692802737]
-position = Vector2(263, 835)
+[node name="Sprite2D" type="Sprite2D" parent="Panel"]
+position = Vector2(255.124, 1041.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Panel" unique_id=331472012]
-position = Vector2(362, 835)
+[node name="Sprite2D2" type="Sprite2D" parent="Panel"]
+position = Vector2(354.124, 1041.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Panel" unique_id=1329674766]
-position = Vector2(462, 835)
+[node name="Sprite2D3" type="Sprite2D" parent="Panel"]
+position = Vector2(454.124, 1041.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Panel" unique_id=1891674151]
-position = Vector2(462, 935)
+[node name="Sprite2D4" type="Sprite2D" parent="Panel"]
+position = Vector2(454.124, 1141.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D8" type="Sprite2D" parent="Panel" unique_id=1125770504]
-position = Vector2(362, 935)
+[node name="Sprite2D8" type="Sprite2D" parent="Panel"]
+position = Vector2(354.124, 1141.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D9" type="Sprite2D" parent="Panel" unique_id=2023424136]
-position = Vector2(362, 1035)
+[node name="Sprite2D9" type="Sprite2D" parent="Panel"]
+position = Vector2(354.124, 1241.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D7" type="Sprite2D" parent="Panel" unique_id=302762919]
-position = Vector2(462, 1035)
+[node name="Sprite2D7" type="Sprite2D" parent="Panel"]
+position = Vector2(454.124, 1241.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Panel" unique_id=880384788]
-position = Vector2(263, 935)
+[node name="Sprite2D5" type="Sprite2D" parent="Panel"]
+position = Vector2(255.124, 1141.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D6" type="Sprite2D" parent="Panel" unique_id=2031029063]
-position = Vector2(263, 1035)
+[node name="Sprite2D6" type="Sprite2D" parent="Panel"]
+position = Vector2(255.124, 1241.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Text" type="RichTextLabel" parent="Panel" unique_id=1200081645]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 127.0
-offset_right = 644.0
-offset_bottom = 722.0
+[node name="Text" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_top = 231.0
+offset_right = -94.0
+offset_bottom = -366.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("3_ph3nu")
-theme_override_font_sizes/normal_font_size = 19
-theme_override_font_sizes/bold_font_size = 16
 theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/bold_font_size = 16
 text = "🚀 СЮЖЕТ ИГРЫ 🚀
 
 На КОСМИЧЕСКОМ КОРАБЛЕ авария!
@@ -112,7 +120,7 @@ text = "🚀 СЮЖЕТ ИГРЫ 🚀
 
 🎯 ЦЕЛЬ 🎯
 
-ПРОЙДИ ВСЕ 11 УРОВНЕЙ! Когда вода пойдёт по трубам -
+ПРОЙДИ ВСЕ УРОВНИ! Когда вода пойдёт по трубам -
 
 💥 ВЗРЫВ БУДЕТ ПРЕДОТВРАЩЁН 💥
 
@@ -121,53 +129,63 @@ text = "🚀 СЮЖЕТ ИГРЫ 🚀
 👆 Смотри как поворачивается труба 👆"
 horizontal_alignment = 1
 
-[node name="AnimatedPipe" type="Sprite2D" parent="Panel" unique_id=2000175337]
-position = Vector2(362, 935)
+[node name="AnimatedPipe" type="Sprite2D" parent="Panel"]
+position = Vector2(354.124, 1141.5)
 texture = ExtResource("5_gbqnl")
 
-[node name="StaticPipe" type="TextureRect" parent="Panel" unique_id=625920968]
+[node name="StaticPipe" type="TextureRect" parent="Panel"]
 layout_mode = 0
-offset_left = 313.0
-offset_top = 985.0
-offset_right = 413.0
-offset_bottom = 1085.0
+offset_left = 305.124
+offset_top = 1291.5
+offset_right = 405.124
+offset_bottom = 1391.5
+rotation = -1.5708
 texture = ExtResource("6_ckvwl")
 
-[node name="StaticPipe2" type="TextureRect" parent="Panel" unique_id=544613477]
+[node name="StaticPipe2" type="TextureRect" parent="Panel"]
 layout_mode = 0
-offset_left = 412.0
-offset_top = 885.0
-offset_right = 512.0
-offset_bottom = 985.0
-rotation = 3.1415927
+offset_left = 404.124
+offset_top = 992.5
+offset_right = 504.124
+offset_bottom = 1092.5
+rotation = 1.5708
 texture = ExtResource("6_ckvwl")
 
-[node name="StaticPipe3" type="TextureRect" parent="Panel" unique_id=1235636444]
+[node name="StaticPipe3" type="TextureRect" parent="Panel"]
 layout_mode = 0
-offset_left = 512.0
-offset_top = 985.0
-offset_right = 612.0
-offset_bottom = 1085.0
-rotation = 1.5707964
-texture = ExtResource("7_nlqja")
+offset_left = 504.124
+offset_top = 1191.5
+offset_right = 604.124
+offset_bottom = 1291.5
+rotation = 1.5708
+texture = ExtResource("9_nlqja")
 
-[node name="StaticPipe4" type="TextureRect" parent="Panel" unique_id=1163536470]
+[node name="StaticPipe4" type="TextureRect" parent="Panel"]
 layout_mode = 0
-offset_left = 313.0
-offset_top = 785.0
-offset_right = 413.0
-offset_bottom = 885.0
-rotation = 1.5707964
-texture = ExtResource("7_nlqja")
+offset_left = 305.124
+offset_top = 991.5
+offset_right = 405.124
+offset_bottom = 1091.5
+rotation = 1.5708
+texture = ExtResource("9_nlqja")
 
-[node name="BackButton" type="Button" parent="Panel" unique_id=182140974]
-layout_mode = 0
-offset_left = 319.0
-offset_top = 1137.0
-offset_right = 415.0
-offset_bottom = 1185.0
+[node name="BackButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -74.0
+offset_right = 47.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
 theme_override_fonts/font = ExtResource("3_ph3nu")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 40
 text = "меню"
+flat = true
 
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

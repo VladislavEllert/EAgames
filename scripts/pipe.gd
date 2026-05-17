@@ -121,14 +121,16 @@ static func get_opposite_side(side: int) -> int:
 func fill_with_water() -> void:
 	if is_filled: return
 	is_filled = true
-	if water_sprite:
+	# Проверяем, что узел в сцене и water_sprite существует
+	if water_sprite and is_inside_tree():
 		water_sprite.visible = true  
 		water_sprite.modulate.a = 0.9  
 
 func reset_fill() -> void:
+	if not is_filled: return
 	is_filled = false
-	if water_sprite:
-		water_sprite.visible = false
+	if water_sprite and is_inside_tree():
+		water_sprite.visible = true
 		water_sprite.modulate.a = 0.2  
 
 func _update_visuals() -> void:
@@ -155,15 +157,19 @@ func _update_visuals() -> void:
 			return
 
 	var tex_path: String = "res://assets/sprites/pipe_%s.png" % type_name
-	if FileAccess.file_exists(tex_path):
-		sprite.texture = load(tex_path)
+	var tex: Texture2D = load(tex_path)
+
+	if tex != null:
+		sprite.texture = tex
 		sprite.modulate = Color.WHITE
-	else:
-		match pipe_type:
-			PipeType.START: sprite.modulate = Color.TRANSPARENT
-			PipeType.END: sprite.modulate = Color(0.8, 0.3, 0.2)
-			_: sprite.modulate = Color(0.6, 0.7, 0.8)
-		push_error("❌ Текстура не найдена: " + tex_path)
+	#else:
+		#match pipe_type:
+			#PipeType.START: sprite.modulate = Color.TRANSPARENT
+			#PipeType.END: sprite.modulate = Color(0.8, 0.3, 0.2)
+			#_: sprite.modulate = Color(0.6, 0.7, 0.8)
+		#push_error("❌ Текстура не найдена: " + tex_path)
+
+
 
 	if water_sprite:
 		water_sprite.visible = is_filled

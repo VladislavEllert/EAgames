@@ -7,8 +7,11 @@ signal update_moves(count: int)
 @export var grid_size: Vector2i = Vector2i(6, 8)
 @export var cell_size: int = 100
 
+@export var max_hints: int = 2 # Счётчик подсказок
+var hints_remaining: int = 2
+signal hints_updated(remaining: int)
+
 @onready var grid_container: Node2D = $GridContainer
-@onready var hint_label: Label = $HintLabel
 
 var pipes: Dictionary = {}
 var start_pipe: Pipe = null
@@ -54,6 +57,10 @@ func _scan_pipes() -> void:
 				end_pipes.append(pipe)
 
 func reset_level() -> void:
+	# Сброс подсказок при новом старте
+	hints_remaining = max_hints
+	hints_updated.emit(hints_remaining)
+	
 	_unlock_all_pipes()
 	
 	var attempts = 0
@@ -182,44 +189,67 @@ func _get_neighbor_pos(pos: Vector2i, side: int) -> Vector2i:
 func get_cell_size() -> int: return cell_size
 
 func show_hint() -> void:
-	# Находим все трубы с разрывами
+	# Если подсказки кончились — ничего не делаем
+	if hints_remaining <= 0:
+		return
+	hints_remaining -= 1
+	hints_updated.emit(hints_remaining)  # Сообщаем игре, что подсказка использована
+	# Находим трубы с разорванными соединениями
 	var problem_pipes: Array[Pipe] = []
-	var side_names = ["сверху", "справа", "снизу", "слева"]
 	
 	for pipe in pipes.values():
+		var has_problem = false
 		for side in pipe.get_active_sides():
 			var neighbor_pos = _get_neighbor_pos(pipe.grid_position, side)
 			
-			# Проверяем: есть ли сосед и соединён ли он
+			# Нет соседа = разрыв
 			if not pipes.has(neighbor_pos):
-				# Нет соседа — это разрыв
-				if pipe not in problem_pipes:
-					problem_pipes.append(pipe)
-				continue
+				has_problem = true
+				break
 			
+			# Сосед есть, но не соединён = разрыв
 			var neighbor: Pipe = pipes[neighbor_pos]
 			var opposite = Pipe.get_opposite_side(side)
-			
 			if not neighbor.has_connection_to(opposite):
-				# Сосед есть, но не соединён
-				if pipe not in problem_pipes:
-					problem_pipes.append(pipe)
-				if neighbor not in problem_pipes:
-					problem_pipes.append(neighbor)
+				has_problem = true
+				break
+		
+		# Добавляем трубу в список проблемных (без дубликатов)
+		if has_problem and pipe not in problem_pipes:
+			problem_pipes.append(pipe)
 	
-	# Подсвечиваем проблемные трубы
+	# Подсвечиваем, если есть проблемы
 	if problem_pipes.size() > 0:
 		_highlight_pipes(problem_pipes)
 
-# Вспомогательная функция подсветки
 func _highlight_pipes(pipes_to_highlight: Array[Pipe]) -> void:
-	# Подсвечиваем трубы (жёлтым цветом)
-	for pipe in pipes_to_highlight:
-		if pipe.sprite:
-			pipe.sprite.modulate = Color(1.5, 1.5, 0.3)  # Ярко-жёлтый
+	# Сохраняем оригинальные цвета для восстановления
+	var original_colors: Dictionary = {}
 	
-	# Возвращаем обычный цвет через 3 секунды
-	await get_tree().create_timer(1.0).timeout
 	for pipe in pipes_to_highlight:
+		if not pipe.is_inside_tree(): continue
 		if pipe.sprite:
-				pipe.sprite.modulate = Color.WHITE
+			# Сохраняем текущие цвета
+			original_colors[pipe] = {
+				"sprite": pipe.sprite.modulate,
+				"water": pipe.water_sprite.modulate if pipe.water_sprite else Color.WHITE,
+				"water_visible": pipe.water_sprite.visible if pipe.water_sprite else false
+			}
+			#  Подсвечиваем ЯРКО-ЖЁЛТЫМ, независимо от воды
+			pipe.sprite.modulate = Color(1.5, 1.5, 0.3)
+			if pipe.water_sprite:
+				pipe.water_sprite.modulate = Color(1.5, 1.5, 0.3)
+				pipe.water_sprite.visible = true
+	
+	# Ждём 1 секунду
+	await get_tree().create_timer(1.0).timeout
+	
+	# Возвращаем как было (только если трубы ещё в сцене)
+	for pipe in pipes_to_highlight:
+		if not pipe.is_inside_tree(): continue
+		if pipe.sprite and original_colors.has(pipe):
+			var orig = original_colors[pipe]
+			pipe.sprite.modulate = orig["sprite"]
+			if pipe.water_sprite:
+				pipe.water_sprite.modulate = orig["water"]
+				pipe.water_sprite.visible = orig["water_visible"]

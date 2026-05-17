@@ -6,8 +6,10 @@
 
 [node name="LevelButton" type="Button"]
 custom_minimum_size = Vector2(120, 120)
-offset_right = 100.0
-offset_bottom = 100.0
+anchors_preset = -1
+offset_right = -20.24
+offset_bottom = -20.32
+focus_mode = 0
 script = ExtResource("1_i0sit")
 
 [node name="Label" type="Label" parent="."]

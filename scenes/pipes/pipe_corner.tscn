@@ -3,7 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cphe5ac1hhfhm" path="res://scenes/pipes/pipe.tscn" id="1_1k64o"]
 [ext_resource type="Texture2D" uid="uid://bvkaovkngov7u" path="res://assets/sprites/pipe_corner.png" id="2_kcuro"]
 [ext_resource type="Texture2D" uid="uid://dwpj2ynmrspk1" path="res://assets/sprites/pipe_corner_water.png" id="3_kcuro"]
-[ext_resource type="Texture2D" uid="uid://d3t5bl0pus6p3" path="res://assets/sprites/pipe_corner_active.png" id="4_j3rju"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kcuro"]
+load_path = "res://.godot/imported/pipe_corner_active.png-8ecd803d691eb659a798ba5d41e8011c.ctex"
 
 [node name="pipe" instance=ExtResource("1_1k64o")]
 pipe_type = 1
@@ -15,4 +17,4 @@ texture = ExtResource("2_kcuro")
 texture = ExtResource("3_kcuro")
 
 [node name="Active" parent="." index="4"]
-texture = ExtResource("4_j3rju")
+texture = SubResource("CompressedTexture2D_kcuro")

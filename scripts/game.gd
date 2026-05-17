@@ -11,9 +11,13 @@ extends Node
 @onready var pause_panel: ColorRect = $UI/PausePanel
 @onready var pause_button: Button = $UI/TopBar/PauseButton
 @onready var hint_button: Button = $UI/TopBar/HintButton
+@onready var hint_label: Label = $UI/TopBar/HintButton/Label
 
 var current_level_instance: Node2D = null
 var is_paused: bool = false
+
+# Максимальный реализованный уровень (должен совпадать с menu.gd!)
+const MAX_IMPLEMENTED_LEVEL: int = 23
 
 func _ready() -> void:
 	complete_panel.visible = false
@@ -29,8 +33,8 @@ func _ready() -> void:
 	_connect_safe($UI/PausePanel/Buttons/MenuButton, _on_menu_button_pressed)
 	_connect_safe($UI/CompletePanel/Buttons/NextButton, _on_next_button_pressed)
 	_load_level(LevelManager.current_level)
-	if hint_button:
-		hint_button.pressed.connect(_on_hint_button_pressed)
+	
+
 
 func _connect_safe(btn: Button, callback: Callable) -> void:
 	if btn and not btn.pressed.is_connected(callback):
@@ -56,6 +60,12 @@ func _load_level(level_num: int) -> void:
 		add_child(current_level_instance)
 		move_child(current_level_instance, 0)
 	
+	# Подключение к сигналу подсказок
+	if current_level_instance and current_level_instance.has_signal("hints_updated"):
+		if current_level_instance.hints_updated.is_connected(_on_hints_updated):
+			current_level_instance.hints_updated.disconnect(_on_hints_updated)
+		current_level_instance.hints_updated.connect(_on_hints_updated)
+	
 	if current_level_instance.has_signal("level_complete"):
 		if current_level_instance.level_complete.is_connected(_on_level_complete):
 			current_level_instance.level_complete.disconnect(_on_level_complete)
@@ -74,6 +84,19 @@ func _load_level(level_num: int) -> void:
 	level_label.text = "УРОВЕНЬ %d" % (level_num + 1)
 	complete_panel.visible = false
 	_set_pause(false)
+	# Инициализация текста подсказок
+	if current_level_instance:
+		_on_hints_updated(current_level_instance.hints_remaining)
+
+func _on_hints_updated(remaining: int) -> void:
+	# Обновляем текст на кнопке
+	if hint_label:
+		hint_label.text = "%d/%d" % [remaining, current_level_instance.max_hints]
+	
+	# Блокируем кнопку, если подсказки кончились
+	if hint_button:
+		hint_button.disabled = (remaining <= 0)
+		hint_button.modulate = Color(1, 1, 1, 1.0 if remaining > 0 else 0.5)
 
 func _set_pause(paused: bool) -> void:
 	is_paused = paused
@@ -125,21 +148,30 @@ func _on_level_complete(success: bool, time: float, moves: int) -> void:
 			.set_ease(Tween.EASE_OUT)
 
 func _on_update_timer(seconds: int) -> void:
-	var minutes = seconds / 60
+	var minutes = seconds / 60  
 	var secs = seconds % 60
 	timer_label.text = "%02d:%02d" % [minutes, secs]
 
 func _on_update_moves(count: int) -> void:
 	moves_label.text = "ХОДЫ: %d" % count
-
-func _on_next_button_pressed() -> void:
-	LevelManager.advance_level()
-
-func _on_level_changed(_level_num: int) -> void:
-	_load_level(_level_num)
-
-
+	
 func _on_hint_button_pressed() -> void:
 	if current_level_instance and current_level_instance.has_method("show_hint"):
 		current_level_instance.show_hint()
 	
+func _on_next_button_pressed() -> void:
+	var next_level = LevelManager.current_level + 1
+	
+	#Если следующего уровня ещё нет — показываем попап ЧЕРЕЗ МЕНЮ
+	if next_level >= MAX_IMPLEMENTED_LEVEL:
+		# Сохраняем флаг, что нужно показать попап после возврата в меню
+		LevelManager.return_to_level_select = true
+		# Передаём номер "несуществующего" уровня, чтобы меню знало, что показать попап
+		LevelManager.pending_popup_level = next_level  # ← добавь эту переменную в LevelManager!
+		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		return
+	
+	LevelManager.advance_level()
+
+func _on_level_changed(_level_num: int) -> void:
+	_load_level(_level_num)

@@ -17,7 +17,7 @@ var current_level_instance: Node2D = null
 var is_paused: bool = false
 
 # Максимальный реализованный уровень (должен совпадать с menu.gd!)
-const MAX_IMPLEMENTED_LEVEL: int = 23
+const MAX_IMPLEMENTED_LEVEL: int = 24
 
 func _ready() -> void:
 	complete_panel.visible = false

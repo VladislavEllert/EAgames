@@ -57,6 +57,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="."]
+layout_mode = 0
 offset_left = 75.0
 offset_top = 389.0
 offset_right = 298.0
@@ -66,6 +67,7 @@ theme_override_font_sizes/font_size = 40
 text = "Фоновый звук"
 
 [node name="Label4" type="Label" parent="."]
+layout_mode = 0
 offset_left = 75.0
 offset_top = 589.0
 offset_right = 303.0
@@ -75,6 +77,7 @@ theme_override_font_sizes/font_size = 40
 text = "Игровой звук :"
 
 [node name="ResetButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 75.0
 offset_top = 289.0
 offset_right = 381.0
@@ -98,6 +101,7 @@ flat = true
 
 [node name="SFXSlider" type="HSlider" parent="."]
 custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
 offset_left = 80.0
 offset_top = 689.0
 offset_right = 649.0
@@ -107,6 +111,7 @@ step = 0.01
 value = 0.8
 
 [node name="SFXPercent" type="Label" parent="."]
+layout_mode = 0
 offset_left = 358.0
 offset_top = 590.0
 offset_right = 432.0
@@ -117,6 +122,7 @@ text = "100%"
 
 [node name="MusicSlider" type="HSlider" parent="."]
 custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
 offset_left = 80.0
 offset_top = 489.0
 offset_right = 648.0
@@ -126,6 +132,7 @@ step = 0.01
 value = 0.7
 
 [node name="MusicPercent" type="Label" parent="."]
+layout_mode = 0
 offset_left = 358.0
 offset_top = 389.0
 offset_right = 432.0

@@ -10,7 +10,7 @@ var level_button_scene = preload("res://scenes/level_button.tscn")
 
 # Максимальный реализованный уровень (0-индексация: 20 = уровень 21)
 # Меняем это число, когда добавляем новые сцены уровней
-const MAX_IMPLEMENTED_LEVEL: int = 23  # Уровни 0-22 (1-23) реализованы
+const MAX_IMPLEMENTED_LEVEL: int = 24  # Уровни 0-22 (1-23) реализованы
 
 func _ready() -> void:
 	if LevelManager.level_changed.is_connected(_on_level_changed):

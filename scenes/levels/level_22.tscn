@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cuw1kmcp5ulem" path="res://scenes/pipes/pipe_cross_valve.tscn" id="7_4vafk"]
 
 [node name="Level" instance=ExtResource("1_e55d2")]
-grid_size = Vector2i(6, 8)
 
 [node name="pipe" parent="GridContainer" index="0" instance=ExtResource("2_7ylon")]
 position = Vector2(300, -450)

@@ -41,6 +41,7 @@ func _connect_safe(btn: Button, callback: Callable) -> void:
 		btn.pressed.connect(callback)
 
 func _load_level(level_num: int) -> void:
+	MusicManager.start_music()
 	if current_level_instance:
 		current_level_instance.queue_free()
 	
@@ -105,26 +106,32 @@ func _set_pause(paused: bool) -> void:
 	pause_button.disabled = paused
 
 func _on_pause_button_pressed() -> void:
+	SoundManager.play_button_click()
 	if current_level_instance and current_level_instance.get("is_completed"):
 		return
 	_set_pause(true)
 
 func _on_resume_button_pressed() -> void:
+	SoundManager.play_button_click()
 	_set_pause(false)
 
 func _on_restart_button_pressed() -> void:
+	SoundManager.play_button_click()
 	if current_level_instance and current_level_instance.has_method("reset_level"):
 		current_level_instance.reset_level()
 	complete_panel.visible = false
 	_set_pause(false)
 
 func _on_menu_button_pressed() -> void:
+	SoundManager.play_button_click()
 	_set_pause(false)
 	LevelManager.return_to_level_select = true
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _on_level_complete(success: bool, time: float, moves: int) -> void:
 	if success:
+		MusicManager.fade_out_music(0.5)  # 👈 ДОБАВЬ
+		SoundManager.play_level_complete()
 		# Сохраняем прогресс сразу
 		LevelManager.save_level_progress(time, moves)
 		
@@ -156,10 +163,12 @@ func _on_update_moves(count: int) -> void:
 	moves_label.text = "ХОДЫ: %d" % count
 	
 func _on_hint_button_pressed() -> void:
+	SoundManager.play_button_click()
 	if current_level_instance and current_level_instance.has_method("show_hint"):
 		current_level_instance.show_hint()
 	
 func _on_next_button_pressed() -> void:
+	SoundManager.play_button_click()
 	var next_level = LevelManager.current_level + 1
 	
 	#Если следующего уровня ещё нет — показываем попап ЧЕРЕЗ МЕНЮ

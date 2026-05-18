@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dp6no6oi41lyy"]
+[gd_scene format=3 uid="uid://dp6no6oi41lyy"]
 
 [ext_resource type="Script" uid="uid://tscvp22f02ei" path="res://scripts/tutorial.gd" id="1_4kmhl"]
 [ext_resource type="Script" uid="uid://cpvh1uqc841vh" path="res://scripts/background.gd" id="1_8ho6b"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ch7rsj52ndkru" path="res://assets/sprites/BackTile_06.png" id="6_nlqja"]
 [ext_resource type="Texture2D" uid="uid://cbjaqmqs26wum" path="res://assets/sprites/pipe_straight_valve.png" id="9_nlqja"]
 
-[node name="Tutorial" type="Control"]
+[node name="Tutorial" type="Control" unique_id=578014289]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,18 +19,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4kmhl")
 
-[node name="Background" type="Parallax2D" parent="."]
+[node name="Background" type="Parallax2D" parent="." unique_id=679817355]
 script = ExtResource("1_8ho6b")
 
-[node name="Sprite2D" type="Sprite2D" parent="Background"]
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=354080054]
 position = Vector2(360, 640)
 texture = ExtResource("2_ph3nu")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Background"]
+[node name="Sprite2D2" type="Sprite2D" parent="Background" unique_id=1730813058]
 position = Vector2(360, 1920)
 texture = ExtResource("2_ph3nu")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=872010980]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,72 +38,72 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="Panel"]
+[node name="Title" type="Label" parent="Panel" unique_id=1355285713]
 layout_mode = 0
 offset_left = 242.0
-offset_top = 110.0
+offset_top = 71.0
 offset_right = 459.0
-offset_bottom = 168.0
+offset_bottom = 129.0
 theme_override_fonts/font = ExtResource("3_ph3nu")
 theme_override_font_sizes/font_size = 51
 text = "Обучение"
 
-[node name="Fon" type="Sprite2D" parent="Panel"]
-position = Vector2(351.562, 1129.25)
+[node name="Fon" type="Sprite2D" parent="Panel" unique_id=968501388]
+position = Vector2(353, 1000)
 scale = Vector2(1.01231, 1.05224)
 texture = ExtResource("5_ckvwl")
 
-[node name="Sprite2D" type="Sprite2D" parent="Panel"]
-position = Vector2(255.124, 1041.5)
+[node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=1885148929]
+position = Vector2(255.124, 916.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Panel"]
-position = Vector2(354.124, 1041.5)
+[node name="Sprite2D2" type="Sprite2D" parent="Panel" unique_id=69190659]
+position = Vector2(354.124, 916.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Panel"]
-position = Vector2(454.124, 1041.5)
+[node name="Sprite2D3" type="Sprite2D" parent="Panel" unique_id=1830905012]
+position = Vector2(454.124, 916.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Panel"]
-position = Vector2(454.124, 1141.5)
+[node name="Sprite2D4" type="Sprite2D" parent="Panel" unique_id=120536860]
+position = Vector2(454.124, 1016.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D8" type="Sprite2D" parent="Panel"]
-position = Vector2(354.124, 1141.5)
+[node name="Sprite2D8" type="Sprite2D" parent="Panel" unique_id=1102939807]
+position = Vector2(354.124, 1016.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D9" type="Sprite2D" parent="Panel"]
-position = Vector2(354.124, 1241.5)
+[node name="Sprite2D9" type="Sprite2D" parent="Panel" unique_id=97395358]
+position = Vector2(354.124, 1116.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D7" type="Sprite2D" parent="Panel"]
-position = Vector2(454.124, 1241.5)
+[node name="Sprite2D7" type="Sprite2D" parent="Panel" unique_id=1107608103]
+position = Vector2(454.124, 1116.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D5" type="Sprite2D" parent="Panel"]
-position = Vector2(255.124, 1141.5)
+[node name="Sprite2D5" type="Sprite2D" parent="Panel" unique_id=1997295997]
+position = Vector2(255.124, 1016.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Sprite2D6" type="Sprite2D" parent="Panel"]
-position = Vector2(255.124, 1241.5)
+[node name="Sprite2D6" type="Sprite2D" parent="Panel" unique_id=1038350339]
+position = Vector2(255.124, 1115.5)
 texture = ExtResource("6_nlqja")
 
-[node name="Text" type="RichTextLabel" parent="Panel"]
+[node name="Text" type="RichTextLabel" parent="Panel" unique_id=1964836639]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 86.0
-offset_top = 231.0
+offset_top = 165.0
 offset_right = -94.0
-offset_bottom = -366.0
+offset_bottom = -482.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("3_ph3nu")
-theme_override_font_sizes/bold_italics_font_size = 16
 theme_override_font_sizes/normal_font_size = 21
 theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_italics_font_size = 16
 text = "🚀 СЮЖЕТ ИГРЫ 🚀
 
 На КОСМИЧЕСКОМ КОРАБЛЕ авария!
@@ -129,47 +129,47 @@ text = "🚀 СЮЖЕТ ИГРЫ 🚀
 👆 Смотри как поворачивается труба 👆"
 horizontal_alignment = 1
 
-[node name="AnimatedPipe" type="Sprite2D" parent="Panel"]
-position = Vector2(354.124, 1141.5)
+[node name="AnimatedPipe" type="Sprite2D" parent="Panel" unique_id=1053086317]
+position = Vector2(355, 1016.5)
 texture = ExtResource("5_gbqnl")
 
-[node name="StaticPipe" type="TextureRect" parent="Panel"]
+[node name="StaticPipe" type="TextureRect" parent="Panel" unique_id=375351050]
 layout_mode = 0
-offset_left = 305.124
-offset_top = 1291.5
-offset_right = 405.124
-offset_bottom = 1391.5
+offset_left = 306.0
+offset_top = 1166.5
+offset_right = 406.0
+offset_bottom = 1266.5
 rotation = -1.5708
 texture = ExtResource("6_ckvwl")
 
-[node name="StaticPipe2" type="TextureRect" parent="Panel"]
+[node name="StaticPipe2" type="TextureRect" parent="Panel" unique_id=785833382]
 layout_mode = 0
-offset_left = 404.124
-offset_top = 992.5
-offset_right = 504.124
-offset_bottom = 1092.5
+offset_left = 405.0
+offset_top = 866.5
+offset_right = 505.0
+offset_bottom = 966.5
 rotation = 1.5708
 texture = ExtResource("6_ckvwl")
 
-[node name="StaticPipe3" type="TextureRect" parent="Panel"]
+[node name="StaticPipe3" type="TextureRect" parent="Panel" unique_id=210406273]
 layout_mode = 0
 offset_left = 504.124
-offset_top = 1191.5
+offset_top = 1066.5
 offset_right = 604.124
-offset_bottom = 1291.5
+offset_bottom = 1166.5
 rotation = 1.5708
 texture = ExtResource("9_nlqja")
 
-[node name="StaticPipe4" type="TextureRect" parent="Panel"]
+[node name="StaticPipe4" type="TextureRect" parent="Panel" unique_id=1681019873]
 layout_mode = 0
 offset_left = 305.124
-offset_top = 991.5
+offset_top = 865.5
 offset_right = 405.124
-offset_bottom = 1091.5
+offset_bottom = 965.5
 rotation = 1.5708
 texture = ExtResource("9_nlqja")
 
-[node name="BackButton" type="Button" parent="Panel"]
+[node name="BackButton" type="Button" parent="Panel" unique_id=1816996170]
 layout_mode = 1
 offset_left = 41.0
 offset_top = 33.0

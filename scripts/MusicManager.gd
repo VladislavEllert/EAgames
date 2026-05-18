@@ -8,11 +8,16 @@ func _ready() -> void:
 	add_child(music_player)
 	music_player.stream = load("res://assets/Music/3d20874f20174bd.mp3")
 	
+	music_player.finished.connect(_on_music_finished)
 	# Загружаем сохранённую громкость
 	load_music_volume()
 	
 	music_player.play()
 
+func _on_music_finished() -> void:
+	# Когда музыка закончилась — запускаем заново
+	music_player.play()
+	print("🎵 Музыка зациклена")
 
 # ============ УПРАВЛЕНИЕ ГРОМКОСТЬЮ ============
 

@@ -30,7 +30,7 @@
 Скачайте последнюю версию в разделе [Releases](https://github.com/top-it-090304/EAgames/releases). Установка стандартная для целевой ОС.
 
 ### 🛠 Запуск из исходников
-1. Установите [Godot 4.3+](https://godotengine.org/download/)
+1. Установите [Godot 4.4+](https://godotengine.org/download/)
 2. Клонируйте репозиторий:  
    `git clone https://github.com/top-it-090304/EAgames.git`
 3. Откройте `project.godot` в редакторе

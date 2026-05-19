@@ -1,5 +1,5 @@
 <div align="center">
-<img width="409" height="409" alt="logo" src="https://github.com/user-attachments/assets/2087904c-34a7-4f3f-8374-3b7b721b3bbd" />
+<img width="309" height="309" alt="logo" src="https://github.com/user-attachments/assets/2087904c-34a7-4f3f-8374-3b7b721b3bbd" />
 </div>
 
 # 💧 WaterWay
@@ -44,5 +44,14 @@
 ## 📜 Лицензия и контакты
 Проект распространяется под лицензией MIT. Использование кода разрешено в образовательных и некоммерческих целях при указании автора.  
 Нашли ошибку или есть предложение? Создайте [Issue](https://github.com/top-it-090304/EAgames/issues).
+
+## Скриншоты
+
+<img width="200" alt="image" src="https://github.com/user-attachments/assets/657586bd-5a0d-44e7-9669-54ad49a42afd" />
+<img width="200" alt="image" src="https://github.com/user-attachments/assets/9a292bf4-8f1a-42bf-b5fd-b4217c0dbafd" />
+<img width="200" alt="image" src="https://github.com/user-attachments/assets/86f648b7-122d-472b-9c50-6d557d7ed813" />
+<img width="200" alt="image" src="https://github.com/user-attachments/assets/1833fa84-2d1d-4b08-90c6-2fd3d8f2c913" />
+<img width="200" alt="image" src="https://github.com/user-attachments/assets/d0cd378d-9a8b-43fe-97b5-25555567cf80" />
+
 
 💧 *Спасибо за интерес к проекту!*

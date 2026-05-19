@@ -1,3 +1,7 @@
+<div align="center">
+<img width="409" height="409" alt="logo" src="https://github.com/user-attachments/assets/2087904c-34a7-4f3f-8374-3b7b721b3bbd" />
+</div>
+
 # 💧 WaterWay
 
 **WaterWay** — это 2D-головоломка, в которой нужно соединять трубы, чтобы провести жидкость из начальной точки в конечную. Проект разработан на Godot Engine 4.4 с фокусом на мобильные устройства и ОС «Аврора».

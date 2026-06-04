@@ -141,6 +141,7 @@ func _on_back_button_pressed() -> void:
 func _on_level_selected(level_num: int) -> void:
 	# 1. Уровень ещё не создан → показываем попап
 	if level_num >= MAX_IMPLEMENTED_LEVEL:
+		PycoLog.log_event_by_type("dev_popup", {"requested_level": level_num + 1})
 		_show_development_popup()
 		return
 	
@@ -150,6 +151,7 @@ func _on_level_selected(level_num: int) -> void:
 	
 	# 3. Всё ок → запускаем
 	SoundManager.play_button_click()
+	PycoLog.log_event_by_type("level_start", {"level": level_num + 1})
 	LevelManager.go_to_level(level_num)
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
@@ -166,6 +168,7 @@ func _on_level_changed(_level_num: int) -> void:
 
 func _on_reset_button_pressed() -> void:
 	SoundManager.play_button_click()
+	PycoLog.log_event_by_type("progress_reset", {})
 	LevelManager.reset_progress()
 
 func _on_progress_reset() -> void:
@@ -174,6 +177,7 @@ func _on_progress_reset() -> void:
 
 func _on_exit_button_pressed() -> void:
 	SoundManager.play_button_click()
+	await PycoLog.log_stop_playing()
 	get_tree().quit()
 
 func _on_button_pressed() -> void:

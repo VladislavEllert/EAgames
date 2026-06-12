@@ -41,6 +41,10 @@ func _connect_safe(btn: Button, callback: Callable) -> void:
 		btn.pressed.connect(callback)
 
 func _load_level(level_num: int) -> void:
+	# level_start логируем здесь — единый чокпойнт загрузки уровня (и из меню,
+	# и авто-переход на следующий). Раньше был только в menu.gd → авто-переходы
+	# не считались (level_start < level_complete).
+	PycoLog.log_event_by_type("level_start", {"level": level_num + 1})
 	MusicManager.start_music()
 	if current_level_instance:
 		current_level_instance.queue_free()

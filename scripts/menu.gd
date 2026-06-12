@@ -149,9 +149,8 @@ func _on_level_selected(level_num: int) -> void:
 	if not LevelManager.is_level_unlocked(level_num):
 		return  # Просто игнорируем клик
 	
-	# 3. Всё ок → запускаем
+	# 3. Всё ок → запускаем (level_start логируется в game.gd _load_level)
 	SoundManager.play_button_click()
-	PycoLog.log_event_by_type("level_start", {"level": level_num + 1})
 	LevelManager.go_to_level(level_num)
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
